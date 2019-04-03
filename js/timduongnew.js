@@ -227,6 +227,7 @@ function getXuatPhat_KT(dstrambus){
 				diemXP['lon']=(dstrambus[i])['lon'];
 				diemXP['stt_theotuyen']=(dstrambus[i])['stt_theotuyen'];
 				diemXP['danhsachnode']=(dstrambus[i])['danhsachnode'];
+				newTram(diemXP['lat'],diemXP['lon'],diemXP['ten_tram'],0);
 
 		} 
 		else if((dstrambus[i])['ten_tram']==diemDen['ten_tram']){
@@ -236,6 +237,7 @@ function getXuatPhat_KT(dstrambus){
 				diemDen['lon']=(dstrambus[i])['lon'];
 				diemDen['stt_theotuyen']=(dstrambus[i])['stt_theotuyen'];
 				diemDen['danhsachnode']=(dstrambus[i])['danhsachnode'];
+				newTram(diemDen['lat'],diemDen['lon'],diemDen['ten_tram'],0);
 		}
 	}
 }
@@ -261,11 +263,17 @@ function khongchuyentuyen(dstrambus){
 	for(i=0; i<dstrambus.length;i++){
 	   if(dstrambus[i]['ten_tram']==diemDen['ma_tram']) break;
        if(dstrambus[i]['ma_sotuyen']==tuyenHienTai && stt_hientai < dstrambus[i]['stt_theotuyen']){
+       	   if(
+       	   	     tinhkhoangcach(diemXP,dstrambus[i]) 
+       	   	     > 
+       	   	     tinhkhoangcach(diemXP,diemDen)
+       	   	) 
+       	   	break;
          	dsTuyenDaChon.push(dstrambus[i]);
         	stt_hientai = dstrambus[i]['stt_theotuyen'];
        }
 	}
-	dsTuyenDaChon.push(diemDen);
+	if(!diemDen['stt_theotuyen']) dsTuyenDaChon.push(diemDen);
 }
 
 function tachdulieu(data){
@@ -410,16 +418,23 @@ polyline = L.polyline(pon, {color: '#00ff00'}).addTo(map);
 }
 
 function getNode(){
+	var pon = [];
 	for(i=0;i<dsTuyenDaChon.length;i++){
 		tram =dsTuyenDaChon[i];
 		newTram(tram['lat'],tram['lon'],tram['ten_tram'],0);
-
+		latlng = {lat: tram['lat'], lng: tram['lon']};
+		pon.push(latlng);
+		if(i==dsTuyenDaChon.length-1) break;
 		if(tram['danhsachnode']=="null"||tram['danhsachnode']==null) continue;
 		dsnode=jQuery.parseJSON(tram['danhsachnode']);
 		for(j=0;j<dsnode.length;j++){
 			newTram(dsnode[j].lat,dsnode[j].lng,'node',1);
+			latlng = {lat: dsnode[j].lat,lng: dsnode[j].lng};
+		    pon.push(latlng);
 		}
 
 	}
-	veduong();
+	polyline = L.polyline(pon, {color: '#00ff00'}).addTo(map);
+	polyline = L.polyline([latlng,{lat: diemDen['lat'],lng: diemDen['lon']}], {color: '#000000'}).addTo(map);
+
 }
