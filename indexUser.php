@@ -51,6 +51,9 @@ session_start();
 			        <a class="nav-link" href="indexUser.php">Trang Chủ <span class="sr-only">(current)</span></a>
 			      </li>
 			      <li class="nav-item">
+			        <a class="nav-link" href="indexUser.php?xem=danhsachcactuyenbus">DS Tuyến Bus</a>
+			      </li>
+			      <li class="nav-item">
 			        <a class="nav-link" href="indexUser.php?xem=timbus">Tuyến</a>
 			      </li>
 			      <li class="nav-item">
@@ -78,10 +81,10 @@ session_start();
         		<?php
 						if(isset($_SESSION['nguoidung'])){							
 						} else {
-								echo "<div class='col-8'>";
+								echo "<div class='col-9'>";
 									include('php/content_index.php');
 								echo "</div>";
-								echo "<div class='col-4'>";
+								echo "<div class='col-3'>";
 									include('php/content/timkiem.php');
 								echo "</div>";
 							} 

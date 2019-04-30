@@ -48,13 +48,12 @@ session_start();
 							}
 						?>
 					</div>
-
-				<?php
-				if(isset($_SESSION['nguoidung'])){
-					echo "<div class='logout'><button><a href='php/content/dangxuat.php'>Đăng Xuất</a></button></div>";
-					// echo "<div class='userOnline'><button class='btn btn-primary'><a href='php/content/user_online.php'>Số người online</a></button></div>";
-				}
-				?>
+					<?php
+					if(isset($_SESSION['nguoidung'])){
+						echo "<div class='logout'><button><a href='php/content/dangxuat.php'>Đăng Xuất</a></button></div>";
+						// echo "<div class='userOnline'><button class='btn btn-primary'><a href='php/content/user_online.php'>Số người online</a></button></div>";
+					}
+					?>
 				</div>
 			</div>
 			<div id="content">

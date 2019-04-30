@@ -42,6 +42,9 @@ if(isset($_GET['xem'])){
 		case 'timbus':
 			include('php/content/timbus.php');
 			break;
+		case 'danhsachcactuyenbus':
+			include('php/content/danhsachcactuyenbus.php');
+			break;
 		case 'thongbaotheochude':
 			include('php/content/thongbaotheochude.php');
 			break;

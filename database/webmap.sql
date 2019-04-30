@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 30, 2019 lúc 08:36 AM
+-- Thời gian đã tạo: Th4 30, 2019 lúc 11:36 AM
 -- Phiên bản máy phục vụ: 10.1.37-MariaDB
 -- Phiên bản PHP: 7.3.0
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `bus_v1.0`
+-- Cơ sở dữ liệu: `webmap`
 --
 
 -- --------------------------------------------------------

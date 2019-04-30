@@ -10,8 +10,8 @@
 .row #mapid{
    position: absolute;
    top: 0px;
-   width: 90%;
-   margin-left:5%;
+   width: 98%;
+   margin-left:1%;
    height: 100%;
    z-index:1;
 }

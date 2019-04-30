@@ -337,39 +337,39 @@ function veduong() {
 polyline = L.polyline(pon, {color: '#00ff00'}).addTo(map);
 if(allMarkersObjArray[0]!=null&&allMarkersObjArray[1]!=null)console.log(distance(allMarkersObjArray[0]._latlng,allMarkersObjArray[i-1]._latlng));
 }
-// function getNode(){
-// 	mst=$('.tieude').attr('name');
-// 	var dataString ='&mst='+mst;
-// 			$.ajax
-// 			({
-// 			type: "POST",
-// 			url: "php/content/function_ajax/get_node.php",
-// 			data: dataString,
-// 			success: function(resultData) { 
-// 				alert(resultData);
-// 			  		$ds=resultData.split(';');
-// 			  		for(i=0;i<$ds.length-1;i++){
-// 			  			//console.log($ds[i]);
-// 			  			if($ds[i]=="null"||$ds[i]==null) continue;
-// 			  			tram = jQuery.parseJSON($ds[i]);
-// 				  		newTram(tram.lat,tram.lon,tram.ten_tram,0);
+function getNode(){
+	mst=$('.tieude').attr('name');
+	var dataString ='&mst='+mst;
+			$.ajax
+			({
+			type: "POST",
+			url: "php/content/function_ajax/get_node.php",
+			data: dataString,
+			success: function(resultData) { 
+				alert(resultData);
+			  		$ds=resultData.split(';');
+			  		for(i=0;i<$ds.length-1;i++){
+			  			//console.log($ds[i]);
+			  			if($ds[i]=="null"||$ds[i]==null) continue;
+			  			tram = jQuery.parseJSON($ds[i]);
+				  		newTram(tram.lat,tram.lon,tram.ten_tram,0);
 		
-// 				  		//console.log(tram.danhsachnode);
-// 				  		if(tram.danhsachnode=="null"||tram.danhsachnode==null) continue;
-// 				  		$dsnode=jQuery.parseJSON(tram.danhsachnode);
+				  		//console.log(tram.danhsachnode);
+				  		if(tram.danhsachnode=="null"||tram.danhsachnode==null) continue;
+				  		$dsnode=jQuery.parseJSON(tram.danhsachnode);
 
-// 				  		for(j=0;j<$dsnode.length;j++){
-// 				  			newTram($dsnode[j].lat,$dsnode[j].lng,'node',1);
-// 				  		}
-// 		  		}
-// 			updateline();
-// 			//$('#thongbao').html('thành công.').parent().fadeIn().delay(1000).fadeOut('slow');
-// 		  	 },
-// 		  	 error: function(data){
-//     				alert('error!'+data);
-//   				}
-// 			});
-// }
+				  		for(j=0;j<$dsnode.length;j++){
+				  			newTram($dsnode[j].lat,$dsnode[j].lng,'node',1);
+				  		}
+		  		}
+			updateline();
+			//$('#thongbao').html('thành công.').parent().fadeIn().delay(1000).fadeOut('slow');
+		  	 },
+		  	 error: function(data){
+    				alert('error!'+data);
+  				}
+			});
+}
 </script>	
 <script type="text/javascript">
 $(window).bind("load", function() { 

@@ -31,7 +31,7 @@ if(isset($_GET['offset']) && isset($_GET['limit'])){
 							<div class='hinhanh'><img src='upload/".$row['hinhanh']."'/></div>
 							<div class='chu'><p>".rutgonnoidung($row['noidung'],0,700)."</p></div>
 							<div class='tuychon'> 
-								<p><a onclick='upview();' href='http://127.0.0.1/bus_v1.0-master/forum.php?xem=chitietbaidang&id=".$row['id_baidang']."'><i class='fas fa-book-reader'> More</i></a></p>
+								<p><a onclick='upview();' href='http://127.0.0.1/webMap/forum.php?xem=chitietbaidang&id=".$row['id_baidang']."'><i class='fas fa-book-reader'> More</i></a></p>
 								<p><i class='fas fa-comments'> Comment: ".$soluong['soluong']."</i></p>
 								<p><i class='fas fa-eye'> View: ".$row['viewcount']."</i></p>
 								<div class='tacgia'><p><img src='img/nguoiduyet.png' /> Author: ".$row['nguoidang']."</p></div>

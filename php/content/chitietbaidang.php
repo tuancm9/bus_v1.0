@@ -70,7 +70,7 @@ mysqli_close($conn);
     }
     .com-mess{
         height:100px;
-        width:700px;
+        width:600px;
     }
     .com-name{
         height:20px;
@@ -86,24 +86,19 @@ mysqli_close($conn);
         height:auto;
         float:left;
     }
-    li div{
+    #cmt li div{
         float:left;
         margin-left:5px;
     }
-    ul li{
+    #cmt ul li{
         clear:left;
     }
-    li ul li{
+    #cmt li ul li{
         padding-top:0;
     }
     .rep-mess{
         height:50px;
         width:250px;
-    }
-    .rep-a{
-        position:absolute;
-        margin-left:13%;
-        margin-top:-2.5%;
     }
 </style>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

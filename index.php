@@ -128,7 +128,7 @@ session_start();
 			<!-------------------Content-------------->
 			<div id="content"><?php
 			if(isset($_SESSION['nguoidung'])){
-				header('Location: http://127.0.0.1/bus_v1.0-master/forum.php?xem=baidang');
+				header('Location: http://127.0.0.1/webMap/forum.php?xem=baidang');
 			} else include('php/content.php');?></div>
 			<!-------------------Footer-------------->
 			<div id="footer"><?php include('php/footer.php')?></div>
