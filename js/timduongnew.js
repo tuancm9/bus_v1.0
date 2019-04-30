@@ -68,9 +68,15 @@ function setInfo(lat,lng,id){
 	        marker.on("popupopen", onPopupOpen);
 	        if(id=='frompoint') {
 	        	makerDiemdi=marker;
+	        	diemXP['lat']=lat;
+	        	diemXP['lon']=lng;
+	        	diemXP['ten_tram']=info;
 	        }
 	        if(id=='topoint') {
 	        	makerDiemDen=marker;
+	        	diemDen['lat']=lat;
+	        	diemDen['lon']=lng;
+	        	diemDen['ten_tram']=info;
 	        }
 	});
 }
@@ -176,7 +182,7 @@ function setFormSearch(dataTram,e){
 	for(i=0; i< dataTram.length;i++){
 		if(!dataTram[i]) continue;
 		tramT = jQuery.parseJSON(dataTram[i]);
-		document.getElementById(idResult).innerHTML +='<p id="'+id+'" title="'+tramT.ten_tram+
+		document.getElementById(idResult).innerHTML +='<p id="'+id+'" class="list-point" title="'+tramT.ten_tram+
 		'" onmouseover="setValueInput(id,title);" onclick=document.getElementById("'+idResult+'").innerHTML="">'
 		+tramT.ten_tram +'</p>';
 	}
@@ -476,7 +482,13 @@ polyline = L.polyline(pon, {color: '#00ff00'}).addTo(map);
 
 function getNode(){
 	if(dsTuyenDaChon.length<=0){
-		polyline = L.polyline([{lat: diemDi['lat'],lng: diemDi['lon']},{lat: diemDen['lat'],lng: diemDen['lon']}], {color: '#000000'}).addTo(map);
+		polyline = L.polyline([{lat: diemXP['lat'],lng: diemXP['lon']},{lat: diemDen['lat'],lng: diemDen['lon']}], {color: '#000000'}).addTo(map);
+	}
+	if(diemXP['ma_tram']!=null) dsTuyenDaChon.unshift(diemXP);
+	else{
+		tram =dsTuyenDaChon[0];
+		latlng = {lat: tram['lat'], lng: tram['lon']};
+		polyline = L.polyline([latlng,{lat: diemXP['lat'],lng: diemXP['lon']}], {color: '#000000'}).addTo(map);
 	}
 	var pon = [];
 	for(i=0;i<dsTuyenDaChon.length;i++){
@@ -495,6 +507,6 @@ function getNode(){
 
 	}
 	polyline = L.polyline(pon, {color: '#00ff00'}).addTo(map);
-	polyline = L.polyline([latlng,{lat: diemDen['lat'],lng: diemDen['lon']}], {color: '#000000'}).addTo(map);
-
+	if(diemDen['ma_tram']==null||diemDen['ma_sotuyen']!=dsTuyenDaChon[0]['ma_sotuyen'])polyline = L.polyline([latlng,{lat: diemDen['lat'],lng: diemDen['lon']}], {color: '#000000'}).addTo(map);
+	else polyline = L.polyline([latlng,{lat: diemDen['lat'],lng: diemDen['lon']}], {color: '#00ff00'}).addTo(map);
 }
