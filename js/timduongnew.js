@@ -133,7 +133,18 @@ param element
 lấy dữ liệu tên trạm bus
 output: none
 */
+function clean(){
+		$.each(map._layers, function (ml) {
+		if (map._layers[ml].feature || map._layers[ml]._path != undefined) {
+		 tram=this;
+		  map.removeLayer(tram);
+		 }	              	             
+	});
+
+}
 function getDataFromTo(e){
+
+
 	value=e.value;
 	var dataString ='&data='+value;
 		$.ajax
@@ -183,6 +194,7 @@ function setValueInput(id,e){
 
 
 function searchBus(){
+	clean();
 	diemXP['ten_tram']=$('#frompoint').val();
 	diemDen['ten_tram']=$('#topoint').val();
 	if(diemXP['ten_tram']==diemDen['ten_tram']){
@@ -228,6 +240,7 @@ function getXuatPhat_KT(dstrambus){
 				diemXP['stt_theotuyen']=(dstrambus[i])['stt_theotuyen'];
 				diemXP['danhsachnode']=(dstrambus[i])['danhsachnode'];
 				newTram(diemXP['lat'],diemXP['lon'],diemXP['ten_tram'],0);
+				dstrambus.splice(i,1);
 
 		} 
 		else if((dstrambus[i])['ten_tram']==diemDen['ten_tram']){
@@ -238,6 +251,7 @@ function getXuatPhat_KT(dstrambus){
 				diemDen['stt_theotuyen']=(dstrambus[i])['stt_theotuyen'];
 				diemDen['danhsachnode']=(dstrambus[i])['danhsachnode'];
 				newTram(diemDen['lat'],diemDen['lon'],diemDen['ten_tram'],0);
+
 		}
 	}
 }
@@ -254,26 +268,52 @@ function xuly(data){
 
 }
 
+function getDSTuyen(mst,data){
+		var result=[];
+		for(i=0;i<data.length;i++){
+			if(data[i]['ma_sotuyen']==mst) result.push(data[i]);
+		}
+		result.sort(
+		function(a , b){
+			if ( parseInt(a['stt_theotuyen']) >  parseInt(b['stt_theotuyen'])) return 1;
+			if ( parseInt(a['stt_theotuyen']) <  parseInt(b['stt_theotuyen'])) return -1;
+			return 0;
+		       }
+			);
+		return result;
+
+}
 function khongchuyentuyen(dstrambus){
 	var tuyenHienTai= null;
-	if(diemXP['ma_sotuyen']==null) tuyenHienTai = dstrambus[0]['ma_sotuyen'];
-	else tuyenHienTai = diemXP['ma_sotuyen'];
-	stt_hientai = -1;
-	dsTuyenDaChon =[];
-	for(i=0; i<dstrambus.length;i++){
-	   if(dstrambus[i]['ten_tram']==diemDen['ma_tram']) break;
-       if(dstrambus[i]['ma_sotuyen']==tuyenHienTai && stt_hientai < dstrambus[i]['stt_theotuyen']){
-       	   if(
-       	   	     tinhkhoangcach(diemXP,dstrambus[i]) 
-       	   	     > 
-       	   	     tinhkhoangcach(diemXP,diemDen)
-       	   	) 
-       	   	break;
-         	dsTuyenDaChon.push(dstrambus[i]);
-        	stt_hientai = dstrambus[i]['stt_theotuyen'];
-       }
+	var stt_bd = -1;
+	var stt_kt = -1;
+	if(diemXP['ma_sotuyen']==null) {
+		tuyenHienTai = dstrambus[0]['ma_sotuyen'];
+		tramHientai = dstrambus[0];
+		stt_bd =dstrambus[0]['stt_theotuyen'];
 	}
-	if(!diemDen['stt_theotuyen']) dsTuyenDaChon.push(diemDen);
+	else {
+		tuyenHienTai = diemXP['ma_sotuyen'];
+		stt_bd = diemXP['stt_theotuyen'];
+		tramHientai = diemXP;
+	}
+	diemBD =tramHientai;
+	dsTuyenDaChon =[];
+	DStram =  getDSTuyen(tuyenHienTai ,dstrambus);
+	for(i=0; i<DStram.length;i++){
+		    	tramHientai = DStram[i];
+	   if(DStram[i]['ma_tram']==diemDen['ma_tram']) break;
+        if(
+       	   	      parseFloat(tinhkhoangcach(tramHientai,diemBD))
+       	   	     > 
+       	   	      parseFloat(tinhkhoangcach(diemBD,diemDen))
+       	) break;
+        	
+
+    	stt_kt = DStram[i]['stt_theotuyen'];
+	}
+	dsTuyenDaChon = getDStheotuyen(stt_bd,stt_kt,tuyenHienTai,DStram);
+	console.log(stt_kt);
 }
 
 function tachdulieu(data){
@@ -317,6 +357,23 @@ function sapxep(data){
 	return data;
 }
 
+function getDStheotuyen(stt_bd,stt_kt,mst,data){
+	var result=[];
+		for(i=0;i<data.length;i++){
+			if(data[i]['ma_sotuyen']!=mst) continue;
+			if(parseInt(data[i]['stt_theotuyen'])>=parseInt(stt_bd)&&parseInt(data[i]['stt_theotuyen'])<=parseInt(stt_kt))
+			result.push(data[i]);
+		}
+		result.sort(
+		function(a , b){
+			if ( parseInt(a['stt_theotuyen']) >  parseInt(b['stt_theotuyen'])) return 1;
+			if ( parseInt(a['stt_theotuyen']) <  parseInt(b['stt_theotuyen'])) return -1;
+			return 0;
+		       }
+			);
+		return result;
+
+}
 function thongbao(tb){
 	$('#thongbao').html(tb).parent().fadeIn().delay(1000).fadeOut('slow');
 }
@@ -418,6 +475,9 @@ polyline = L.polyline(pon, {color: '#00ff00'}).addTo(map);
 }
 
 function getNode(){
+	if(dsTuyenDaChon.length<=0){
+		polyline = L.polyline([{lat: diemDi['lat'],lng: diemDi['lon']},{lat: diemDen['lat'],lng: diemDen['lon']}], {color: '#000000'}).addTo(map);
+	}
 	var pon = [];
 	for(i=0;i<dsTuyenDaChon.length;i++){
 		tram =dsTuyenDaChon[i];
