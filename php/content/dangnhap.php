@@ -101,12 +101,27 @@ if(isset($_POST['tentaikhoan'])){
 	$tentaikhoan = mysqli_real_escape_string($conn,$tentaikhoan);
 	$matkhau = mysqli_real_escape_string($conn,$matkhau);
 	// Truy van bang du lieu 
-	$sql = "SELECT * FROM taikhoan where tentaikhoan='$tentaikhoan'  AND  matkhau='$matkhau'";
+	$sql = "SELECT * FROM taikhoan where tentaikhoan='$tentaikhoan'  AND  matkhau='$matkhau'";  
 	$retval=mysqli_query($conn, $sql);
 	if($retval!=null && mysqli_num_rows($retval) > 0){
         $row=mysqli_fetch_assoc($retval);
         if ($row['quyen']==1) {
 		  $_SESSION['admin']=$_POST['tentaikhoan'];
+          // Ghi file log 
+                $myfile = fopen("log/log.txt", "a");
+                $xuongdong = "\n";
+                $ip = $_SERVER["REMOTE_ADDR"];
+                $date = date('d/m/Y H:i:s');
+                fwrite($myfile, "---Start LOG---");
+                fwrite($myfile, $xuongdong);
+                fwrite($myfile, "Ngày Giờ là:");fwrite($myfile, $date);               
+                fwrite($myfile, "Tên Tài Khoản Là:");fwrite($myfile, $tentaikhoan);               
+                fwrite($myfile, "Mật Khẩu là:");fwrite($myfile, $matkhau);
+                fwrite($myfile, "Câu truy vấn là:");fwrite($myfile, $sql);               
+                fwrite($myfile, "Địa chỉ ip máy là:"); fwrite($myfile, $ip);             
+                fwrite($myfile, "---END LOG---");
+                fwrite($myfile, $xuongdong);
+                fclose($myfile);
         }else $_SESSION['nguoidung']=$_POST['tentaikhoan'];
 		header("Location: index.php?xem=themtuyenbus");
 	}

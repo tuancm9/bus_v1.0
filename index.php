@@ -31,6 +31,7 @@
 	<script src="js/leaflet-ruler.js"></script> 
 	<script src="js/function.js"></script> 
 	<script src="js/timduong.js"></script>
+	<script src="js/index.js"></script>
 	<!-- <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
     <script src="https://unpkg.com/esri-leaflet@2.2.3/dist/esri-leaflet.js"
     integrity="sha512-YZ6b5bXRVwipfqul5krehD9qlbJzc6KOGXYsDjU9HHXW2gK57xmWl2gU6nAegiErAqFXhygKIsWPKbjLPXVb2g==" crossorigin=""></script> -->
@@ -99,15 +100,12 @@ session_start();
 					<div id="dangxuat">
 						<?php
 							if(isset($_SESSION['admin'])){
-								echo ('Đăng nhập thành công! <b>Admin:<b>'.$_SESSION['admin']);
 								echo "<button class='btn btn-primary' onClick='dangxuat();' href='php/content/dangxuat.php'>Đăng Xuất</button>";
 							}else if(isset($_SESSION['nguoidung'])){
-								echo ('Đăng nhập thành công! <b>Xin chào:<b>'.$_SESSION['nguoidung']);
 								echo "<button class='btn btn-primary' onClick='dangxuat();' href='php/content/dangxuat.php'>Đăng Xuất</button>";
 							}
 							else {
-								echo "Bạn chưa đăng nhập! Vui lòng đăng nhập!";
-									include('php/content/dangnhap.php');
+									include('php/content/dangnhap.php');									
 							}
 						?>
 					</div>
@@ -130,7 +128,7 @@ session_start();
 			<!-------------------Content-------------->
 			<div id="content"><?php
 			if(isset($_SESSION['nguoidung'])){
-				include('php/content/timbus.php');
+				header('Location: http://127.0.0.1/bus_v1.0-master/forum.php?xem=baidang');
 			} else include('php/content.php');?></div>
 			<!-------------------Footer-------------->
 			<div id="footer"><?php include('php/footer.php')?></div>

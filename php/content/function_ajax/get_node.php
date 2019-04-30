@@ -1,7 +1,6 @@
 <?php
 include("../connect.php");
 $sql="select * from tram_xebus where ma_sotuyen=".$_POST['mst']." ORDER BY stt_theotuyen ASC;" ;
-
 $res = mysqli_query($conn,$sql) or die('loi');
 if($res!=null && mysqli_num_rows($res)>0){
 	$kq="";
@@ -10,3 +9,4 @@ if($res!=null && mysqli_num_rows($res)>0){
 	}
 }
 echo $kq;
+?>

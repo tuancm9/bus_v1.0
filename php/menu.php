@@ -4,4 +4,5 @@
 		<li><a href="index.php?xem=danhsachtuyenbus">Danh Sách Tuyến</a></li>
 		<li><a href="index.php?xem=themtrambusvaotuyenbus">Thêm Trạm Vào Tuyến</a></li>
 		<li><a href="index.php?xem=dangthongbao">Đăng Thông Báo</a></li>
+		<li><a href="index.php?xem=baidangdiendan">Bài Đăng Diễn Đàn</a></li>
 	</ul>

@@ -43,9 +43,9 @@ include("connect.php");
 				$tranghienthai=0;
 				}
 	echo "<form name='quanly' method='post' action='#'>";
-	echo "<table class='table table-hover'>";
-	echo "<tr>		<th width='10%' scope='col'>Mã tuyến</th>".
-					"<th scope='col'>Tên tuyến</th>".
+	echo "<table class='table table-hover' id='tableSort'>";
+	echo "<tr>		<th onclick='sortTable(0)' style='cursor:pointer' width='10%' scope='col'>Mã tuyến</th>".
+					"<th onclick='sortTable(0)' style='cursor:pointer' scope='col'>Tên tuyến</th>".
 					"<th width='15%' scope='col'>Tỉnh thành</th>".
 					"<th scope='col'>Chọn</th>		
          </tr>";	

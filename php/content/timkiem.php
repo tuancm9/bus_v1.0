@@ -130,6 +130,7 @@ time#icon:hover, time#icon:focus
 		</div>
 	</div>
 </div>
+
 <script type="text/javascript">
 	var d = new Date();
 	var ngay = ["Sunday", "Monday", "Tuesday", "Wednesday" ,"Thursday" ,"Friday" ,"Saturday"];
@@ -138,3 +139,21 @@ time#icon:hover, time#icon:focus
 	document.getElementById("ngay").innerHTML = d.getDate();
 	document.getElementById("thu").innerHTML = ngay[d.getDay()];
 </script>
+
+<div class='frame'>
+	<div class='title'><h5>Thông Báo Theo Chủ Đề</h5></div>
+			<?php
+				include('connect.php');
+				$sql="SELECT chude, COUNT(*) as soluong FROM thongbao group by chude";
+				$retval=mysqli_query($conn,$sql);
+				echo "<div class='khung'>";         
+						echo "<div style='padding: 1%;'>";
+				if(mysqli_num_rows($retval) > 0){	
+						while($row = mysqli_fetch_assoc($retval)){
+									echo "<div class='noidung'><img src='icon/".$row['chude'].".png' height='30px' width='auto' style='float:left;'/><a href='indexUser.php?xem=thongbaotheochude&chude=".$row['chude']."'>&nbsp;".$row['chude']."</a><p class='soluongbai'>".$row['soluong']."</p></div>";
+						}
+				}else echo "Không có kết quả!";
+				echo "</div>";
+				echo "</div>";
+			?>
+</div>

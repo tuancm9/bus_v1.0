@@ -42,19 +42,19 @@ include("connect.php");
 				$tranghienthai=0;
 				}
 	echo "<form name='quanly' method='post' action='#'>";
-	echo "<table border='1' class='tabletuyenbus'>";
-	echo "<tr>		<th width='5%'>Mã tuyến</th>".
-					"<th>Tên tuyến</th>".
-					"<th>ĐV đảm nhận</th>".
-					"<th width='5%'>Độ dài tuyến</th>".
-					"<th width='8%'>Loại xe</th>".
-					"<th width='10%'>Giá vé</th>".
-					"<th width='6%'>Tỉnh thành</th>".
-					"<th width='5%'>Số chuyến</th>".
-					"<th width='9%'>Từ</th>".
-					"<th width='9%'>Đến</th>".
-					"<th width='8%'>Giãn cách chuyến</th>".
-					"<th width='auto'>Chi Tiết</th>
+	echo "<table id='tableSort' border='1' class='tabletuyenbus'>";
+	echo "<tr>		<th onclick='sortTable(0)' style='cursor:pointer' width='5%'>Mã tuyến</th>".
+					"<th onclick='sortTable(1)' style='cursor:pointer'>Tên tuyến</th>".
+					"<th onclick='sortTable(2)' style='cursor:pointer'>ĐV đảm nhận</th>".
+					"<th onclick='sortTable(3)' style='cursor:pointer'width='5%'>Độ dài tuyến</th>".
+					"<th onclick='sortTable(4)' style='cursor:pointer' width='8%'>Loại xe</th>".
+					"<th onclick='sortTable(5)' style='cursor:pointer' width='10%'>Giá vé</th>".
+					"<th onclick='sortTable(6)' style='cursor:pointer' width='6%'>Tỉnh thành</th>".
+					"<th onclick='sortTable(7)' style='cursor:pointer' width='5%'>Số chuyến</th>".
+					"<th onclick='sortTable(8)' style='cursor:pointer' width='9%'>Từ</th>".
+					"<th onclick='sortTable(9)' style='cursor:pointer' width='9%'>Đến</th>".
+					"<th onclick='sortTable(10)' style='cursor:pointer' width='8%'>Giãn cách chuyến</th>".
+					"<th onclick='sortTable(11)' style='cursor:pointer' width='auto'>Chi Tiết</th>
 					<th>Chọn</th>		
          </tr>";	
         $sql="SELECT * FROM tuyen_xebus limit $batdau, $phantrang";

@@ -108,8 +108,11 @@ if(isset($_POST['tentaikhoan'])){
         $row=mysqli_fetch_assoc($retval);
         if ($row['quyen']==1) {
           $_SESSION['admin']=$_POST['tentaikhoan'];
-          header("Location: http://127.0.0.1/webMap/index.php?xem=themtuyenbus");
-        }else $_SESSION['nguoidung']=$_POST['tentaikhoan'];
+          header("Location: http://127.0.0.1/bus_v1.0-master/index.php?xem=themtuyenbus");
+        }else {
+            $_SESSION['nguoidung']=$_POST['tentaikhoan'];
+            header("Location: http://127.0.0.1/bus_v1.0-master/forum.php?xem=baidang");
+        }
 	}
 	else echo "<script> alert('Sai tài khoản hoặc mật khẩu! Vui lòng kiểm tra lại!') </script>";	
 	mysqli_close($conn);

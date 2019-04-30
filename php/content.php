@@ -7,6 +7,9 @@ if(isset($_GET['xem'])){
 		case 'timtuyenbus': 
 			include("php/content/timtuyenbus.php");
 			break;
+		case 'timbus': 
+			include("php/content/timbus.php");
+			break;
 		case 'danhsachtuyenbus': 
 			include("php/content/danhsachtuyenbus.php");
 			break;
@@ -34,11 +37,11 @@ if(isset($_GET['xem'])){
 		case 'suatuyenbus':
 			include("php/content/suatuyenbus.php");
 			break;
-		case 'timbus':
-			include("php/content/timbus.php");
-			break;
 		case 'thongTintaikhoan':
 			include("php/content/thongTintaikhoan.php");
+			break;
+		case 'baidangdiendan':
+			include("php/content/danhsachbaidang_diendan.php");
 			break;
 	}
 }
