@@ -41,15 +41,15 @@
   <div class="swiper-container" >
 
     <div class="swiper-wrapper">
+      <div class="swiper-slide"><img src="upload/me.jpg"></div>
       <div class="swiper-slide"><img src="upload/5afb36a294cff.jpg"></div>
+      <div class="swiper-slide"><img src="upload/1.jpg"></div>
+      <div class="swiper-slide"><img src="upload/2.jpeg"></div>
+      <div class="swiper-slide"><img src="upload/3.jpg"></div>
       <div class="swiper-slide"><img src="upload/5afb36a294cff.jpg"></div>
+      <div class="swiper-slide"><img src="upload/4.jpg"></div>
       <div class="swiper-slide"><img src="upload/5afb36a294cff.jpg"></div>
-      <div class="swiper-slide"><img src="upload/5afb36a294cff.jpg"></div>
-      <div class="swiper-slide"><img src="upload/5afb36a294cff.jpg"></div>
-      <div class="swiper-slide"><img src="upload/5afb36a294cff.jpg"></div>
-      <div class="swiper-slide"><img src="upload/5afb36a294cff.jpg"></div>
-      <div class="swiper-slide"><img src="upload/5afb36a294cff.jpg"></div>
-      <div class="swiper-slide"><img src="upload/5afb36a294cff.jpg"></div>
+      <div class="swiper-slide"><img src="upload/5.jpg"></div>
       <div class="swiper-slide"><img src="upload/5afb36a294cff.jpg"></div>
     </div>
     <span class="swiper-pagination"></span>

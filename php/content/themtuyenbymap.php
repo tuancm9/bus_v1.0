@@ -27,7 +27,7 @@
 	}	
 	.tools-map{
 		position: absolute;
-		top:20%;
+		top:5%;
 		left: 0%;
 		width: 40px;
 		background-color: rgba(255,255,255,1);
@@ -85,7 +85,7 @@
 			<div class='tool-map tools-item' onclick="deleteallMaker();" title="Xóa tất cả maker">
 					<img src='icon/deleteallMaker.png'/>
 			</div>
-						<div class='tool-map tools-item' onclick="luu();" title="Lưu">
+			<div class='tool-map tools-item' onclick="luu();" title="Lưu">
 					<img src='icon/save.png'/>
 			</div>
 		</div>
@@ -126,6 +126,16 @@ var map = L.map('mapid').setView([10.775375, 106.705737], 14);
 					prefix: '',
 				}).addTo(map);
 		L.control.ruler().addTo(map);
+
+//search
+		var searchControl = L.esri.Geocoding.geosearch().addTo(map);
+		var results = L.layerGroup().addTo(map);
+			searchControl.on('results', function(data){
+			results.clearLayers();
+		    for (var i = data.results.length - 1; i >= 0; i--) {
+		      results.addLayer(L.marker(data.results[i].latlng));
+		    }
+		  });
 // attaching function on map click
 map.on('click', onMapClick);
 function setMove(chedo){

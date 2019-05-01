@@ -87,13 +87,13 @@ echo "<div class='tieude'>SỬA TUYẾN BUS {$_GET['id']}</div>";
 							echo "<th>Tên tuyến</th>"; 
 							echo "<th>ĐV đảm nhận</th>"; 
 							echo "<th width='5%'>Độ dài tuyến</th>"; 
-							echo "<th width='8%'>Loại xe</th>"; 
-							echo "<th width='10%'>Giá vé</th>";
-							echo "<th width='6%'>Tỉnh thành</th>"; 
+							echo "<th width='10%'>Loại xe</th>"; 
+							echo "<th width='12%'>Giá vé</th>";
+							echo "<th width='8%'>Tỉnh thành</th>"; 
 							echo "<th width='5%'>Số chuyến</th>"; 
-							echo "<th width='13%'>Từ</th>"; 
-							echo "<th width='13%'>Đến</th>"; 
-							echo "<th width='8%'>Giản cách chuyến</th>";
+							echo "<th width='12%'>Từ</th>"; 
+							echo "<th width='12%'>Đến</th>"; 
+							echo "<th width='6%'>Giản cách chuyến</th>";
 							echo "</tr>";
 						$sql = "select * FROM tuyen_xebus WHERE ma_sotuyen='".$_GET['id']."'";
 							$retval = mysqli_query($conn,$sql)
@@ -104,9 +104,26 @@ echo "<div class='tieude'>SỬA TUYẾN BUS {$_GET['id']}</div>";
 									echo "<td> <input name='ten_tuyen' type='text' value='{$row['ten_tuyen']}'></td>"; 
 									echo "<td> <input name='donvi_damnhan' type='text' value='{$row['donvi_damnhan']}'></td>";
 									echo "<td> <input name='dodai_tuyen' type='text' value='{$row['dodai_tuyen']}'></td>"; 
-									echo "<td> <input name='loai_xe' type='text' value='{$row['loai_xe']}'></td>";
-									echo "<td> <input name='gia_ve' type='text' value='{$row['gia_ve']}'></td>";
-									echo "<td> <input name='ma_tinhthanh' type='text' value='{$row['ma_tinhthanh']}'></td>";
+									echo "<td> <select name='loai_xe'> 
+															<option value='{$row['loai_xe']}'>{$row['loai_xe']}</option>
+															<option value='6 chỗ'>6 chỗ</option>
+															<option value='26-80 chỗ'>26-80 chỗ</option>
+															<option value='26-55 chỗ'>26-55 chỗ</option>
+															<option value='28-80 chỗ'>28-80 chỗ</option>
+															<option value='29-55 chỗ'>29-55 chỗ</option>
+											</select></td>";
+									echo "<td> <select name='gia_ve'> 
+															<option value='{$row['gia_ve']}'>{$row['gia_ve']}</option>
+															<option value='5,000 VNĐ'>5,000 VNĐ</option>
+															<option value='2,000 VNĐ'>2,000 VNĐ</option>
+															<option value='112,500 VNĐ'>112,500 VNĐ</option>
+											</select></td>";
+									echo "<td> <select name='ma_tinhthanh'> 
+															<option value='{$row['ma_tinhthanh']}'>{$row['ma_tinhthanh']}</option>
+															<option value='TPHCM'>TPHCM</option>
+															<option value='CT'>CT</option>
+															<option value='HN'>HN</option>
+											</select></td>";
 									echo "<td> <input name='so_chuyen' type='text' value='{$row['so_chuyen']}'></td>";
 									echo "<td> <input name='tu' type='time' value='{$row['tu']}'></td>";
 									echo "<td> <input name='den' type='time' value='{$row['den']}'></td>";		

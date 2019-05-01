@@ -138,6 +138,7 @@
 	}
 .leaflet-left {
 	left: 0;
+	top: 35%;
 	}
 .leaflet-control {
 	float: left;

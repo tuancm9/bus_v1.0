@@ -1,7 +1,8 @@
 <style type="text/css">
 	#danhsachtuyenbus{
 		position: relative;
-		width: 100%;
+		width: 99%;
+		margin: 0 1% 1% 1%;
 	}
 	#danhsachtuyenbus .dstuyenbus{
 		position: relative;
@@ -25,14 +26,17 @@
         background: none repeat scroll 0 0 #ffffff;
 	}
 	#danhsachtuyenbus .dstuyenbus:hover .icon {
-        color: #ffffff;
-        background-color: #34B67A;
+        color: #000000;
+        background-color: #FFFFFF;
     }
 	#danhsachtuyenbus table tr{
 		margin: 0;
 	    padding: 0;
 	    border: 0;
 	    font-size: 100%;
+	}
+	#danhsachtuyenbus table td{
+		padding-left:5px; 
 	}
 	#danhsachtuyenbus a{
 		color: #5e9700;
@@ -49,8 +53,7 @@
 	    margin: 0px;
 	    padding: 1px;
 	    vertical-align: middle;
-	    color: #34B67A;
-	    background-color: #ffffff;
+	    color: #ffffff;
 	    border: solid 1px #dadada;
 	    border-radius: 50%;
 	    -webkit-border-radius: 50%;
@@ -65,7 +68,7 @@
 				while($row = mysqli_fetch_assoc($retval)){
 					echo "<div id='danhsachtuyenbus'>
 						<a href='indexUser.php?xem=chitiettuyenbus&id=".$row['ma_sotuyen']."' onclick='' class='dstuyenbus'>
-							<table>
+							<table cellspacing='2px'>
 								<tr>
 									<td class='icon'>".$row['ma_sotuyen']."</td>
 									<td>".$row['ten_tuyen']."</td>

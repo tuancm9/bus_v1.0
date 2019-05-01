@@ -44,7 +44,9 @@ include("connect.php");
 	echo "<form name='quanly' method='post' action='#'>";
 	echo "<table border='1' class='tabletuyenbus'>";
 	echo "<tr>		<th width='5%'>Mã TB</th>".
-					"<th width='10%'>Chủ đề</th>".
+					"<th width='8%'>Chủ đề</th>".
+					"<th width='15%'>Tiêu đề</th>".
+					"<th width='13%'>Hình ảnh</th>".
 					"<th>Nội dung TB</th>".
 					"<th width='5%'>Chọn</th>".
          "</tr>";			
@@ -53,7 +55,9 @@ include("connect.php");
 				echo "<tr>";
 				echo "<td>" . $row["ma_thongbao"]. "</td>"; 
 				echo "<td>" . $row["chude"]. "</td>"; 
-				echo "<td>" . rutgonnoidung($row["noidung"],0,50). "</td>";
+				echo "<td>" . $row["tieude"]. "</td>";
+				echo "<td><img src='upload/".$row["hinhanh"]."' width='100px' height='80px'/></td>";
+				echo "<td>" . rutgonnoidung($row["noidung"],0,200). "</td>";
 				echo "<td style='width:40px;'><input type='checkbox' name='chon[]' value='".$row["ma_thongbao"]."'></td>";
 		}	
 		echo "</table>";

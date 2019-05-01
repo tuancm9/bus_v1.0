@@ -130,7 +130,7 @@ if(isset($_POST['tentaikhoan'])){
     <div class="container">
       <input type="text" class="btn btn-primary" placeholder="Enter Username" name="tentaikhoan">
       <input type="password" class="btn btn-primary" placeholder="Enter Password" name="matkhau">        
-      <button type="submit" class="btn btn-primary" style="width: 40%; height: 50px; margin-left: 30%;margin-top: 1%;">Đăng Nhập</button>
+      <button type="submit" class="btn btn-primary" style="width: 80%; height: 50px; margin-left: 10%;margin-top: 1%;">Đăng Nhập</button>
     </div>  
   </form>
 </div>

@@ -65,6 +65,12 @@ if(isset($_POST['xoa'])){
 							$sql = "DELETE FROM baidang_diendan WHERE id_baidang='".$checkbox[$i]."'";
 							$retval = mysqli_query($conn,$sql)
 								or die(mysqli_error());
+				$sql1 = "SET @autoid:= 0;";
+			    mysqli_query($conn,$sql1) or die("<script> alert('Không thể thêm1!')</script>");
+			    $sql2= "UPDATE baidang_diendan SET id_baidang=@autoid:=(@autoid+1);";
+			    mysqli_query($conn,$sql2) or die("<script> alert('Không thể thêm2!')</script>");
+			    $sql3= "ALTER table baidang_diendan AUTO_INCREMENT=1;";
+			    mysqli_query($conn,$sql3) or die("<script> alert('Không thể thêm3!')</script>");
 								
 				}
 				echo "<script>alert('Đã xóa thành công!')</script>";      
@@ -86,19 +92,25 @@ if(isset($_POST['duyet'])){
 				echo "<script>alert('Duyệt bài đăng thành công!')</script>";      
 	}else echo "<script> alert('Vui lòng chọn ít nhất một bài đăng!')</script>";
 }
-#-----------------------Hiển thị danh sách thông báo-------------
+#-----------------------Hiển thị danh sách bài đăng diễn đàn-------------
 echo "<div class='tieude'>DANH SÁCH BÀI ĐĂNG DIỄN ĐÀN</div>";
 echo "<div class='content-table'>";
 include("connect.php");
-	$sql1 = "SET @autoid:= 0;";
-    mysqli_query($conn,$sql1) or die("<script> alert('Không thể thêm1!')</script>");
-    $sql2= "UPDATE baidang_diendan SET id_baidang=@autoid:=(@autoid+1);";
-    mysqli_query($conn,$sql2) or die("<script> alert('Không thể thêm2!')</script>");
-    $sql3= "ALTER table baidang_diendan AUTO_INCREMENT=1;";
-    mysqli_query($conn,$sql3) or die("<script> alert('Không thể thêm3!')</script>");
 	$sql="SELECT * FROM baidang_diendan";
 	$retval=mysqli_query($conn, $sql);
-	if(mysqli_num_rows($retval) > 0){	
+	if(mysqli_num_rows($retval) > 0){
+		$phantrang=20;
+		$sotrang=ceil(mysqli_num_rows($retval)/$phantrang);
+		if(isset($_GET['trang']))
+			{
+				$batdau=$_GET['trang']*$phantrang;
+				$tranghienthai=$_GET['trang'];
+				}
+			else{
+				$batdau=0;
+				$ketthuc=$phantrang;
+				$tranghienthai=0;
+				}
 	echo "<form name='quanly' method='post' action='#'>";
 	echo '<input type="text" id="myInput" onkeyup="searchTable()" placeholder="Tìm theo tiêu đề.." title="Type in a name">';
 	echo "<table id='tableSort' class='table table-hover'>";
@@ -109,9 +121,10 @@ include("connect.php");
 					"<th onclick='sortTable(4)' style='cursor:pointer'>Nội dung TB</th>".
 					"<th onclick='sortTable(5)' style='cursor:pointer'>Trạng thái</th>".
 					"<th onclick='sortTable(6)' style='cursor:pointer'width='5%'>Chọn</th>".
-         "</tr></thead><tbody>";			
-		while($row = mysqli_fetch_assoc($retval)){
-			$sql="SELECT * from baidang_thongbao";
+         "</tr></thead><tbody>";	
+        $sql1="SELECT * from baidang_diendan limit $batdau, $phantrang";	
+        $retval2=mysqli_query($conn, $sql1);	
+		while($row = mysqli_fetch_assoc($retval2)){
 				echo "<tr>";
 				echo "<td>" . $row["id_baidang"]. "</td>"; 
                 echo "<td>" . $row["chude"]. "</td>"; 
@@ -128,6 +141,14 @@ include("connect.php");
 						echo "<input class='btn btn-primary' name='sua' type='submit' value='Sữa Bài Đăng'></td>";
 						echo "<input class='btn btn-primary' name='duyet' type='submit' value='Duyệt bài đăng'></td>";
 					echo "</div>";
+					echo "<div id='phantrang'>";
+						for($i=0;$i<$sotrang;$i++){
+							if($i!=$tranghienthai){
+								echo "<a href='index.php?xem=baidangdiendan&trang={$i}'>[ ".($i+1)." ]</a>";
+								}
+								 	else echo "<span>[ ".($i+1)." ]</span>";
+							}
+						echo "</div>";
 		echo "</center>";
 	echo "</form>";
 }else echo "Không có thông báo!";	

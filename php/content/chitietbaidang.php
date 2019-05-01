@@ -80,11 +80,14 @@ mysqli_close($conn);
         width:30px;
         height:auto;
         float:left;
+        margin-top: 10px;
     }
     .avt-reply{ 
         width:30px;
         height:auto;
         float:left;
+        margin-top: 10px;
+
     }
     #cmt li div{
         float:left;

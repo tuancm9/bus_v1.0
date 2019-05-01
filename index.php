@@ -84,7 +84,7 @@ session_start();
 					$('#menu').css({'position':'fixed'});
 					$('#menu').css({'cursor':' pointer'});
 					$('#menu').css({'top':'0%'});
-					$('#menu').css({'z-index':'4'});
+					$('#menu').css({'z-index':'99999999999999999999'});
 					$('#menu').css({'left':'0%'});
 					$('#menu').css({'width':'102%'});
 				}
@@ -96,6 +96,7 @@ session_start();
 	<div id="main">
 			<!------------------- Header--------------->
 			<div id="header"> 
+				<div id="particles-js"></div>
 				<?php include('php/header.php');?> 
 					<div id="dangxuat">
 						<?php
@@ -133,5 +134,7 @@ session_start();
 			<!-------------------Footer-------------->
 			<div id="footer"><?php include('php/footer.php')?></div>
 	</div>
+<script src="js/bg_header.js"></script>
+<script src="js/bg_header2.js"></script>
 </body>
 </html>

@@ -104,6 +104,7 @@ $retval=mysqli_query($conn, $sql) or die('Không kết nối được');
 								<tr><td>Tỉnh Thành: </td><td>".$row['ma_tinhthanh']."</td></tr>
 								<tr><td>Giản Cách Chuyến: </td><td>".$row['giancach_chuyen']." Phút</td></tr>
 								<tr><td>ĐV Đảm Nhận: </td><td>".$row['donvi_damnhan']."</td></tr>
+								<tr><td>Giản Cách Chuyến: </td><td>Từ: ".$row['tu']." ----> Đến: ".$row['den']."</td></tr>
 							</table>
 						</div>";
 			}

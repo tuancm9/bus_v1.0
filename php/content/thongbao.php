@@ -48,7 +48,7 @@ include("connect.php");
 $sql="SELECT * FROM thongbao";
 $retval=mysqli_query($conn, $sql) or die('Không kết nối được');
 if(mysqli_num_rows($retval) > 0){
-		$phantrang=5;
+		$phantrang=4;
 		$sotrang=ceil(mysqli_num_rows($retval)/$phantrang);
 			if(isset($_GET['trang']))
 			{
