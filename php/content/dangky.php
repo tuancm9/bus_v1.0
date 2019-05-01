@@ -1,4 +1,3 @@
-
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <style type="text/css">
 #username{
@@ -39,18 +38,16 @@ button{
     border: none;
     cursor: pointer;
     width: 90%;
-	font-size:22px;
+    font-size:22px;
 }
 button:hover {
     opacity: 0.8;
 }
-
 .container input[type=file]{
     width: 50%;
     height: 50px;
     margin-left: 5%;
 }
-
 /* Center the image and position the close button */
 .imgcontainer {
     text-align: center;
@@ -59,13 +56,12 @@ button:hover {
 }
 .avatar {
     width: 100px;
-	height:100px;
+    height:100px;
     border-radius: 50%;
 }
-
 /* The Modal (background) */
 .modal {
-	display:none;
+    display:none;
     position: fixed;
     z-index: 999999999;
     left: 0;
@@ -75,16 +71,14 @@ button:hover {
     overflow: auto;
     background-color: rgba(0,0,0,0.8);
 }
-
 /* Modal Content Box */
 .modal-content {
     background-color: #fefefe;
     margin: 4% auto 15% auto;
     border: 1px solid #888;
     width: 40%; 
-	padding-bottom: 30px;
+    padding-bottom: 30px;
 }
-
 /* The Close Button (x) */
 .close {
     position: absolute;
@@ -98,7 +92,6 @@ button:hover {
     color: red;
     cursor: pointer;
 }
-
 /* Add Zoom Animation */
 .animate {
     animation: zoom 1s
@@ -156,12 +149,12 @@ function getCapcha(){
             }
         }
 var dataString ='captcha='+captcha;
-			$.ajax
-			({
-			type: "POST",
-			url: "php/content/action_captcha.php",
-			data: dataString,
-			success: function(resultData) { 
+            $.ajax
+            ({
+            type: "POST",
+            url: "php/content/action_captcha.php",
+            data: dataString,
+            success: function(resultData) { 
             if(resultData==0){
                 alert(resultData);
                 $('#thongbao').html("Không Thành công: Thông tin của bạn chưa được gởi đi!!!");
@@ -169,11 +162,11 @@ var dataString ='captcha='+captcha;
                 document.getElementById('formDangky').submit();
                 alert("Đã gửi thông tin đăng ký!");
                 }
-		  	 },
-		  	 error: function(resultData){
-    				alert('error!'+resultData);
-  				}
-			});
+             },
+             error: function(resultData){
+                    alert('error!'+resultData);
+                }
+            });
         }
 </script>
 <?php
@@ -195,16 +188,16 @@ if(isset($_POST['captcha'])){
     }
     $pass=md5($_POST['pass']);
     $username=($_POST['username']);
-	// Xử lý để tránh MySQL injection
-	$username = stripslashes($username);
-	$pass = stripslashes($pass);
-	$username = mysqli_real_escape_string($conn,$username);
-	$pass = mysqli_real_escape_string($conn,$pass);
+    // Xử lý để tránh MySQL injection
+    $username = stripslashes($username);
+    $pass = stripslashes($pass);
+    $username = mysqli_real_escape_string($conn,$username);
+    $pass = mysqli_real_escape_string($conn,$pass);
     $sql = "INSERT INTO taikhoan(tentaikhoan,matkhau,email,sdt,hinhanh,quyen) VALUES('$username','$pass','{$_POST['email']}','{$_POST['sdt']}','".$file_part."',0);";
     mysqli_query($conn,$sql) or die("<script> alert('Không thể thêm!')</script>");
     echo "<script>alert('Đăng ký thành công!')</script>";
     mysqli_close($conn);
-	}
+    }
 ?>
 <button class='btn btn-primary' onclick="document.getElementById('a').style.display='block'">
 Đăng Ký</button>
@@ -224,7 +217,7 @@ if(isset($_POST['captcha'])){
       <input type="text" id="captcha" name="captcha" maxlength="6" size="6"><img src="http://127.0.0.1/webMap/php/content/captcha_code.php" title="" alt="" />
       <input type="file" id="hinhanh" class="btn btn-primary" name="hinhanh" value="chọn hình"/>
       <button type="button" class="btn btn-primary" onclick="getCapcha();" style="width: 40%; height: 50px; margin-left: 30%; margin-top: 1%;">Đăng Nhập</button>
-      <div style="margin-top: 15%;" id="thongbao">
+      <!-- <div style="margin-top: 15%;" id="thongbao"> -->
     </div>  
   </form>
 </div>
