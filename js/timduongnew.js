@@ -307,7 +307,8 @@ function khongchuyentuyen(dstrambus){
 	dsTuyenDaChon =[];
 	DStram =  getDSTuyen(tuyenHienTai ,dstrambus);
 	for(i=0; i<DStram.length;i++){
-		    	tramHientai = DStram[i];
+		tramHientai = DStram[i];
+	
 	   if(DStram[i]['ma_tram']==diemDen['ma_tram']) break;
         if(
        	   	      parseFloat(tinhkhoangcach(tramHientai,diemBD))
