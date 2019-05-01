@@ -225,6 +225,8 @@ if(isset($_POST['captcha'])){
       <input type="file" id="hinhanh" class="btn btn-primary" name="hinhanh" value="chọn hình"/>
       <button type="button" class="btn btn-primary" onclick="getCapcha();" style="width: 40%; height: 50px; margin-left: 30%; margin-top: 1%;">Đăng Ký</button>
       <div style="margin-top: 15%;" id="thongbao">
+      <button type="button" class="btn btn-primary" onclick="getCapcha();" style="width: 40%; height: 50px; margin-left: 30%; margin-top: 1%;">Đăng Nhập</button>
+      <!-- <div style="margin-top: 15%;" id="thongbao"> -->
     </div>  
   </form>
 </div>
