@@ -39,7 +39,9 @@ session_start();
 ?>
 <body style="" onload="startTime();">
 	<div id="main">
-      <div id="header"><?php include('php/header.php');?></div>
+      <div id="header">
+      		<div id="particles-js"></div>
+      	</div>
         <nav id="menu1" class="navbar navbar-expand-lg navbar-dark bg-primary">
 			  <a class="navbar-brand" href="indexUser.php"><img src="img/images.png" alt="Logo" width="40px" height="40px"></a>
 			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -102,7 +104,8 @@ session_start();
       myHilitor2.apply(this.value);
     }, false);
   }, false);
-
 </script>
+<script src="js/bg_header.js"></script>
+<script src="js/bg_header2.js"></script>
 </body>
 </html>

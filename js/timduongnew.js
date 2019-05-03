@@ -179,6 +179,7 @@ output: none
 function setFormSearch(dataTram,e){
 	id=e.id;
 	idResult=id+"-result";
+	document.getElementById(idResult).innerHTML="";
 	for(i=0; i< dataTram.length;i++){
 		if(!dataTram[i]) continue;
 		tramT = jQuery.parseJSON(dataTram[i]);
@@ -269,8 +270,9 @@ function xuly(data){
 		}
 	dstrambus=sapxep(dstrambus);
 	console.log(dstrambus);
-	khongchuyentuyen(dstrambus);
-	getNode();
+	//khongchuyentuyen(dstrambus);
+	dijsktra(dstrambus);
+	//getNode();
 
 }
 
@@ -509,5 +511,125 @@ function getNode(){
 	}
 	polyline = L.polyline(pon, {color: '#00ff00'}).addTo(map);
 	if(diemDen['ma_tram']==null||diemDen['ma_sotuyen']!=dsTuyenDaChon[0]['ma_sotuyen'])polyline = L.polyline([latlng,{lat: diemDen['lat'],lng: diemDen['lon']}], {color: '#000000'}).addTo(map);
+	else polyline = L.polyline([latlng,{lat: diemDen['lat'],lng: diemDen['lon']}], {color: '#00ff00'}).addTo(map);
+}
+
+function dijsktra(dstrambus){
+
+	if(diemXP['ma_sotuyen']!=null) {
+		dstrambus.unshift(diemXP);
+	}
+	else {
+		
+	}
+	OpenNode = dstrambus;
+	setUpTrongSo(OpenNode);
+	CloseNode =[];
+	while(dstrambus.length > 0){
+		nodeDangXet = OpenNode.shift();
+		CloseNode.push(nodeDangXet);
+		capNhatTrongSo(nodeDangXet,OpenNode);
+		timMin(OpenNode);
+	}
+	getNodedijsktra(CloseNode);
+}
+
+
+function setUpTrongSo(OpenNode){
+	for(i=0;i<OpenNode.length;i++){
+		OpenNode[i]['khoangcach']=99999999999999;
+		OpenNode[i]['giave']=9999999999999999;
+	}
+	OpenNode[0]['khoangcach'] =0;
+	OpenNode[0]['giave'] =5000;
+	OpenNode[0]['cha'] =null;
+}
+
+
+function capNhatTrongSo(nodeDangXet,OpenNode){
+	for(i=0;i<OpenNode.length;i++){
+		if(nodeDangXet['ma_sotuyen']==OpenNode[i]['ma_sotuyen']){
+			 if(nodeDangXet['stt_theotuyen'] != OpenNode[i]['stt_theotuyen']-1) continue;
+		}
+		giaveTmp =nodeDangXet['giave'];
+		if(OpenNode[i]['ma_sotuyen']!=nodeDangXet['ma_sotuyen']) giaveTmp= nodeDangXet['giave']+ 5000;
+		if(giaveTmp < OpenNode[i]['giave']){
+				OpenNode[i]['giave'] = giaveTmp;
+				OpenNode[i]['khoangcach'] =parseFloat(nodeDangXet['khoangcach']) + parseFloat(tinhkhoangcach(nodeDangXet,OpenNode[i]));
+				OpenNode[i]['cha'] =nodeDangXet;
+		}else if(giaveTmp == OpenNode[i]['giave']){
+			if(parseFloat(nodeDangXet['khoangcach'] + tinhkhoangcach(nodeDangXet,OpenNode[i])) < parseFloat(OpenNode[i]['khoangcach'])){
+				OpenNode[i]['khoangcach'] = parseFloat(nodeDangXet['khoangcach']) + parseFloat(tinhkhoangcach(nodeDangXet,OpenNode[i]));
+			    OpenNode[i]['cha'] =nodeDangXet;
+			}
+		}
+	}
+}
+
+function timMin(OpenNode){
+	OpenNode.sort(
+		function(a , b){
+			if ( parseInt(a['giave']) >  parseInt(b['giave'])) return 1;
+			if ( parseInt(a['giave']) ==  parseInt(b['giave'])){
+				if(parseFloat(a['khoangcach']) > parseFloat(b['khoangcach'])) return 1;
+				if(parseFloat(a['khoangcach']) < parseFloat(b['khoangcach'])) return -1;
+				return 0;
+			} 
+			if (parseInt(a['giave']) <  parseInt(b['giave'])) return -1;
+			return 0;
+		       }
+			);
+}
+
+function getNodedijsktra(CloseNode){
+	kq=null;
+	for(i=0;i<CloseNode.length;i++){
+		if(CloseNode[i]['ma_tram']==diemDen['ma_tram']){
+			kq=CloseNode[i];
+			break;
+		}
+	}
+	dsTuyenDaChon =[];
+	dsTuyenDaChon.unshift(kq);
+	while (kq['cha']!=null) {
+		dsTuyenDaChon.unshift(kq['cha']);
+		kq = kq['cha'];
+	}
+	if(dsTuyenDaChon.length<=0){
+		polyline = L.polyline([{lat: diemXP['lat'],lng: diemXP['lon']},{lat: diemDen['lat'],lng: diemDen['lon']}], {color: '#000000'}).addTo(map);
+	}
+	if(diemXP['ma_tram']!=null) {}
+	else{
+		tram =dsTuyenDaChon[0];
+		latlng = {lat: tram['lat'], lng: tram['lon']};
+	//	polyline = L.polyline([latlng,{lat: diemXP['lat'],lng: diemXP['lon']}], {color: '#000000'}).addTo(map);
+	}
+	var pon = [];
+	for(i=0;i<dsTuyenDaChon.length;i++){
+		tram =dsTuyenDaChon[i];
+		newTram(tram['lat'],tram['lon'],tram['ten_tram'],0);
+		latlng = {lat: tram['lat'], lng: tram['lon']};
+		pon.push(latlng);
+		if(i==dsTuyenDaChon.length-1) break;
+		if(dsTuyenDaChon[i]['ma_sotuyen']!=dsTuyenDaChon[i+1]['ma_sotuyen']) continue;
+		tuyenHienTai = dsTuyenDaChon[i]['ma_sotuyen'];
+		if(tram['danhsachnode']=="null"||tram['danhsachnode']==null) continue;
+		dsnode=jQuery.parseJSON(tram['danhsachnode']);
+		for(j=0;j<dsnode.length;j++){
+			newTram(dsnode[j].lat,dsnode[j].lng,'node',1);
+			latlng = {lat: dsnode[j].lat,lng: dsnode[j].lng};
+		    pon.push(latlng);
+		}
+
+	}
+	polyline = L.polyline(pon, {color: '#00ff00'}).addTo(map);
+	for(i=0;i<dsTuyenDaChon.length-1;i++){
+		if(dsTuyenDaChon[i]['ma_sotuyen']!=dsTuyenDaChon[i+1]['ma_sotuyen']){
+			L.polyline([{lat: dsTuyenDaChon[i]['lat'],lng: dsTuyenDaChon[i]['lon']},{lat: dsTuyenDaChon[i+1]['lat'],lng: dsTuyenDaChon[i+1]['lon']}], {color: '#000000'}).addTo(map);
+		}
+	}
+
+	if(diemDen['ma_tram']==null || diemDen['ma_sotuyen']!=dsTuyenDaChon[dsTuyenDaChon.length-1]['ma_sotuyen'])
+		polyline = L.polyline([latlng,{lat: diemDen['lat'],lng: diemDen['lon']}], {color: '#000000'}).addTo(map);
 	else polyline = L.polyline([latlng,{lat: diemDen['lat'],lng: diemDen['lon']}], {color: '#00ff00'}).addTo(map);
 }

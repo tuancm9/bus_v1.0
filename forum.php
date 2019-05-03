@@ -38,8 +38,19 @@ session_start();
 				
 				<div class="info">
 					<div class="avt">
-						<a data-toggle="dropdown" href="forum.php?xem=thongtintaikhoan"><img src="img/images.png" alt="" class="rounded-circle"></a>
-						<div class="status green">&nbsp;</div>
+						<?php
+							if(isset($_SESSION['nguoidung'])){
+							include('php/content/connect.php');
+							$sql="select hinhanh from taikhoan where tentaikhoan='".$_SESSION['nguoidung']."'";
+							$retvat=mysqli_query($conn,$sql);
+							if(mysqli_num_rows($retvat)>0){
+							while ( $row = mysqli_fetch_assoc($retvat)) {
+							echo "<a data-toggle='dropdown' href='forum.php?xem=thongtintaikhoan'><img src='upload/{$row['hinhanh']}' alt='' class='rounded-circle'></a>
+							<div class='status green'>&nbsp;</div>";
+						}
+					} else echo "Không có kết quả!!!";
+				}
+						?>
 					</div>
 					<div class="name">
 						<?php 

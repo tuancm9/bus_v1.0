@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 30, 2019 lúc 11:36 AM
+-- Thời gian đã tạo: Th5 03, 2019 lúc 10:21 AM
 -- Phiên bản máy phục vụ: 10.1.37-MariaDB
 -- Phiên bản PHP: 7.3.0
 
@@ -47,8 +47,8 @@ CREATE TABLE `baidang_diendan` (
 --
 
 INSERT INTO `baidang_diendan` (`id_baidang`, `chude`, `tieude`, `noidung`, `hinhanh`, `nguoidang`, `ngaydang`, `viewcount`, `luot_like`, `luot_dislike`, `trangthai`) VALUES
-(1, 'Tình Yêu', 'abc', 'noidung', '5afb36a294cff.jpg', 'nguoidung', '03/04/2019', 279, 14, 17, 1),
-(2, 'Thả Thính', 'Tinh Yeu', 'Noi dung', 'Ringtrambus_LR.jpg', 'nguoidung', '03/04/2019', 11, 0, 0, 1),
+(1, 'Tình Yêu', 'abc', 'noidung', '5afb36a294cff.jpg', 'nguoidung', '03/04/2019', 302, 14, 17, 1),
+(2, 'Thả Thính', 'Tinh Yeu', 'Noi dung', 'Ringtrambus_LR.jpg', 'nguoidung', '03/04/2019', 17, 0, 0, 1),
 (3, 'Thơ Tình', 'sfdfds', 'dfsdfds', 'Saigon_bus_15.jpg', 'nguoidung', '07/04/2019', 0, 0, 0, 1),
 (4, 'Chính Trị', 'Chính Trị', 'ádsadasfdfdf', 'Ringtrambus_LR.jpg', 'nguoidung', '07/04/2019', 0, 0, 0, 1),
 (5, 'Chính Trị', 'babgagffg', 'đâsdfsfdhgfjghk', '1547638505.jpg', 'user1', '20/04/2019', 0, 0, 0, 1),
@@ -61,10 +61,10 @@ INSERT INTO `baidang_diendan` (`id_baidang`, `chude`, `tieude`, `noidung`, `hinh
 (12, 'Tình Yêu', 'Tinh yêu', 'ewaeddsggs', 'Ringtrambus_LR.jpg', 'user1', '27/04/2019', 0, 0, 0, 1),
 (13, 'Tình Yêu', 'Tinh yêu', 'ewaeddsggs', 'Ringtrambus_LR.jpg', 'user1', '27/04/2019', 2, 0, 0, 1),
 (14, 'Tình Yêu', 'Tinh yêu', 'ewaeddsggs', 'Ringtrambus_LR.jpg', 'user1', '27/04/2019', 0, 0, 0, 1),
-(15, 'Tình Yêu', '3424', 'rewrewr', '1547638505.jpg', '', '27/04/2019', 0, 0, 0, 0),
+(15, 'Tình Yêu', '3424', 'rewrewr', '1547638505.jpg', '', '27/04/2019', 0, 0, 0, 1),
 (16, 'Tình Yêu', '3424', 'rewrewr', '1547638505.jpg', '', '27/04/2019', 0, 0, 0, 1),
-(17, 'Thơ Tình', '3434', '342342', '1547638505.jpg', 'user1', '27/04/2019', 0, 0, 0, 0),
-(18, 'Thơ Tình', 'ewr', 'ểwr', '1547638505.jpg', 'user1', '27/04/2019', 0, 0, 0, 0),
+(17, 'Thơ Tình', '3434', '342342', '1547638505.jpg', 'user1', '27/04/2019', 0, 0, 0, 1),
+(18, 'Thơ Tình', 'ewr', 'ểwr', '1547638505.jpg', 'user1', '27/04/2019', 0, 0, 0, 1),
 (19, 'Thơ Tình', 'ewr', 'ểwr', '1547638505.jpg', 'user1', '27/04/2019', 0, 0, 0, 1),
 (20, 'Thơ Tình', 'ewr', 'ểwr', '1547638505.jpg', 'user1', '27/04/2019', 0, 0, 0, 1),
 (21, 'Tâm Sự', 'Tâm sự', 'Tâm sự', 'Saigon_bus_15.jpg', 'user1', '28/04/2019', 0, 0, 0, 0),
@@ -74,10 +74,8 @@ INSERT INTO `baidang_diendan` (`id_baidang`, `chude`, `tieude`, `noidung`, `hinh
 (25, 'Game', 'Game', 'Game', '5afb36a294cff.jpg', 'user1', '28/04/2019', 0, 0, 0, 0),
 (26, 'Ý Đẹp', 'Ý Đẹp', 'Ý Đẹp', '5afb36a294cff.jpg', 'user1', '28/04/2019', 0, 0, 0, 0),
 (27, 'Từ Thiện', 'Từ Thiện', 'Từ Thiện', '5afb36a294cff.jpg', 'user1', '28/04/2019', 0, 0, 0, 0),
-(28, 'Kiến Thức', 'Kiến Thức', 'Kiến Thức', '5afb36a294cff.jpg', 'user1', '28/04/2019', 0, 0, 0, 0),
-(29, 'Kiến Thức', 'Kiến Thức', 'Kiến Thức', '5afb36a294cff.jpg', 'user1', '28/04/2019', 0, 0, 0, 0),
-(30, 'Phim Ảnh', 'Phim ảnh', 'Phim Ảnh', '5afb36a294cff.jpg', 'user1', '28/04/2019', 0, 0, 0, 0),
-(31, 'Chủ Đề Khác', 'Chủ đề khác', 'Chủ đề khác', '5afb36a294cff.jpg', 'user1', '28/04/2019', 0, 0, 0, 0);
+(28, 'Phim Ảnh', 'Phim ảnh', 'Phim Ảnh', '5afb36a294cff.jpg', 'user1', '28/04/2019', 0, 0, 0, 0),
+(29, 'Chủ Đề Khác', 'Chủ đề khác', 'Chủ đề khác', '5afb36a294cff.jpg', 'user1', '28/04/2019', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -100,7 +98,7 @@ CREATE TABLE `comment` (
 INSERT INTO `comment` (`com_id`, `com_name`, `com_mess`, `com_date`, `id_baidang`) VALUES
 (1, 'user1', 'user1 đã đến đây!', '2019-04-09', 1),
 (2, 'user1', 'user1 cmt thứ 2', '2019-04-12', 1),
-(3, 'abc', 'abc', '2019-04-03', 2),
+(3, 'user1', 'abc', '2019-04-03', 2),
 (4, 'user1', 'abc', '2019-04-12', 3);
 
 -- --------------------------------------------------------
@@ -136,7 +134,8 @@ INSERT INTO `rating` (`id_rate`, `ma_thongbao`, `rate`) VALUES
 (14, 1, 4),
 (15, 1, 3),
 (16, 2, 5),
-(17, 1, 3);
+(17, 1, 3),
+(18, 8, 3);
 
 -- --------------------------------------------------------
 
@@ -193,8 +192,8 @@ INSERT INTO `taikhoan` (`id`, `tentaikhoan`, `matkhau`, `email`, `sdt`, `hinhanh
 CREATE TABLE `thongbao` (
   `ma_thongbao` int(20) NOT NULL,
   `chude` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `tieude` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `noidung` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `tieude` text COLLATE utf8_unicode_ci NOT NULL,
+  `noidung` text COLLATE utf8_unicode_ci NOT NULL,
   `hinhanh` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `ngaydang` text COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -204,16 +203,14 @@ CREATE TABLE `thongbao` (
 --
 
 INSERT INTO `thongbao` (`ma_thongbao`, `chude`, `tieude`, `noidung`, `hinhanh`, `ngaydang`) VALUES
-(1, 'An Ninh', '', 'Ricardo - Khí Chất Phái Mạnh\r\nSpSonSsoSredSSS · \r\nThần thái chỉ đến từ sự tự tin thì vẫn chưa đủ. Thần thái còn đến từ khí chất và hương thơm quyến rũ của người đàn ông.\r\nHãy “đốt cháy”con tim người ấy bằng hương thơm nam tính và khi', '1547638505.jpg', '01/01/2019'),
-(2, 'An ninh', '', 'áadsadadasdasdsadsad\r\nsadasdsadsadsadsadasd\r\ndsadsadsadsadsadsadsa\r\ndsadsadsadsadsadas\r\ndsadsadsad', '1547638505.jpg', ''),
-(3, 'An Ninh', '', 'sdasdasdsadasdsadasdsad\r\nádsadasssssss\r\ndsadsaaaaaaaaaaaa\r\nsaddddddd\r\ndasssssssssssss\r\n', '1547638505.jpg', ''),
-(4, 'An Ninh', '', 'ádgfdghhhhhhhhhg', '5afb36a294cff.jpg', '08/03/2019'),
-(5, 'Chính Trị', '', 'ad', '5afb36a294cff.jpg', '26/03/2019'),
-(6, 'An Ninh', '', 'Test', '5afb36a294cff.jpg', '03/04/2019'),
-(7, 'An Ninh', '', 'sadasd', '5afb36a294cff.jpg', '03/04/2019'),
-(8, 'Xã Hội', '', 'Xã hội', 'xe-buyt-tphcm.jpg', '29/04/2019'),
-(9, 'Góp Ý', 'Góp Ý', 'Góp Ý', 'Saigon_bus_15.jpg', '29/04/2019'),
-(10, 'Chính Trị', 'Nội dung liên quan đế chính trị', 'Tuy nhiên, theo báo cáo của ngành chức năng, so với các năm trước, kỳ nghỉ lễ 30/4 năm nay,  lượng khách đến Vũng Tàu không đông bằng.\r\n\r\nGhi nhận đến sáng nay (29/4), nhiều khách sạn, nhà nghỉ vẫn treo biển còn phòng dù giá phòng những ngày này vẫn giữ ổ', '20181224_193831.jpg', '29/04/2019');
+(1, 'An Ninh', 'Tạm giữ đối tượng nghi dùng súng điện để cướp tiệm vàng', 'Thông tin ban đầu, sau thời gian theo dõi, đến khoảng 13h30 ngày 30/4, đối tượng Nguyễn Thanh Hãn (sinh năm 1995, thường trú thôn Mỹ Hòa, xã Hòa Thắng, huyện Phú Hòa, tỉnh Phú Yên) đã dùng súng điện đến tiệm vàng Ngọc Kim Cúc thuộc chợ Đông Lộc, xã Hòa Th', '70GQNT6XZM.jpg', '30/04/2019'),
+(2, 'Chính Trị', 'Pháo hoa lung linh trên bầu trời TPHCM đêm 30/4', 'Hàng ngàn người dân Sài Gòn có mặt tại khu Toà nhà Landmark 81 ven sông Sài Gòn đã trầm trồ, vỗ tay khi chiêm ngưỡng màn bắn pháo hoa kỷ niệm 44 giải phóng miền Nam thống nhất đất nước. Hàng ngàn người dân Sài Gòn có mặt tại khu Toà nhà Landmark 81 ven sô', '3-1556635467364.jpg', '30/04/2019'),
+(3, 'Tìm Đồ Và Vật Bị Mất', 'Gặp lại chiếc xe sau 6 năm biệt tích!', 'Tối 26-1, gia đình anh Trương Tín Dương đã đến Công an phường Bưởi, TP Hà Nội để được hướng dẫn các thủ tục, nhận lại chiếc xe bị mất trộm từ 6 năm trước.\r\nTại đây, vợ chồng anh Dương không giấu nổi vẻ xúc động, bắt tay cảm ơn các cán bộ tổ công tác Y2/14', '7DJQUYVFA6.jpg', '30/04/2019'),
+(4, 'Góp Ý', 'Tin tức về chủ đề \"đóng góp ý kiến\"', 'đóng góp ý kiến | Dân trí - Trang tổng hợp tin tức, hình ảnh, video clip, bình luận, đánh giá mới nhất, cập nhật đầy đủ nhất 24h liên quan đến chủ đề đóng góp ý kiến.đóng góp ý kiến | Dân trí - Trang tổng hợp tin tức, hình ảnh, video clip, bình luận, đánh', 'JMVRBGMXZY.jpg', '30/04/2019'),
+(5, 'An Ninh', 'Nâng cao hiệu quả công tác xây dựng phong trào', 'Những năm qua, Công an các tỉnh trong Cụm thi đua số 4 đã đạt được nhiều kết quả nổi bật trong phong trào thi đua “Vì an ninh Tổ quốc” và công tác chuyên môn. Với quyết tâm thực hiện thắng lợi nhiệm vụ công tác công an và tiếp tục đẩy mạnh phong trào thi đua “Vì an ninh Tổ quốc” năm 2019, tại hội nghị, Công an 8 tỉnh đã thảo luận thông qua Quy chế làm việc, Quy định tiêu chí chấm điểm thực hiện phong trào thi đua và thống nhất thực hiện hiệu quả với các nội dung, chỉ tiêu thi đua như: Tiếp tục quán triệt, triển khai thực hiện nghiêm túc các chủ trương chỉ đạo của Đảng, Nhà nước, Đảng ủy Công an Trung ương, lãnh đạo Bộ Công an và của cấp ủy, chính quyền địa phương về công tác thi đua, khen thưởng.Khẳng định năm 2019 có ý nghĩa quan trọng đối với phong trào thi đua “Vì an ninh Tổ quốc”, Đại tá Nguyễn Công Bảy, Phó Cục trưởng Cục Công tác Đảng và Công tác chính trị, Bộ Công an, nhấn mạnh Công an 8 tỉnh cần triển khai đồng bộ các giải pháp đảm bảo an ninh chính trị nội bộ, an ninh kinh tế, an ninh văn hóa tư tưởng, an ninh mạng, bảo vệ bí mật nhà nước; tăng cường hiệu lực, hiệu quả công tác quản lý nhà nước về an ninh trật tự; nâng cao hiệu quả công tác dân vận, công tác xây dựng phong trào \"Toàn dân bảo vệ an ninh Tổ quốc\"…', 'vov1_vianninh_toquoc.jpg', '30/04/2019'),
+(6, 'Tìm Đồ Và Vật Bị Mất', 'Đối phó với nạn trộm cắp trên xe buýt', 'Dù lực lượng chức năng đã bắt nhiều nghi phạm, nhưng tình trạng trộm cắp vẫn xảy ra ở nhiều tuyến xe buýt TP.HCM khiến hành khách bức xúc và bất an.Ngày 22.4, sinh viên Nguyễn Huy Phương đón xe buýt tuyến số 8 để đến Đại học Sư phạm kỹ thuật TP.HCM (Q.Thủ Đức, TP.HCM). Khi xe đến trạm, sinh viên này phát hiện ba lô đeo sau lưng đã bị rạch, chiếc laptop hiệu HP trị giá 15 triệu đồng “không cánh mà bay”. Trước đó, ngày 15.4, một nam sinh viên khác của Trường cao đẳng Xây dựng cũng bị kẻ gian lấy mất laptop ngay trên tuyến xe buýt số 8 này.Không đeo ba lô phía sau, không chen lấn khi lên xuống xe để tránh bị kẻ gian lợi dụng trộm cắp, móc túiKhông đeo ba lô phía sau, không chen lấn khi lên xuống xe để tránh bị kẻ gian lợi dụngtrộm cắp, móc túi - Ảnh: Hải NamCũng vào ngày 22.4, Công an Q.Thủ Đức tiếp nhận một vụ trộm laptop trên xe buýt khác. Sáng hôm đó, chị Nguyễn Thị Cẩm Thu (ngụ P.Phước Long B, Q.9) đón xe buýt tuyến 150 tại trạm Bình Thái - Trường Thọ đi Thủ Đức. Khi đến trạm, chị Thu xuống xe thì phát hiện ba lô đã bị mở bung dây kéo và chiếc laptop hiệu Acer trị giá 11 triệu đồng cũng mất dạng.Thái Thị Vân Anh, sinh viên Trường cao đẳng Ngoại thương TP.HCM, cho biết không ít lần tận mắt chứng kiến cảnh trộm cắp trên xe buýt. “Có lần, em đi xe buýt tuyến số 8 từ Bến xe Q.8 đến Hàng Xanh. Lợi dụng lúc chen lấn, có hai người ăn mặc khá lịch sự móc túi quần lấy bóp của một người đàn ông đứng phía trước em. Sau khi thực hiện xong, 2 người này liền xuống xe ngay trạm kế tiếp. Dù thấy rõ ràng nhưng vì quá sợ nên em không dám la lên”, Vân Anh kể.', 'trom-tren-xe-buyt-d.jpg', '30/04/2019'),
+(7, 'Góp Ý', 'Đi xe buýt, bạn trẻ thảnh thơi giữa dòng xe máy ngược xuôi', 'Phạm Hữu Nghĩa (31 tuổi, ngụ quận 8) hàng ngày bắt xe buýt đi từ quận 8 xuống làng đại học ở Thủ Đức để làm việc. Nhà cách trạm xe gần một cây số và ở điểm đến anh cũng phải đi bộ thêm khoảng 30 phút để đi từ bến vào chỗ làm.\"Nhưng tôi thích đi bộ và đã quen với việc đó nên thấy không khó khăn gì. Trên xe buýt thì có thể ngắm phố phường, nghe nhạc, tranh thủ đọc sách, học tiếng Anh\", anh chia sẻ. Đó là lý do anh quyết định bán hẳn xe máy sau gần chục năm chạy xe để chuyển sang đi xe buýt.Một năm chuyển từ xe máy qua đi xe buýt từ Bình Thạnh lên quận 1 (TP.HCM), Nguyễn Khánh Toàn (29 tuổi, ngụ Bình Thạnh) thấy cái lợi lớn nhất là thảnh thơi hơn, không phải căng người lái xe máy giữa dòng người đông đúc hai buổi sáng, chiều\"Sau khi tốt nghiệp, tôi cũng đã có 7 năm đi làm bằng xe máy. Thấy trạm xe buýt cách nhà vài trăm mét, tôi nghĩ sao mình không thử. Đi một thời gian, tôi ghiền, chuyển hẳn qua xe buýt\", Khánh Toàn kể.Toàn liệt kê những điểm lợi của xe buýt: rẻ, thoải mái, không tốn tiền gửi xe, góp phần bảo vệ môi trường, giảm khí thải.\"100 người đi xe buýt sẽ giảm 100 xe máy đi ngoài đường, sẽ có bao nhiêu lợi ích. Xe buýt hiện tại bất tiện cũng một phần do xe máy quá nhiều, đường không thông thoáng. Nếu có thêm nhiều khách, xe buýt sẽ càng thuận tiện hơn\", Toàn chia sẻ.Công việc làm bếp 8 tiếng vắt kiệt sức lực của Toàn, nên anh vô cùng mệt mỏi khi phải lái xe căng thẳng, còn \"lên xe buýt thì chỉ cắm tai nghe rồi nghe nhạc thảnh thơi\".Anh cảm thấy thoải mái khi mỗi ngày đi bộ từ nhà ra bến chừng 5-7 phút và cũng hiếm khi phải chờ đợi, lỡ chuyến như nhiều người nghĩ\"Đi xe buýt khỏe. Với Google map tôi có thể chọn phương tiện di chuyển. Sau khi chọn tuyến buýt trên map, chừng 10 phút trước khi xe tới, app sẽ réo \"10 phút nữa sẽ có một chuyến xe đi qua điểm này\". App thông báo chính xác nên khá tiện\", anh kể.Đi xe buýt từ thời còn sinh viên, ra trường cũng sắm xe máy như hầu hết mọi người với ý nghĩ đi làm cho tiện nhưng hai năm nay Tô Văn Lộc (30 tuổi, ngụ quận 8) cũng bán xe máy để đi xe buýt.Thời gian ngồi trên xe buýt anh chàng sẽ thảnh thơi ngắm phố phường. \"Có rất nhiều ý tưởng cho công việc của tôi nảy ra từ những lần ngồi xe buýt quan sát mọi thứ từ trên xe\", Lộc kể.', 'JMVRBGMXZY.jpg', '30/04/2019'),
+(8, 'An Ninh', 'Nâng cao hiệu quả công tác xây dựng phong trào', 'Những năm qua, Công an các tỉnh trong Cụm thi đua số 4 đã đạt được nhiều kết quả nổi bật trong phong trào thi đua “Vì an ninh Tổ quốc” và công tác chuyên môn. Với quyết tâm thực hiện thắng lợi nhiệm vụ công tác công an và tiếp tục đẩy mạnh phong trào thi đua “Vì an ninh Tổ quốc” năm 2019, tại hội nghị, Công an 8 tỉnh đã thảo luận thông qua Quy chế làm việc, Quy định tiêu chí chấm điểm thực hiện phong trào thi đua và thống nhất thực hiện hiệu quả với các nội dung, chỉ tiêu thi đua như: Tiếp tục quán triệt, triển khai thực hiện nghiêm túc các chủ trương chỉ đạo của Đảng, Nhà nước, Đảng ủy Công an Trung ương, lãnh đạo Bộ Công an và của cấp ủy, chính quyền địa phương về công tác thi đua, khen thưởng.Khẳng định năm 2019 có ý nghĩa quan trọng đối với phong trào thi đua “Vì an ninh Tổ quốc”, Đại tá Nguyễn Công Bảy, Phó Cục trưởng Cục Công tác Đảng và Công tác chính trị, Bộ Công an, nhấn mạnh Công an 8 tỉnh cần triển khai đồng bộ các giải pháp đảm bảo an ninh chính trị nội bộ, an ninh kinh tế, an ninh văn hóa tư tưởng, an ninh mạng, bảo vệ bí mật nhà nước; tăng cường hiệu lực, hiệu quả công tác quản lý nhà nước về an ninh trật tự; nâng cao hiệu quả công tác dân vận, công tác xây dựng phong trào \"Toàn dân bảo vệ an ninh Tổ quốc\"…', 'vov1_vianninh_toquoc.jpg', '30/04/2019');
 
 -- --------------------------------------------------------
 
@@ -655,7 +652,46 @@ INSERT INTO `tuyen_xebus` (`ma_sotuyen`, `ten_tuyen`, `donvi_damnhan`, `dodai_tu
 ('13', 'Công viên 23/9 - Bến xe Củ Chi', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:00:00', '13:00:00', 15),
 ('14', 'Miền Đông - 3 tháng 2 - Miền Tây', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:00:00', '13:00:00', 15),
 ('15', 'Bến Phú Định-Bến Xe Buýt Đầm Sen', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:00:00', '14:00:00', 15),
-('16', 'Bến Xe Chợ Lớn - Bến Xe Tân Phú', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:01:00', '13:00:00', 6);
+('16', 'Bến Xe Chợ Lớn - Bến Xe Tân Phú', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:01:00', '13:00:00', 6),
+('17', 'Chợ Lớn - ĐHSG - KCN Tân Thuận', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '112,500 VNĐ', 'TPHCM', 126, '01:00:00', '13:00:00', 15),
+('18', 'Bến Xe Buýt Sài Gòn - Hiệp Thành', 'Công ty Cổ phần Xe khách Sài Gòn', 124, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:00:00', '13:00:00', 15),
+('19', 'Sài Gòn - Linh Trung - ĐHQG', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '2,000 VNĐ', 'TPHCM', 126, '01:00:00', '13:00:00', 16),
+('20', 'Bến Xe Buýt Sài Gòn - Nhà Bè', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '2,000 VNĐ', 'TPHCM', 126, '01:00:00', '13:00:00', 15),
+('21', 'Huỳnh Văn Nghệ - THCS Trường Trinh', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:01:00', '13:00:00', 14),
+('22', 'Bến Xe Quận 8 - KCN Lê Minh Xuân', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '26-80 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:00:00', '01:00:00', 14),
+('23', 'Chợ Lớn - Ngã 3 Giồng - Cầu Lớn', 'Công ty Cổ phần Xe khách Sài Gòn', 21, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:00:00', '01:00:00', 5),
+('24', 'Bến Xe Miền Đông - Hóc Môn', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '2,000 VNĐ', 'TPHCM', 126, '01:01:00', '01:00:00', 4),
+('25', 'Bến Xe Quận 8 - KDC Vĩnh Lộc A', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:00:00', '01:00:00', 6),
+('27', 'BX SG - Âu Cơ - BX An Sương', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:00:00', '14:00:00', 5),
+('28', 'BX SG - Chợ Xuân - Thới Thượng', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:00:00', '13:00:00', 7),
+('29', 'Bến Phà Cát Lát - Chợ Nông Sản Thủ Đức', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '26-80 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:00:00', '13:00:00', 4),
+('30', 'Chợ Tân Hương - Đại Học Quốc Tế', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:00:00', '13:01:00', 8),
+('31', 'ĐH Tôn Đức Thắng - ĐH Văn Lang', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:00:00', '02:00:00', 8),
+('32', 'Bến Xe Miền Tây - Bến Xe Ngã Tư Ga', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:00:00', '01:00:00', 8),
+('33', 'Bến Xe An Sương - Suối Tiến - ĐHQG', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '02:00:00', '01:00:00', 9),
+('34', 'Bến Xe SG - ĐH Công Nghệ SG', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:00:00', '13:00:00', 6),
+('36', 'Bến Xe Buýt Sài Gòn - Bến Xe Thới An', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:00:00', '01:00:00', 8),
+('38', 'KDC Tân Quy - Bến Xe Đầm Sen', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:01:00', '00:01:00', 7),
+('39', 'Sài Gòn - Võ Văn Kiệt - BX Miền Tây', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:00:00', '13:00:00', 6),
+('41', 'BX Miền Tây - Bốn Xã - An Sương', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '13:00:00', '13:00:00', 7),
+('42', 'Chợ Cầu Muối - Bến Nông Sản Thủ Đức', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:00:00', '13:00:00', 9),
+('43', 'Bến Xe Miền Đông - Phà Cát Lát', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:00:00', '02:00:00', 6),
+('44', 'Cảng Quận 4 - Bình Quới', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '02:00:00', '01:00:00', 6),
+('45', 'Quận 8 - Bến Thành - BX Miền Đông', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:00:00', '14:00:00', 4),
+('46', 'Cảng Quận 4 - Bến Thành - Mễ Cốc', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:02:00', '01:01:00', 5),
+('47', 'Chợ Lớn - Quốc Lộ 50 - Hưng Long', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:00:00', '13:00:00', 5),
+('48', 'Tân Phú - Chợ Hiệp Thành', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:00:00', '13:00:00', 6),
+('50', 'ĐH Bách Khoa - ĐH QG', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '39-80 chỗ', '5,000 VNĐ', 'TPHCM', 126, '02:00:00', '13:00:00', 6),
+('51', 'Bến Xe Miền Đông - Bình Hưng Hòa', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 4, '01:01:00', '14:00:00', 7),
+('52', 'BX Buýt SG - ĐH Quốc Tế', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '13:00:00', '14:00:00', 7),
+('53', 'Lê Hồng Phong - ĐH QG', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '13:00:00', '14:00:00', 7),
+('54', 'Bến Xe Miền Đông - Bến Xe Chợ Lớn', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '13:00:00', '13:00:00', 7),
+('64', 'Bến Xe Miền Đông - Đầm Sen', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:00:00', '13:00:00', 8),
+('66', 'Bến Xe Chợ Lớn - BX An Sương', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:00:00', '01:00:00', 3),
+('68', 'Bến xe Chợ Lớn - ĐH Tài Chính Marketing', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '02:00:00', '01:00:00', 7),
+('94', 'Chợ Lớn - Củ Chi', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '01:00:00', '14:00:00', 8),
+('96', 'Bến Xe Buýt Sài Gòn - Chợ Bình Điền', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '6 chỗ', '5,000 VNĐ', 'TPHCM', 126, '13:01:00', '13:00:00', 7),
+('99', 'Chợ Thạnh Mỹ Lợi - ĐHQG', 'Công ty Cổ phần Xe khách Sài Gòn', 12, '26-55 chỗ', '112,500 VNĐ', 'TPHCM', 126, '01:01:00', '13:56:00', 8);
 
 -- --------------------------------------------------------
 
@@ -748,7 +784,7 @@ ALTER TABLE `user_online`
 -- AUTO_INCREMENT cho bảng `baidang_diendan`
 --
 ALTER TABLE `baidang_diendan`
-  MODIFY `id_baidang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_baidang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT cho bảng `comment`
@@ -760,7 +796,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT cho bảng `rating`
 --
 ALTER TABLE `rating`
-  MODIFY `id_rate` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_rate` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT cho bảng `reply`
@@ -778,7 +814,7 @@ ALTER TABLE `taikhoan`
 -- AUTO_INCREMENT cho bảng `thongbao`
 --
 ALTER TABLE `thongbao`
-  MODIFY `ma_thongbao` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ma_thongbao` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `user_online`

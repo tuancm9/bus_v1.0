@@ -19,7 +19,7 @@ if(isset($_GET['offset']) && isset($_GET['limit'])){
 	$offset=$_GET['offset'];
 #-----------------------Hiển thị danh sách thông báo-------------
 	include("connect.php");
-		$sql="SELECT * FROM baidang_diendan where trangthai=1 limit {$limit} offset {$offset}";
+		$sql="SELECT * FROM baidang_diendan where trangthai=1 order by id_baidang DESC limit {$limit} offset {$offset}";
 		$retval=mysqli_query($conn, $sql);
 		if(mysqli_num_rows($retval) > 0){	
 			while($row = mysqli_fetch_assoc($retval)){

@@ -13,6 +13,7 @@
 		width:100%;
 		float: left; 
 		margin-left: 1%;
+		min-height: 600px;
 	}
 	.row #box #chitiettuyen{
 		position: absolute;
@@ -20,9 +21,9 @@
 	   left: 0;
 	   width: 30%;
 	   height: 500px;
-	   z-index: 1;
 	   overflow:scroll;
 	   background-color: #DDD;
+		z-index: 2;
 	}
 	.row #box #chitiettuyen{
 		line-height: 1.3;
@@ -87,7 +88,8 @@
 	   z-index: 1;
 	}
 </style>
-<div class="tieude" name='<?php echo $_GET['id'] ?>'>THÔNG TIN TUYẾN BUS <?php echo "{$_GET['id']}";?></div>
+
+<div  class="tieude" name='<?php echo $_GET['id'] ?>'>THÔNG TIN TUYẾN BUS <?php echo "{$_GET['id']}";?></div>
 <?php
 include("connect.php");
 $sql="SELECT * FROM tuyen_xebus where ma_sotuyen=".$_GET['id']."";
@@ -111,7 +113,10 @@ $retval=mysqli_query($conn, $sql) or die('Không kết nối được');
 	}else echo "Không Có Tuyến Bus Nào!";
 ?>
 <div id="box">
-	<div class="tieude">LỘ TRÌNH TUYẾN BUS <?php echo "{$_GET['id']}";?></div>
+	<div class="tieude" >LỘ TRÌNH TUYẾN BUS <?php echo "{$_GET['id']}";?></div>
+	<div id='showListBus' style="width: 40px; height: 40px;position: absolute;z-index: 3;top:0;left:0; margin-left:2px; opacity:0.8;">
+		<img src="icon/clickHere.png" height="35px" onclick='closeListBus()' />
+	</div>
 	<div id="chitiettuyen">
 		<?php
 			include("connect.php");
@@ -140,71 +145,6 @@ var map = L.map('mapid').setView([10.775375, 106.705737], 14);
 					attributionControl: false,
 					prefix: '',
 				}).addTo(map);
-		L.control.ruler().addTo(map);
-// attaching function on map click
-map.on('click', onMapClick);
-function setMove(chedo){
-	Move=chedo;
-	if(chedo==0){
-		$html="	<div class='tool-map tools-item' id='Move' onclick='setMove(1);'  title='Chế độ di chuyển'> "+		
-					"<img src='icon/stopMove.png'/>  "+
-				"</div>";
-
-		$('#Move').html($html);
-	}
-}
-
-function onMapClick(e) {
-
-	if(Move==0) return 0;
-	
-	 if(tuychon==1){
-	 	 nameTram="node";
-	 }
-    var geojsonFeature = {
-        "type": "Feature",
-            "properties": {},
-            "geometry": {
-                "type": "Point",
-                "coordinates": [e.latlng.lat, e.latlng.lng]
-        }
-    }
-    var marker;
-    L.geoJson(geojsonFeature, {   
-        pointToLayer: function(feature, latlng){
-            
-            marker = L.marker(e.latlng, {
-                
-                title: nameTram,
-                alt: "Resource Location",
-                riseOnHover: true,
-                draggable: true,
-
-            }).bindPopup("<input type='button' value='Delete this marker' class='marker-delete-button'/>");
-
-            marker.on("popupopen", onPopupOpen);
-            marker.on("moveend",function(e){
-            	updateline();
-            });
-  
-       		if(tuychon==0) marker.setIcon(getIcon('tram'));
-       		if(tuychon==1) marker.setIcon(getIcon('node'));
-            return marker;
-        }
-    }).addTo(map);
-    if($click==0){
-    	$firstPoint=marker;
-    	$click++;
-    }
-    if($click!=0){
-    	console.log($firstPoint._latlng);
-		console.log(tinhkhoangcach($firstPoint._latlng, marker._latlng));
-	}
-    tuychon=1;
-    updateline();
-    console.log(marker);
-
-}
 
 // -------------------------ham cap nhat icon-------------------------
 // input tên icon cần sét, output Icon
@@ -260,15 +200,11 @@ function newTram(lat,lon,name,value){
                 title: name,
                 alt: name,
                 riseOnHover: true,
-                draggable: true,
+                draggable: false,
 
             }).bindPopup("<input type='button' value='Delete this marker' class='marker-delete-button'/>");
 
             marker.on("popupopen", onPopupOpen);
-            marker.on("moveend",function(e){
-            	updateline();
-            });
-  
        		if(value==0) marker.setIcon(getIcon('tram'));
        		if(value==1) marker.setIcon(getIcon('node'));
 
@@ -336,8 +272,9 @@ function veduong() {
     	pon.push(allMarkersObjArray[i]._latlng);
     }
 polyline = L.polyline(pon, {color: '#00ff00'}).addTo(map);
-if(allMarkersObjArray[0]!=null&&allMarkersObjArray[1]!=null)console.log(distance(allMarkersObjArray[0]._latlng,allMarkersObjArray[i-1]._latlng));
+// if(allMarkersObjArray[0]!=null&&allMarkersObjArray[1]!=null)console.log(distance(allMarkersObjArray[0]._latlng,allMarkersObjArray[i-1]._latlng));
 }
+
 function getNode(){
 	mst=$('.tieude').attr('name');
 	var dataString ='&mst='+mst;
@@ -347,7 +284,7 @@ function getNode(){
 			url: "php/content/function_ajax/get_node.php",
 			data: dataString,
 			success: function(resultData) { 
-				alert(resultData);
+				// alert(resultData);
 			  		$ds=resultData.split(';');
 			  		for(i=0;i<$ds.length-1;i++){
 			  			//console.log($ds[i]);
@@ -377,4 +314,17 @@ $(window).bind("load", function() {
 	getNode();   
 });
 </script>
-<script type="text/javascript">initMap();</script>
+<script type="text/javascript">
+// initMap();
+function closeListBus(){
+$('#chitiettuyen').animate({width:"0%"},500);
+$('#mapid').animate({width:"100%"},500);
+$('#showListBus').html('<img src="icon/clickHere.png" width ="35px" onclick="openListBus()" />'); 
+}
+
+function openListBus(){
+$('#chitiettuyen').animate({width:"30%"},500);
+$('#mapid').animate({width:"70%"},500);
+$('#showListBus').html('<img src="icon/clickHere.png" width ="35px" onclick="closeListBus()" />'); 
+}
+</script>

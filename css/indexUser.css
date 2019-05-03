@@ -4,6 +4,48 @@ img, object, embed, video {
 	max-width: 100%;
 }
 
+
+.scale-up-center{
+/* display:inline-block; *//* vertical-align:middle; */
+*vertical-align:auto;
+*zoom:1;
+*display:inline;
+/* overflow:hidden; */
+}
+.scale-up-center img{
+display:inline-block;vertical-align:
+middle;*vertical-align:auto;
+*zoom:1;*display:inline;
+}
+.scale-up-center img:hover{
+-moz-transform:scale(1.03);
+-ms-transform:scale(1.03);
+-webkit-transform:scale(1.03);
+transform:scale(1.03)
+}
+.scale-up-center.via-effect{
+-moz-transform:translate3d(0, 0, 0);
+-ms-transform:translate3d(0, 0, 0);
+}
+.scale-up-center.via-effect img{
+	-moz-transition-property:-moz-transform, 
+	-moz-transform, -ms-transform, -o-transform, 
+	-webkit-transform;
+	-o-transition-property:-o-transform, -moz-transform, -ms-transform, -o-transform, -webkit-transform;
+	-webkit-transition-property:-webkit-transform, -moz-transform, -ms-transform, -o-transform, -webkit-transform;
+	transition-property:transform -moz-transform -ms-transform -o-transform -webkit-transform;
+	-moz-transition-duration:0.5s;
+	-o-transition-duration:0.5s;
+	-webkit-transition-duration:0.5s;
+	transition-duration:0.5s;
+	-moz-transition-timing-function:ease-in-out;
+	-o-transition-timing-function:ease-in-out;
+	-webkit-transition-timing-function:ease-in-out;
+	transition-timing-function:ease-in-out
+}
+
+/*!
+
 .ie6 img {
 	width:100%;
 }
@@ -45,13 +87,13 @@ img, object, embed, video {
 			margin-left: 0;
 			}	
 		#header{
-			/*background-image: url(../img/14.png);*/
+			background-image: url(../img/header.png);
 			background-color: #00CC66;
 			background-size: 100% 100%;
 			background-repeat:no-repeat;
 			/*margin-bottom:1%;*/
 			width: 100%;
-			height: auto;
+			height: 193px;
 			}
 		#menu{
 			position: relative;
@@ -143,6 +185,27 @@ img, object, embed, video {
 			height: auto;
 		}
 
+		.post .picture img:hover{
+			opacity: 1;
+			-webkit-animation: flash 1.5s;
+			animation: flash 1.5s;
+		}
+		@-webkit-keyframes flash {
+			    0% {
+			        opacity: .4;
+			    }
+			    100% {
+			        opacity: 1;
+			    }
+			}
+		@keyframes flash {
+			    0% {
+			        opacity: .4;
+			    }
+			    100% {
+			        opacity: 1;
+			    }
+			}
 		.post .notify{
 			width: 100%;
 			height: auto;

@@ -4,25 +4,24 @@
 	height: 50px;
 }
 #phantrang_index{
-	position: relative;
-	width:96%;
-	margin-left: 3%;
-	background-color:#9fd1e8;
-	float:left;
 	margin-top: 5px;
+    width: 98%;
+    background-color: #069;
+    float: left;
+    margin-left:2%; 
 }	
 #phantrang_index a{
-	margin:2px;
-	text-decoration:none;
-	color:#FFF;
-	display: block;
-	float: left;
-	text-align: center;
+	margin: 2px;
+    text-decoration: none;
+    color: #FFF;
+    line-height: 30px;
 	} 	
 #phantrang_index span{
-	margin: 2px 2px 2px 45%;
-	color:#009;
-	float: left;
+	 margin: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    color: #009;
+    line-height: 30px;
 	} 
 #phantrang_index a:hover{
 color:#009;	
@@ -66,7 +65,7 @@ if(mysqli_num_rows($retval) > 0){
 		while($row = mysqli_fetch_assoc($retval1)){
             echo  "<div class='container'>
         				<div class='post row'>
-        					<div class='picture col-4'>
+        					<div class='picture col-4 '>
         					<img src='upload/".$row['hinhanh']."'/>
         					</div>
         					<div class='notify col-8'>

@@ -54,6 +54,7 @@
 		max-height: 300px;
 		overflow: scroll;
 		width: 100%;
+		overflow-x:hidden;
 	}
 	#form .list-point{
 		padding: 5px 20px;

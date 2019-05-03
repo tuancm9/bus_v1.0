@@ -97,7 +97,6 @@ session_start();
 			<!------------------- Header--------------->
 			<div id="header"> 
 				<div id="particles-js"></div>
-				<?php include('php/header.php');?> 
 					<div id="dangxuat">
 						<?php
 							if(isset($_SESSION['admin'])){

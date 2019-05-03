@@ -74,35 +74,33 @@ time#icon:hover, time#icon:focus
   80%  { transform: rotate(6deg)  skewY(-2deg); }
   100% { transform: rotate(0deg)  skewY(0deg); }
 }
+#getInput-result{
+		position: absolute;
+		z-index: 99999999;
+		background: #FFF;
+		max-height: 300px;
+		overflow: scroll;
+		width: 100%;
+		overflow-x:hidden;
+	}
 </style>
 
 
 <div class='frame'>
 	<div class='title'><h5>Thông Tin Tuyến</h5></div>
-	<form name='timkiem'>
+	<form name='timkiem' action="javascript:submitQuery()">
 		<div class='input'>
-			<input type="text" class="form-control" placeholder="<Nhập mã hoặc tên tuyến>" aria-label="Username" aria-describedby="addon-wrapping">
+			<input id="getInput" type="text" class="form-control" placeholder="<Nhập mã hoặc tên tuyến>" aria-label="Username" onkeyup="getInputtuyen(this);" aria-describedby="addon-wrapping">
 		</div>
+		<div id='getInput-result'></div>
 		<center>
-			<button type="button" class="btn btn-primary"><i class="fas fa-search"></i> Xem</button>
+			<button type="button" class="btn btn-primary" onclick="submit_mst();"><i class="fas fa-search"></i>Xem</button>
 		</center>
 	</form>
 </div>
 
 <div class='frame'>
 	<div class='title'><h5>Đường Đi Bằng Xe Bus</h5></div>
-	<form name='timkiem'>
-		<div class='input'>
-			<input type="text" class="form-control" placeholder="<Nhập mã hoặc tên tuyến>" aria-label="Username" aria-describedby="addon-wrapping">
-		</div>
-		<center>
-			<button type="button" class="btn btn-primary"><i class="fas fa-search"></i> Tìm</button>
-		</center>
-	</form>
-</div>
-
-<div class='frame'>
-	<div class='title'><h5>Tìm Đường</h5></div>
 	<form name='timkiem'>
 		<div class='input'>
 			<input type="text" class="form-control" placeholder="<Nhập mã hoặc tên tuyến>" aria-label="Username" aria-describedby="addon-wrapping">
@@ -157,3 +155,57 @@ time#icon:hover, time#icon:focus
 				echo "</div>";
 			?>
 </div>
+
+<script type="text/javascript">
+	function getInputtuyen(e){
+	value=e.value;
+	var dataString ='&data='+value;
+		$.ajax
+		({
+		type: "POST",
+		url: "php/content/function_ajax/getTuyen.php",
+		data: dataString,
+		success: function(resultData) { 
+		if(resultData=='') return;
+			tram=resultData.split(';');
+			setTuyen(tram,e);
+		//$('#thongbao').html('thành công.').parent().fadeIn().delay(1000).fadeOut('slow');
+	  	 },
+	  	 error: function(data){
+				alert('error!'+data);
+				}
+		});
+	
+};
+/*
+param danh sach ten tram bus, element của thẻ input
+tạo danh sách sổ xuống các tên trạm bus
+output: none
+*/
+function setTuyen(dataTram,e){
+	id=e.id;
+	idResult=id+"-result";
+	document.getElementById(idResult).innerHTML="";
+	for(i=0; i< dataTram.length;i++){
+		if(!dataTram[i]) continue;
+		tramT = jQuery.parseJSON(dataTram[i]);
+		document.getElementById(idResult).innerHTML +='<p id="'+id+'" class="list-point" title="'+tramT.ma_sotuyen+" "+tramT.ten_tuyen+
+		'" onmouseover="setValueInput(id,title);" onclick=document.getElementById("'+idResult+'").innerHTML="">'
+		+tramT.ma_sotuyen +" "+tramT.ten_tuyen +'</p>';
+	}
+}
+function setValueInput(id,e){
+	$('#'+id).val(e);
+}
+
+function submit_mst(){
+	chuoi=$("#getInput").val();
+	if(chuoi==""){
+		alert("Chưa chọn tuyến bus")
+	}else{
+		var mst = chuoi.split(" ");
+		window.location.href = "indexUser.php?xem=chitiettuyenbus&id="+mst[0];
+	}
+}
+
+</script>

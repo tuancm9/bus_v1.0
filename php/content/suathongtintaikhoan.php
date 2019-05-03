@@ -83,7 +83,7 @@ function kiemtraform(){
     tentaikhoan=$("#tentaikhoan").val();
     matkhau=$("#matkhau").val();
     sdt=$("#sdt").val();
-    hinhanh=$("#file").val();
+    file=$("#file").val();
     var email=document.getElementById('email');
     var filter=/^[0-9A-Za-z]+[0-9A-Za-z_]*@[\w\d.]+.\w{2,4}$/;
     var testSDT = /((09|03|07|08|05)+([0-9]{8})\b)/g;
@@ -101,6 +101,17 @@ function kiemtraform(){
         $('#sdt').focus();
         return 0;
         }
+    if(file!=""){
+        type=file.split(".");
+            if(type[1]!=='JPG'&&type[1]!=='jpg'
+            &&type[1]!=='PNG'&&type[1]!=='png'
+            &&type[1]!=='gif'&&type[1]!=='GIF'
+            &&type[1]!=='JPEG'&&type[1]!=='jpeg'){
+                    alert("vui lòng chọn file ảnh đúng định dạng JPG,PNG,GIF");
+                    file=document.forms["suathongtintaikhoan"].hinhanh.focus();
+                    return 0;
+                    }
+        }
     document.getElementById('suathongtintaikhoan').submit();
 }
 </script>
@@ -109,16 +120,16 @@ include('connect.php');
 if(!isset($_POST['id'])){}
     else {
     $pass=md5($_POST['matkhau']);
-    $file_part="default.png";
+    #Kiểm tra file ảnh có đúng định dạng không
     if($_FILES["hinhanh"]["name"]!=""){
-        echo $_FILES["hinhanh"]["name"];
         $file_part=$_FILES["hinhanh"]["name"];
         move_uploaded_file($_FILES["hinhanh"]["tmp_name"],"upload/".$file_part);
     }
+    else $file_part="default.png";
     $sql="update taikhoan set matkhau='$pass', email='{$_POST['email']}', sdt='{$_POST['sdt']}', hinhanh='{$file_part}' where id={$_POST['id']}";
     mysqli_query($conn,$sql) or die("<script> alert('Không thể cập nhật!')</script>");
     echo "<script>alert('Cập nhật thành công!');
-    window.location.href='http://127.0.0.1/bus_v1.0-master/forum.php?xem=thongtintaikhoan';</script>";
+    window.location.href='http://127.0.0.1/webMap/forum.php?xem=thongtintaikhoan';</script>";
     mysqli_close($conn);
 }
 ?>

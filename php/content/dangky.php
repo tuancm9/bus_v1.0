@@ -156,7 +156,7 @@ var dataString ='captcha='+captcha;
             data: dataString,
             success: function(resultData) { 
             if(resultData==0){
-                alert(resultData);
+                alert("Mã captcha không họp lệ!");
                 $('#thongbao').html("Không Thành công: Thông tin của bạn chưa được gởi đi!!!");
             } else {
                 document.getElementById('formDangky').submit();
@@ -216,7 +216,7 @@ if(isset($_POST['captcha'])){
       <input type="text" id="sdt" class="dangky" placeholder="Nhập số điện thoại" name="sdt"> 
       <input type="text" id="captcha" name="captcha" maxlength="6" size="6"><img src="http://127.0.0.1/webMap/php/content/captcha_code.php" title="" alt="" />
       <input type="file" id="hinhanh" class="btn btn-primary" name="hinhanh" value="chọn hình"/>
-      <button type="button" class="btn btn-primary" onclick="getCapcha();" style="width: 40%; height: 50px; margin-left: 30%; margin-top: 1%;">Đăng Nhập</button>
+      <button type="button" class="btn btn-primary" onclick="getCapcha();" style="width: 40%; height: 50px; margin-left: 30%; margin-top: 1%;">Đăng Ký</button>
       <!-- <div style="margin-top: 15%;" id="thongbao"> -->
     </div>  
   </form>
