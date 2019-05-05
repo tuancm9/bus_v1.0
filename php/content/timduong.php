@@ -12,7 +12,7 @@
    top: 0px;
    width: 98%;
    margin-left:1%;
-   height: 100%;
+   height: 550px;
    z-index:1;
 }
 #mapid button{
@@ -23,11 +23,12 @@
 }
 </style>  
         <div id="mapid">
+
             <script>
                 var mymap = L.map('mapid').fitWorld();                
                 // mymap.locate({setView: true, maxZoom: 14});
-                var marker = L.marker([10.775375, 106.705737]).addTo(mymap);
-                marker.bindPopup("<b>HCMCT</b>").openPopup();
+                // var marker = L.marker([10.775375, 106.705737]).addTo(mymap);
+                // marker.bindPopup("<b>HCMCT</b>").openPopup();
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                             maxZoom: 22,
                             attributionControl: false,

@@ -90,23 +90,11 @@ time#icon:hover, time#icon:focus
 	<div class='title'><h5>Thông Tin Tuyến</h5></div>
 	<form name='timkiem' action="javascript:submitQuery()">
 		<div class='input'>
-			<input id="getInput" type="text" class="form-control" placeholder="<Nhập mã hoặc tên tuyến>" aria-label="Username" onkeyup="getInputtuyen(this);" aria-describedby="addon-wrapping">
+			<input id="getInput" type="text" class="form-control" placeholder="Nhập mã hoặc tên tuyến" aria-label="Username" onkeyup="getInputtuyen(this);" aria-describedby="addon-wrapping">
 		</div>
 		<div id='getInput-result'></div>
 		<center>
-			<button type="button" class="btn btn-primary" onclick="submit_mst();"><i class="fas fa-search"></i>Xem</button>
-		</center>
-	</form>
-</div>
-
-<div class='frame'>
-	<div class='title'><h5>Đường Đi Bằng Xe Bus</h5></div>
-	<form name='timkiem'>
-		<div class='input'>
-			<input type="text" class="form-control" placeholder="<Nhập mã hoặc tên tuyến>" aria-label="Username" aria-describedby="addon-wrapping">
-		</div>
-		<center>
-			<button type="button" class="btn btn-primary"><i class="fas fa-search"></i> Tìm</button>
+			<button type="button" class="btn btn-primary" onclick="submit_mst();"><i class="fas fa-search"></i>Tìm</button>
 		</center>
 	</form>
 </div>
@@ -207,5 +195,6 @@ function submit_mst(){
 		window.location.href = "indexUser.php?xem=chitiettuyenbus&id="+mst[0];
 	}
 }
-
 </script>
+<script src="js/timduongnew.js"></script>
+<script type="text/javascript">initMap();</script>

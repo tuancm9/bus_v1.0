@@ -58,7 +58,28 @@
 	    border-radius: 50%;
 	    -webkit-border-radius: 50%;
 	}
+#formSearch{
+	width: 50%;
+	height: 100px;
+	margin-left:20%;
+}
+#formSearch form-group{
+	width: 20%;
+}
+#formSearch .btn{
+	width: 20%;
+	margin-left:40%;
+	margin-top:0;
+}
 </style>
+<div id='formSearch'>
+	<form>
+	  <div class="form-group">
+	    <input class="form-control" id="search" placeholder="Nhập tuyến bus">
+	  </div>
+	  <button type="button" class="btn btn-primary">Tìm</button>
+	</form>
+</div>
 <?php
 		echo "<div class='tieude'>DANH SÁCH CÁC TUYẾN BUS</div>";
 		include("connect.php");

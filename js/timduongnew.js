@@ -20,36 +20,20 @@ $( document ).ready(function() {
 
 
 function onMapClick(e) {
-	if(	countMarker>2) return 0;
-		countMarker++;
-		   $('#'+id).val(info);
-	   		if(id=='frompoint') {
-	        	 action="<input type='button' value='Delete this marker' class='marker-delete-button'/>"+
-	            				"<button class='diemden'>set diem den</button>";
-	        }
-	        if(id=='topoint') {
-	        	 action="<input type='button' value='Delete this marker' class='marker-delete-button'/>"+
-	            				"<button class='diemdi'>set diem di</button>";
-	        }
-	 marker = L.marker(e.latlng, {
-                alt: "Resource Location",
-                riseOnHover: true,
-                draggable: true,
-	            }).bindPopup(action);
-marker.on("popupopen", onPopupOpen);
-	 marker.addTo(map);
-
-	 console.log(e.point);
+	setInfo(e.latlng.lat,e.latlng.lng,id);
 }
 
 function setInfo(lat,lng,id){
+	if(	countMarker>2) return 0;
+	countMarker++;
+	var marker;
 	$.post('https://nominatim.openstreetmap.org/reverse?format=xml&lat='+lat+'&lon='+lng+'&zoom=18&addressdetails=1',function(data) {
 
 	   info=(data.getElementsByTagName("result"))[0].innerHTML;
 	   $('#'+id).val(info);
 	   		if(id=='frompoint') {
 	        	 action="<input type='button' value='Delete this marker' class='marker-delete-button'/>"+
-	            				"<button class='diemden'>set diem den</button>";
+	            				"<button class='diemden'>set diem den</button>"+info;
 	        }
 	        if(id=='topoint') {
 	        	 action="<input type='button' value='Delete this marker' class='marker-delete-button'/>"+
@@ -65,18 +49,19 @@ function setInfo(lat,lng,id){
 	            }).bindPopup(action);   	
 	        marker.on("popupopen", onPopupOpen); 
 	        marker.addTo(map);
-	        marker.on("popupopen", onPopupOpen);
 	        if(id=='frompoint') {
 	        	makerDiemdi=marker;
 	        	diemXP['lat']=lat;
 	        	diemXP['lon']=lng;
 	        	diemXP['ten_tram']=info;
+	        	diemXP['marker'] =marker;
 	        }
 	        if(id=='topoint') {
 	        	makerDiemDen=marker;
 	        	diemDen['lat']=lat;
 	        	diemDen['lon']=lng;
 	        	diemDen['ten_tram']=info;
+	        	diemDen['marker'] =marker;
 	        }
 	});
 }
@@ -122,14 +107,17 @@ function onPopupOpen() {
 
     $(".marker-delete-button:visible").click(function () {
         map.removeLayer(tempMarker);
+        countMarker--;
     });
     $(".diemden:visible").click(function () {
     	 map.removeLayer(tempMarker);
+    	  countMarker--;
         setInfo(tempMarker._latlng.lat,tempMarker._latlng.lng,'topoint');
     });
     $(".diemdi:visible").click(function () {
     	 map.removeLayer(tempMarker);
-        setInfo(tempMarker._latlng.lat,tempMarker._latlng.lng,'frompoint');
+    	  countMarker--;
+       setInfo(tempMarker._latlng.lat,tempMarker._latlng.lng,'frompoint');
     });
 
 }
@@ -233,6 +221,7 @@ function getToaDo(action){
 					thongbao('loi') ;
 					return;
 				}
+			
 				 xuly(data);
 			}
 		});
@@ -354,6 +343,9 @@ R = 6373.0 ;
 return parseFloat(d*1000).toFixed(4);
 }
 
+function convenr_km(m){
+return  parseFloat(m/1000).toFixed(2)+ " km";
+}
 function sapxep(data){
 	data.sort(
 		function(a , b){
@@ -409,6 +401,15 @@ function getIcon(name){
     shadowAnchor: [4, 20],  // the same for the shadow
     popupAnchor:  [0, -15] // point from which the popup should open relative to the iconAnchor
 	});
+
+	var rootIcon = L.icon({
+    iconUrl: 'icon/start.png',
+    iconSize:     [30, 30], // size of the icon
+    shadowSize:   [60,60], // size of the shadow
+    iconAnchor:   [15, 30], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 20],  // the same for the shadow
+    popupAnchor:  [0, -15] // point from which the popup should open relative to the iconAnchor
+	});
 	var Icon=nodeIcon;
 	switch(name){
 		case 'tram':
@@ -416,6 +417,9 @@ function getIcon(name){
 			break;
 		case 'node':
 			Icon=nodeIcon;
+			break;
+		case 'root':
+			Icon=rootIcon;
 			break;
 		default:  
 			Icon=nodeIcon;
@@ -444,12 +448,13 @@ function newTram(lat,lon,name,value){
                 riseOnHover: true,
                 draggable: true,
 
-            }).bindPopup("<input type='button' value='Delete this marker' class='marker-delete-button'/>");
+            }).bindPopup("<span>"+name+"</span>");
 
             marker.on("popupopen", onPopupOpen);
   
        		if(value==0) marker.setIcon(getIcon('tram'));
        		if(value==1) marker.setIcon(getIcon('node'));
+       		if(value==2) marker.setIcon(getIcon('root'));
 
             return marker;
         }
@@ -457,6 +462,7 @@ function newTram(lat,lon,name,value){
     tuychon=1;
 
     map.setView([lat, lon], 14);
+    return  marker;
 
 }
 
@@ -484,10 +490,12 @@ polyline = L.polyline(pon, {color: '#00ff00'}).addTo(map);
 }
 
 function getNode(){
+
 	if(dsTuyenDaChon.length<=0){
 		polyline = L.polyline([{lat: diemXP['lat'],lng: diemXP['lon']},{lat: diemDen['lat'],lng: diemDen['lon']}], {color: '#000000'}).addTo(map);
 	}
 	if(diemXP['ma_tram']!=null) dsTuyenDaChon.unshift(diemXP);
+
 	else{
 		tram =dsTuyenDaChon[0];
 		latlng = {lat: tram['lat'], lng: tram['lon']};
@@ -548,7 +556,9 @@ function setUpTrongSo(OpenNode){
 
 function capNhatTrongSo(nodeDangXet,OpenNode){
 	for(i=0;i<OpenNode.length;i++){
+		//cung tuyen
 		if(nodeDangXet['ma_sotuyen']==OpenNode[i]['ma_sotuyen']){
+			//tim node gan ke tiep theo
 			 if(nodeDangXet['stt_theotuyen'] != OpenNode[i]['stt_theotuyen']-1) continue;
 		}
 		giaveTmp =nodeDangXet['giave'];
@@ -581,7 +591,14 @@ function timMin(OpenNode){
 			);
 }
 
+					
+
 function getNodedijsktra(CloseNode){
+	$('#chiduong').css('display','block');
+	css_bd = "<table cellpadding='0' cellspacing='0'><tr class='rowStop'><td>";
+	css_kt="</td></tr></table>";
+	html ="<a class='dstbus' onclick='showMarker(-1)'>"+css_bd+ "xuất phát từ:" +diemXP['ten_tram']+css_kt+"</a>";
+	
 	kq=null;
 	for(i=0;i<CloseNode.length;i++){
 		if(CloseNode[i]['ma_tram']==diemDen['ma_tram']){
@@ -598,20 +615,32 @@ function getNodedijsktra(CloseNode){
 	if(dsTuyenDaChon.length<=0){
 		polyline = L.polyline([{lat: diemXP['lat'],lng: diemXP['lon']},{lat: diemDen['lat'],lng: diemDen['lon']}], {color: '#000000'}).addTo(map);
 	}
-	if(diemXP['ma_tram']!=null) {}
+	if(diemXP['ma_tram']!=null) {
+
+	}
 	else{
+
+		html +="<a class='dstbus' onclick='showMarker(0)'>"+css_bd + "<img src='icon/walk.png' width ='20px' height ='20px'>Đi bộ đến trạm " + dsTuyenDaChon[0]['ten_tram']+"("+dsTuyenDaChon[0]['ma_sotuyen']+")"+" Khoảng cách: " +convenr_km(tinhkhoangcach(diemXP, dsTuyenDaChon[0]))+css_kt+"</a>";
 		tram =dsTuyenDaChon[0];
 		latlng = {lat: tram['lat'], lng: tram['lon']};
-	//	polyline = L.polyline([latlng,{lat: diemXP['lat'],lng: diemXP['lon']}], {color: '#000000'}).addTo(map);
+      	polyline = L.polyline([latlng,{lat: diemXP['lat'],lng: diemXP['lon']}], {color: '#000000'}).addTo(map);
 	}
 	var pon = [];
+	var marker;
 	for(i=0;i<dsTuyenDaChon.length;i++){
+	    if(i>0) html +="<a class='dstbus' onclick='showMarker("+i+")'>"+css_bd+"<img src='icon/clickHere.jpg' width = '20px' height = '20px'>Qua trạm " + dsTuyenDaChon[i]['ten_tram']+css_kt+"</a>";
 		tram =dsTuyenDaChon[i];
-		newTram(tram['lat'],tram['lon'],tram['ten_tram'],0);
+		if(i==0||i==dsTuyenDaChon.length-1)  marker =newTram(tram['lat'],tram['lon'],tram['ten_tram'],2);
+		else  marker  = newTram(tram['lat'],tram['lon'],tram['ten_tram'],0);
+		dsTuyenDaChon[i]['marker'] =  marker ;
 		latlng = {lat: tram['lat'], lng: tram['lon']};
 		pon.push(latlng);
 		if(i==dsTuyenDaChon.length-1) break;
-		if(dsTuyenDaChon[i]['ma_sotuyen']!=dsTuyenDaChon[i+1]['ma_sotuyen']) continue;
+		if(dsTuyenDaChon[i]['ma_sotuyen']!=dsTuyenDaChon[i+1]['ma_sotuyen']) {
+			html +="<a class='dstbus' onclick='showMarker("+i+")'>"+css_bd+"<img src='icon/xuongxe.png' width ='40px' height ='20px'>Xuống xe tại trạm " + dsTuyenDaChon[i]['ten_tram'] +css_kt+"</a>";
+			html +="<a class='dstbus' onclick='showMarker("+(i+1)+")'>"+css_bd+"<img src='icon/walk.png' width ='20px' height ='20px'>Đi bộ tới trạm " + dsTuyenDaChon[i+1]['ten_tram']+" Khoảng cách: " +convenr_km(tinhkhoangcach( dsTuyenDaChon[i],dsTuyenDaChon[i+1])) +css_kt+"</a>";
+			continue;
+		}
 		tuyenHienTai = dsTuyenDaChon[i]['ma_sotuyen'];
 		if(tram['danhsachnode']=="null"||tram['danhsachnode']==null) continue;
 		dsnode=jQuery.parseJSON(tram['danhsachnode']);
@@ -632,4 +661,18 @@ function getNodedijsktra(CloseNode){
 	if(diemDen['ma_tram']==null || diemDen['ma_sotuyen']!=dsTuyenDaChon[dsTuyenDaChon.length-1]['ma_sotuyen'])
 		polyline = L.polyline([latlng,{lat: diemDen['lat'],lng: diemDen['lon']}], {color: '#000000'}).addTo(map);
 	else polyline = L.polyline([latlng,{lat: diemDen['lat'],lng: diemDen['lon']}], {color: '#00ff00'}).addTo(map);
+html +="<a class='dstbus' onclick='showMarker("+i+")'>"+css_bd+"<a> Dừng tại điểm đích " + dsTuyenDaChon[i]['ten_tram'] +css_kt+"</a>";
+
+$('#chiduong').html(html);
+openListBus();
+}
+
+function showMarker(index){
+if(index==-1) {
+	diemXP.marker.openPopup();
+	return;
+}
+dsTuyenDaChon[index].marker.openPopup();
+map.setView([dsTuyenDaChon[index]['lat'], dsTuyenDaChon[index]['lon']], 14);
+
 }

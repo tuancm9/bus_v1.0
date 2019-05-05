@@ -47,7 +47,7 @@ include("connect.php");
 $sql="SELECT * FROM thongbao";
 $retval=mysqli_query($conn, $sql) or die('Không kết nối được');
 if(mysqli_num_rows($retval) > 0){
-		$phantrang=4;
+		$phantrang=5;
 		$sotrang=ceil(mysqli_num_rows($retval)/$phantrang);
 			if(isset($_GET['trang']))
 			{
@@ -78,6 +78,7 @@ if(mysqli_num_rows($retval) > 0){
 		}	
 	}
 }else echo "Không có thông báo!";
+if(isset($_GET['xem'])){
 			echo "<center> <div id='phantrang_index'>";
 						for($i=0;$i<$sotrang;$i++){
 							if($i!=$tranghienthai){
@@ -86,6 +87,7 @@ if(mysqli_num_rows($retval) > 0){
 								 	else echo "<span>[ ".($i+1)." ]</span>";
 							}
 					echo "</div></center>";	
+}else {}
 mysqli_close($conn);
 ?>
 

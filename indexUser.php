@@ -9,13 +9,13 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-				<link rel="stylesheet" type="text/css" href="css/forum.css" media="screen">
-				<link rel="stylesheet" type="text/css" href="css/indexUser.css" media="screen">
-				<link rel="stylesheet" href="lib/leaflet/leaflet.css">
-				<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-				<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-				<script type="text/javascript" src="js/loadTime.js"></script>
-				<script src="js/leaflet.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/forum.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="css/indexUser.css" media="screen">
+		<link rel="stylesheet" href="lib/leaflet/leaflet.css">
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="js/loadTime.js"></script>
+		<script src="js/leaflet.js"></script>
 </head>
 <script>
 		$(document).ready(function(){	
@@ -53,10 +53,13 @@ session_start();
 			        <a class="nav-link" href="indexUser.php">Trang Chủ <span class="sr-only">(current)</span></a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="indexUser.php?xem=danhsachcactuyenbus">DS Tuyến Bus</a>
+			        <a class="nav-link" href="indexUser.php?xem=thongbao">D.Sách Bản Tin</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="indexUser.php?xem=timbus">Tuyến</a>
+			        <a class="nav-link" href="indexUser.php?xem=danhsachcactuyenbus">D.Sách Tuyến Bus</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="indexUser.php?xem=timbus">Tìm Tuyến</a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="indexUser.php?xem=timduong">Tìm Đường</a>
@@ -71,8 +74,8 @@ session_start();
 			      </li>
 					</ul>
 			    <form class="form-inline my-2 my-lg-0">
-			      <input class="form-control mr-sm-2" id="keywords" type="search" placeholder="Search" aria-label="Search">
-						<button class="btn btn-light my-2 my-sm-0" type="button">Search</button>
+			      <input class="form-control mr-sm-2" id="keywords" type="search" placeholder="Tìm" aria-label="Search">
+						<button class="btn btn-light my-2 my-sm-0" type="button">Tìm</button>
 					</form>
 					<div id="login"><?php include('php/content/dangnhapUser.php'); ?></div>
 					<div id="register"><?php include('php/content/dangky.php'); ?></div>
@@ -83,10 +86,10 @@ session_start();
         		<?php
 						if(isset($_SESSION['nguoidung'])){							
 						} else {
-								echo "<div class='col-9'>";
+								echo "<div id='content-map' class='col-9'>";
 									include('php/content_index.php');
 								echo "</div>";
-								echo "<div class='col-3'>";
+								echo "<div id='siderbar-right' class='col-3'>";
 									include('php/content/timkiem.php');
 								echo "</div>";
 							} 
@@ -105,6 +108,7 @@ session_start();
     }, false);
   }, false);
 </script>
+<script src="js/jquery.min.js"></script>
 <script src="js/bg_header.js"></script>
 <script src="js/bg_header2.js"></script>
 </body>
