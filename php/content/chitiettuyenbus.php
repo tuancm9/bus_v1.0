@@ -123,8 +123,9 @@ $retval=mysqli_query($conn, $sql) or die('Không kết nối được');
 			$sql="SELECT tram_xebus.stt_theotuyen, tram_xebus.ten_tram FROM tuyen_xebus, tram_xebus WHERE tuyen_xebus.ma_sotuyen = tram_xebus.ma_sotuyen AND tuyen_xebus.ma_sotuyen=".$_GET['id']."";
 			$retval=mysqli_query($conn, $sql) or die('Không kết nối được');
 				if(mysqli_num_rows($retval) > 0){
+					$i=0;
 					while($row = mysqli_fetch_assoc($retval)){
-						echo "<a href='#' onclick='' class='dstbus'> 
+						echo "<a href='#' onclick='showMarker({$i}); return false;' class='dstbus'> 
 								<table cellpadding='0' cellspacing='0'>
 									<tr class='rowStop'>
 										<td class='orderNo'>".$row['stt_theotuyen']."</td>
@@ -132,6 +133,7 @@ $retval=mysqli_query($conn, $sql) or die('Không kết nối được');
 									</tr>
 								</table>
 							</a>";
+							$i++;
 				}
 			}else echo "Không có kết quả!";
 		?>
@@ -167,6 +169,16 @@ function getIcon(name){
     shadowAnchor: [4, 20],  // the same for the shadow
     popupAnchor:  [0, -15] // point from which the popup should open relative to the iconAnchor
 	});
+
+	var rootIcon = L.icon({
+    iconUrl: 'icon/start.png',
+    iconSize:     [30, 30], // size of the icon
+    shadowSize:   [60,60], // size of the shadow
+    iconAnchor:   [15, 30], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 20],  // the same for the shadow
+    popupAnchor:  [0, -15] // point from which the popup should open relative to the iconAnchor
+	});
+
 	var Icon=nodeIcon;
 	switch(name){
 		case 'tram':
@@ -174,6 +186,9 @@ function getIcon(name){
 			break;
 		case 'node':
 			Icon=nodeIcon;
+			break;
+		case 'root':
+			Icon=rootIcon;
 			break;
 		default:  
 			Icon=nodeIcon;
@@ -207,6 +222,7 @@ function newTram(lat,lon,name,value){
             marker.on("popupopen", onPopupOpen);
        		if(value==0) marker.setIcon(getIcon('tram'));
        		if(value==1) marker.setIcon(getIcon('node'));
+       		if(value==2) marker.setIcon(getIcon('root'));
 
             return marker;
         }
@@ -214,7 +230,7 @@ function newTram(lat,lon,name,value){
     tuychon=1;
 
     map.setView([lat, lon], 14);
-
+    return marker;
 }
 
 function updateline(){
@@ -274,10 +290,11 @@ function veduong() {
 polyline = L.polyline(pon, {color: '#00ff00'}).addTo(map);
 // if(allMarkersObjArray[0]!=null&&allMarkersObjArray[1]!=null)console.log(distance(allMarkersObjArray[0]._latlng,allMarkersObjArray[i-1]._latlng));
 }
-
+var dsMaker = [];
 function getNode(){
 	mst=$('.tieude').attr('name');
 	var dataString ='&mst='+mst;
+
 			$.ajax
 			({
 			type: "POST",
@@ -290,8 +307,9 @@ function getNode(){
 			  			//console.log($ds[i]);
 			  			if($ds[i]=="null"||$ds[i]==null) continue;
 			  			tram = jQuery.parseJSON($ds[i]);
-				  		newTram(tram.lat,tram.lon,tram.ten_tram,0);
-		
+			  			if(i==0||i==$ds.length-2)  marker =newTram(tram['lat'],tram['lon'],tram['ten_tram'], 2);
+				  		else marker =newTram(tram.lat,tram.lon,tram.ten_tram,0);
+				  		dsMaker[i] = marker;
 				  		//console.log(tram.danhsachnode);
 				  		if(tram.danhsachnode=="null"||tram.danhsachnode==null) continue;
 				  		$dsnode=jQuery.parseJSON(tram.danhsachnode);
@@ -326,5 +344,11 @@ function openListBus(){
 $('#chitiettuyen').animate({width:"30%"},500);
 $('#mapid').animate({width:"70%"},500);
 $('#showListBus').html('<img src="icon/clickHere.png" width ="35px" onclick="closeListBus()" />'); 
+}
+
+function showMarker(index){
+	parseInt(index);
+dsMaker[index].openPopup();
+map.setView([dsMaker[index]._latlng.lat, dsMaker[index]._latlng.lng],14);
 }
 </script>

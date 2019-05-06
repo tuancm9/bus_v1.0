@@ -54,6 +54,9 @@ if(isset($_GET['xem'])){
 		case 'gioithieu':
 			include('php/content/gioithieu.php');
 			break;
+		case 'danhsachtuyenbusTimtheoten':
+			include('php/content/danhsachtuyenbusTimtheoten.php');
+			break;
 		default: include("php/content/thongbao.php");
 	}
 }else include("php/content/thongbao.php");

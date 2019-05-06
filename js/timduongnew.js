@@ -1,4 +1,3 @@
-
 map = L.map('mapid');
 makerDiemdi=null;
 markerDiemDen=null;
@@ -32,12 +31,12 @@ function setInfo(lat,lng,id){
 	   info=(data.getElementsByTagName("result"))[0].innerHTML;
 	   $('#'+id).val(info);
 	   		if(id=='frompoint') {
-	        	 action="<input type='button' value='Delete this marker' class='marker-delete-button'/>"+
-	            				"<button class='diemden'>set diem den</button>"+info;
+	        	 action="<div><button class='marker-delete-button buttonDelete'>Xóa Đánh Dấu"+
+	            				"<button class='diemden'>Điểm Đến</button></div>"+"<span class='infor-marker'>"+info+"</span>";
 	        }
 	        if(id=='topoint') {
-	        	 action="<input type='button' value='Delete this marker' class='marker-delete-button'/>"+
-	            				"<button class='diemdi'>set diem di</button>";
+	        	 action="<div><button class='marker-delete-button buttonDelete' />Xóa Đánh Dấu"+
+	            				"<button class='diemdi'>Điểm Đi</button></div>"+"<span class='infor-marker'>"+info+"</span>";
 	        }
 	   	  
 	   	   marker = L.marker([lat,lng], {
@@ -446,7 +445,6 @@ function newTram(lat,lon,name,value){
                 title: name,
                 alt: name,
                 riseOnHover: true,
-                draggable: true,
 
             }).bindPopup("<span>"+name+"</span>");
 
@@ -597,8 +595,8 @@ function getNodedijsktra(CloseNode){
 	$('#chiduong').css('display','block');
 	css_bd = "<table cellpadding='0' cellspacing='0'><tr class='rowStop'><td>";
 	css_kt="</td></tr></table>";
-	html ="<a class='dstbus' onclick='showMarker(-1)'>"+css_bd+ "xuất phát từ:" +diemXP['ten_tram']+css_kt+"</a>";
-	
+	if(diemXP['ma_tram']==null)html ="<a href='#' class='dstbus' onclick='showMarker(-1); return false;'>"+css_bd+ "<img src='icon/bd.jpg' width ='20px' height ='20px'>Vị trí của bạn: " +diemXP['ten_tram']+css_kt+"</a>";
+	else html ="<a href='#' class='dstbus' onclick='showMarker(-1); return false;'>"+css_bd+ "<span class='icon-stt'>"+diemXP['ma_sotuyen']+"</span>Xuất phát từ trạm: " +diemXP['ten_tram']+css_kt+"</a>";
 	kq=null;
 	for(i=0;i<CloseNode.length;i++){
 		if(CloseNode[i]['ma_tram']==diemDen['ma_tram']){
@@ -620,7 +618,7 @@ function getNodedijsktra(CloseNode){
 	}
 	else{
 
-		html +="<a class='dstbus' onclick='showMarker(0)'>"+css_bd + "<img src='icon/walk.png' width ='20px' height ='20px'>Đi bộ đến trạm " + dsTuyenDaChon[0]['ten_tram']+"("+dsTuyenDaChon[0]['ma_sotuyen']+")"+" Khoảng cách: " +convenr_km(tinhkhoangcach(diemXP, dsTuyenDaChon[0]))+css_kt+"</a>";
+		html +="<a href='#' class='dstbus' onclick='showMarker(0); return false;'>"+css_bd + "<img src='icon/walk.png' width ='20px' height ='20px'>Đi bộ đến trạm: " + dsTuyenDaChon[0]['ten_tram']+"("+dsTuyenDaChon[0]['ma_sotuyen']+")"+" Khoảng cách: " +convenr_km(tinhkhoangcach(diemXP, dsTuyenDaChon[0]))+css_kt+"</a>";
 		tram =dsTuyenDaChon[0];
 		latlng = {lat: tram['lat'], lng: tram['lon']};
       	polyline = L.polyline([latlng,{lat: diemXP['lat'],lng: diemXP['lon']}], {color: '#000000'}).addTo(map);
@@ -628,7 +626,7 @@ function getNodedijsktra(CloseNode){
 	var pon = [];
 	var marker;
 	for(i=0;i<dsTuyenDaChon.length;i++){
-	    if(i>0) html +="<a class='dstbus' onclick='showMarker("+i+")'>"+css_bd+"<img src='icon/clickHere.jpg' width = '20px' height = '20px'>Qua trạm " + dsTuyenDaChon[i]['ten_tram']+css_kt+"</a>";
+	   
 		tram =dsTuyenDaChon[i];
 		if(i==0||i==dsTuyenDaChon.length-1)  marker =newTram(tram['lat'],tram['lon'],tram['ten_tram'],2);
 		else  marker  = newTram(tram['lat'],tram['lon'],tram['ten_tram'],0);
@@ -637,10 +635,15 @@ function getNodedijsktra(CloseNode){
 		pon.push(latlng);
 		if(i==dsTuyenDaChon.length-1) break;
 		if(dsTuyenDaChon[i]['ma_sotuyen']!=dsTuyenDaChon[i+1]['ma_sotuyen']) {
-			html +="<a class='dstbus' onclick='showMarker("+i+")'>"+css_bd+"<img src='icon/xuongxe.png' width ='40px' height ='20px'>Xuống xe tại trạm " + dsTuyenDaChon[i]['ten_tram'] +css_kt+"</a>";
-			html +="<a class='dstbus' onclick='showMarker("+(i+1)+")'>"+css_bd+"<img src='icon/walk.png' width ='20px' height ='20px'>Đi bộ tới trạm " + dsTuyenDaChon[i+1]['ten_tram']+" Khoảng cách: " +convenr_km(tinhkhoangcach( dsTuyenDaChon[i],dsTuyenDaChon[i+1])) +css_kt+"</a>";
+			html +="<a href='#' class='dstbus' onclick='showMarker("+i+"); return false;'>"+css_bd+"<img src='icon/xuongxe.png' width ='40px' height ='20px'>Xuống xe tại trạm: " + dsTuyenDaChon[i]['ten_tram'] +css_kt+"</a>";
+			html +="<a href='#' class='dstbus' onclick='showMarker("+(i+1)+"); return false;'>"+css_bd+"<img src='icon/walk.png' width ='20px' height ='20px'>Đi bộ tới trạm: " + dsTuyenDaChon[i+1]['ten_tram']+" Khoảng cách: " +convenr_km(tinhkhoangcach( dsTuyenDaChon[i],dsTuyenDaChon[i+1])) +css_kt+"</a>";
 			continue;
 		}
+		if(i>1&&dsTuyenDaChon[i]['ma_sotuyen']!=dsTuyenDaChon[i-1]['ma_sotuyen']){
+			html +="<a href='#' class='dstbus' onclick='showMarker("+(i)+"); return false;'>"+css_bd+"<img src='icon/xuongxe.png' width ='40px' height ='20px'>Đón xe tại trạm: " + dsTuyenDaChon[i]['ten_tram'] +css_kt+"</a>";
+			continue;
+		}
+		 if(i>0) html +="<a href='#' class='dstbus' onclick='showMarker("+i+"); return false;'>"+css_bd+"<img src='icon/clickHere.jpg' width = '20px' height = '20px'>Qua trạm: " + dsTuyenDaChon[i]['ten_tram']+css_kt+"</a>";
 		tuyenHienTai = dsTuyenDaChon[i]['ma_sotuyen'];
 		if(tram['danhsachnode']=="null"||tram['danhsachnode']==null) continue;
 		dsnode=jQuery.parseJSON(tram['danhsachnode']);
@@ -661,7 +664,7 @@ function getNodedijsktra(CloseNode){
 	if(diemDen['ma_tram']==null || diemDen['ma_sotuyen']!=dsTuyenDaChon[dsTuyenDaChon.length-1]['ma_sotuyen'])
 		polyline = L.polyline([latlng,{lat: diemDen['lat'],lng: diemDen['lon']}], {color: '#000000'}).addTo(map);
 	else polyline = L.polyline([latlng,{lat: diemDen['lat'],lng: diemDen['lon']}], {color: '#00ff00'}).addTo(map);
-html +="<a class='dstbus' onclick='showMarker("+i+")'>"+css_bd+"<a> Dừng tại điểm đích " + dsTuyenDaChon[i]['ten_tram'] +css_kt+"</a>";
+html +="<a href='#' class='dstbus' onclick='showMarker("+i+"); return false;'>"+css_bd+"<img src='icon/bd.jpg' width ='20px' height ='20px'>Dừng tại điểm đích: " + dsTuyenDaChon[i]['ten_tram'] +css_kt+"</a>";
 
 $('#chiduong').html(html);
 openListBus();
@@ -670,9 +673,9 @@ openListBus();
 function showMarker(index){
 if(index==-1) {
 	diemXP.marker.openPopup();
-	return;
+	return false;
 }
 dsTuyenDaChon[index].marker.openPopup();
 map.setView([dsTuyenDaChon[index]['lat'], dsTuyenDaChon[index]['lon']], 14);
-
+return false;
 }

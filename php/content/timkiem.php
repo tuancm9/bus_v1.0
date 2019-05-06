@@ -75,23 +75,41 @@ time#icon:hover, time#icon:focus
   100% { transform: rotate(0deg)  skewY(0deg); }
 }
 #getInput-result{
-		position: absolute;
-		z-index: 99999999;
-		background: #FFF;
-		max-height: 300px;
-		overflow: scroll;
-		width: 100%;
-		overflow-x:hidden;
-	}
+	position: absolute;
+    z-index: 99999999;
+    background: #FFF;
+    max-height: 250px;
+    overflow: scroll;
+    width: 91%;
+    overflow-x: hidden;
+    margin-left:-10px; 
+}
+#form1{
+	width: 100%;
+	padding: 0 10px 10px 10px;
+	display: block;
+}
+#form1 .list{
+	padding: 5px 20px;
+	margin: 0;
+}
+#form1 .list:hover{
+	background-color: #ccc;
+}
+#form1 .list:first-child{
+	margin-top: 5px;
+}
+#form1 input{
+	width: 90%;
+	margin: 5%;
+}
 </style>
 
 
 <div class='frame'>
-	<div class='title'><h5>Thông Tin Tuyến</h5></div>
-	<form name='timkiem' action="javascript:submitQuery()">
-		<div class='input'>
-			<input id="getInput" type="text" class="form-control" placeholder="Nhập mã hoặc tên tuyến" aria-label="Username" onkeyup="getInputtuyen(this);" aria-describedby="addon-wrapping">
-		</div>
+<div class='title'><h5>Thông Tin Tuyến</h5></div>
+	<form id="form1" name='timkiem' action="javascript:submitQuery()">
+			<input id="getInput" type="text" class="form-control" placeholder="Nhập mã hoặc tên tuyến" aria-label="Username" onkeyup="getInputtuyen(this);" aria-describedby="addon-wrapping" autocomplete="off">
 		<div id='getInput-result'></div>
 		<center>
 			<button type="button" class="btn btn-primary" onclick="submit_mst();"><i class="fas fa-search"></i>Tìm</button>
@@ -177,7 +195,7 @@ function setTuyen(dataTram,e){
 	for(i=0; i< dataTram.length;i++){
 		if(!dataTram[i]) continue;
 		tramT = jQuery.parseJSON(dataTram[i]);
-		document.getElementById(idResult).innerHTML +='<p id="'+id+'" class="list-point" title="'+tramT.ma_sotuyen+" "+tramT.ten_tuyen+
+		document.getElementById(idResult).innerHTML +='<p id="'+id+'" class="list" title="'+tramT.ma_sotuyen+" "+tramT.ten_tuyen+
 		'" onmouseover="setValueInput(id,title);" onclick=document.getElementById("'+idResult+'").innerHTML="">'
 		+tramT.ma_sotuyen +" "+tramT.ten_tuyen +'</p>';
 	}
@@ -196,5 +214,3 @@ function submit_mst(){
 	}
 }
 </script>
-<script src="js/timduongnew.js"></script>
-<script type="text/javascript">initMap();</script>

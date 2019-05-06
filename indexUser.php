@@ -53,30 +53,32 @@ session_start();
 			        <a class="nav-link" href="indexUser.php">Trang Chủ <span class="sr-only">(current)</span></a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="indexUser.php?xem=thongbao">D.Sách Bản Tin</a>
+			        <a class="nav-link" href="indexUser.php?xem=thongbao">Danh Sách Bản Tin</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="indexUser.php?xem=danhsachcactuyenbus">D.Sách Tuyến Bus</a>
+			        <a class="nav-link" href="indexUser.php?xem=danhsachcactuyenbus">Danh Sách Tuyến</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="indexUser.php?xem=timbus">Tìm Tuyến</a>
+			        <a class="nav-link" href="indexUser.php?xem=timbus">Tra Cứu Tuyến</a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="indexUser.php?xem=timduong">Tìm Đường</a>
 			      </li>
-			      <li class="nav-item dropdown">
+			      <li class="nav-item">
+			        <a class="nav-link" href="indexUser.php?xem=gioithieu">Giới Thiệu</a>
+			      </li>
+			      <!-- <li class="nav-item dropdown">
 			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			          Giới Thiệu
 			        </a>
 			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 			          <a class="dropdown-item text-primary" href="indexUser.php?xem=gioithieu">Giới Thiệu Chung</a>
 			          <a class="dropdown-item text-primary" href="#">Hướng Dẫn Sử Dụng</a>
-			      </li>
+			      </li> -->
 					</ul>
 			    <form class="form-inline my-2 my-lg-0">
-			      <input class="form-control mr-sm-2" id="keywords" type="search" placeholder="Tìm" aria-label="Search">
-						<button class="btn btn-light my-2 my-sm-0" type="button">Tìm</button>
-					</form>
+			      <input class="form-control mr-sm-2" id="keywords" type="search" placeholder="Tìm nội dung web" aria-label="Search">
+				</form>
 					<div id="login"><?php include('php/content/dangnhapUser.php'); ?></div>
 					<div id="register"><?php include('php/content/dangky.php'); ?></div>
 			</div>

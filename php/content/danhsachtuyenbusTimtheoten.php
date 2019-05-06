@@ -1,3 +1,6 @@
+<?php
+	$noidungSearch=$_GET['search'];
+?>
 <style type="text/css">
 	#danhsachtuyenbus{
 		position: relative;
@@ -61,7 +64,7 @@
 #formSearch{
 	width: 50%;
 	height: 100px;
-	margin-left:20%;
+	margin-left:25%;
 }
 #formSearch form-group{
 	width: 20%;
@@ -89,7 +92,7 @@
 <?php
 	echo "<div class='tieude'>DANH SÁCH CÁC TUYẾN BUS</div>";
 		include("connect.php");
-			$sql="SELECT * FROM tuyen_xebus";
+			$sql="SELECT * FROM tuyen_xebus where ten_tuyen like '%$noidungSearch%'";
 			$retval=mysqli_query($conn, $sql);
 			if(mysqli_num_rows($retval) > 0){	
 				while($row = mysqli_fetch_assoc($retval)){

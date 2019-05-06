@@ -1,7 +1,7 @@
 <?php
 include("../connect.php");
 $data = $_POST['data'];
-$sql = "SELECT ma_sotuyen, ten_tuyen FROM tuyen_xebus WHERE ma_sotuyen LIKE '$data%' limit 20";
+$sql = "SELECT ma_sotuyen, ten_tuyen FROM tuyen_xebus WHERE ma_sotuyen LIKE '$data%' limit 10";
 $res=mysqli_query($conn,$sql) or die('lỗi');
 if($res!=null&&mysqli_num_rows($res)>0){
 	$tmp='';

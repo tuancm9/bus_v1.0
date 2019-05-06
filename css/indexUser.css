@@ -67,6 +67,7 @@ transform:scale(1.03)
 		font-family:tahoma, "DejaVu Sans Condensed", "sans-serif";
 		font-size:15px;
 		color:#069;
+		min-width: 1200px;
 			}
 		#main,#header,#menu,#content,#footer{
 			position:relative;
@@ -315,8 +316,9 @@ transform:scale(1.03)
 		.frame .input{
 			width: 80%;
 			margin:auto;
-			margin-top: 2%;
+			margin-top: 8%;
 			margin-bottom: 2%;
+			background-color: red;
 		}
 		.frame .btn{
 			width: 30%;
@@ -352,4 +354,9 @@ transform:scale(1.03)
 		    text-align: center;
 		    border-radius: 10px
 
+        }
+        .infor-marker{
+        	padding:5px;
+        	font-size: 17px;
+        	margin: 5px 0;
         }

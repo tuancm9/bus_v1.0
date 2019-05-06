@@ -73,8 +73,8 @@
 	   background-color: #DDD;
 	   z-index: 2;
 	   display: none;
-	    height: 100%;
-	    		line-height: 1.3;
+	   height: 100%;
+	   line-height: 1.3;
 	}
 	#box{
 		position: relative;
@@ -132,10 +132,41 @@
 	    background-color: #34B67A;
 	}
 	.closeSiderBar{
-		width: 0;
-		height: 0;
-		flex: unset;
-		overflow: hidden;
+display: none;
+	}
+	.buttonDelete{
+		width:50%; 
+		height:30px;
+		font-size:15px;
+		margin:0;
+		padding:5px;
+		background-color: red;
+	}
+	.diemden{
+		width:50%; 
+		height:30px;
+		font-size:15px;
+		margin:0;
+		padding:5px;
+	}
+	.diemdi{
+		width:50%; 
+		height:30px;
+		font-size:15px;
+		margin:0;
+		padding:5px;
+	}
+	.icon-stt{
+		height: 20px;
+	    width: 20px;
+	    border-radius: 20px;
+	    background-color: green;
+	    border: 1px solid white;
+	    display: block;
+	    float: left;
+	    text-align: center;
+	    line-height: 18px;
+	    margin-right: 5px; 
 	}
 </style>
 
@@ -172,8 +203,6 @@
 	<div id="mapid">
 	</div>
 </div>
-<script src="js/timduongnew.js"></script>
-<script type="text/javascript">initMap();</script>
 <script type="text/javascript">
 // initMap();
 function closeListBus(){
@@ -188,20 +217,22 @@ $('#chiduong').animate({width:"30%"},500);
 
 $('#mapid').animate({width:"70%"},500);
 $('#showListBus').html('<img src="icon/clickHere.png" width ="35px" onclick="closeListBus()" />'); 
-	$('#showListBus img').css('transform','rotate(180deg)');  
+$('#showListBus img').css('transform','rotate(180deg)');  
 }
 
 function closeSidebarRight(){
 	document.getElementById("siderbar-right").className='closeSiderBar';
 $('#sidebarRight').html('<img src="icon/clickHere.png" width ="35px" onclick="openSidebarRight()" />'); 
 document.getElementById("content-map").className='col-12';
+$('#sidebarRight img').css('transform','rotate(180deg)');  
 }
 function openSidebarRight(){
 	document.getElementById("siderbar-right").className='col-3';
 	$('#sidebarRight').html('<img src="icon/clickHere.png" width ="35px" onclick="closeSidebarRight()" />'); 
-$("#content-map").css('max-width','100%').css('width','100%').css('flex','unset');
+// $("#content-map").css('max-width','100%').css('width','100%').css('flex','unset');
+document.getElementById("content-map").className='col-9';
 }
-
-
 </script>
+<script src="js/timduongnew.js"></script>
+<script type="text/javascript">initMap();</script>
 </body>

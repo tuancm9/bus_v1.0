@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 04, 2019 lúc 01:41 AM
+-- Thời gian đã tạo: Th5 06, 2019 lúc 11:28 AM
 -- Phiên bản máy phục vụ: 10.1.37-MariaDB
 -- Phiên bản PHP: 7.3.0
 
@@ -76,7 +76,7 @@ INSERT INTO `baidang_diendan` (`id_baidang`, `chude`, `tieude`, `noidung`, `hinh
 (27, 'Từ Thiện', 'Từ Thiện', 'Từ Thiện', '5afb36a294cff.jpg', 'user1', '28/04/2019', 0, 0, 0, 0),
 (28, 'Phim Ảnh', 'Phim ảnh', 'Phim Ảnh', '5afb36a294cff.jpg', 'user1', '28/04/2019', 0, 0, 0, 0),
 (29, 'Chủ Đề Khác', 'Chủ đề khác', 'Chủ đề khác', '5afb36a294cff.jpg', 'user1', '28/04/2019', 0, 0, 0, 0),
-(30, 'Game', 'Game', 'dsa', '_DSC0001.JPG', 'caoductai113', '03/05/2019', 0, 0, 0, 1);
+(30, 'Game', 'Game', 'dsa', '_DSC0001.JPG', 'caoductai113', '03/05/2019', 3, 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -100,7 +100,8 @@ INSERT INTO `comment` (`com_id`, `com_name`, `com_mess`, `com_date`, `id_baidang
 (1, 'user1', 'user1 đã đến đây!', '2019-04-09', 1),
 (2, 'user1', 'user1 cmt thứ 2', '2019-04-12', 1),
 (3, 'user1', 'abc', '2019-04-03', 2),
-(4, 'user1', 'abc', '2019-04-12', 3);
+(4, 'user1', 'abc', '2019-04-12', 3),
+(5, 'user1', 'abc', '2019-05-04', 30);
 
 -- --------------------------------------------------------
 
@@ -136,7 +137,9 @@ INSERT INTO `rating` (`id_rate`, `ma_thongbao`, `rate`) VALUES
 (15, 1, 3),
 (16, 2, 5),
 (17, 1, 3),
-(18, 8, 3);
+(18, 8, 3),
+(19, 8, 4),
+(20, 8, 4);
 
 -- --------------------------------------------------------
 
@@ -824,13 +827,13 @@ ALTER TABLE `baidang_diendan`
 -- AUTO_INCREMENT cho bảng `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `com_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `com_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `rating`
 --
 ALTER TABLE `rating`
-  MODIFY `id_rate` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_rate` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT cho bảng `reply`
