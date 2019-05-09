@@ -77,8 +77,9 @@
 </style>
 <script type="text/javascript">
 	function getSearchtuyen(){
+		var x = "<?php echo $tinhthanh; ?>";
 		noidungSearch=$('#search').val();
-		window.location.href ='http://127.0.0.1/webMap/indexUser.php?xem=danhsachtuyenbusTimtheoten&search='+noidungSearch;
+		window.location.href ='http://127.0.0.1/webMap/indexUser.php?xem=danhsachtuyenbusTimtheoten&search='+noidungSearch+"&tinhthanh="+x;
 	}
 </script>
 <div id='formSearch'>
@@ -92,7 +93,7 @@
 <?php
 	echo "<div class='tieude'>DANH SÁCH CÁC TUYẾN BUS</div>";
 		include("connect.php");
-			$sql="SELECT * FROM tuyen_xebus where ten_tuyen like '%$noidungSearch%'";
+			$sql="SELECT * FROM tuyen_xebus where ten_tuyen like '%$noidungSearch%' and ma_tinhthanh='".$_GET['tinhthanh']."'";
 			$retval=mysqli_query($conn, $sql);
 			if(mysqli_num_rows($retval) > 0){	
 				while($row = mysqli_fetch_assoc($retval)){

@@ -1,3 +1,6 @@
+<?php
+$tinhthanh=$_GET['tinhthanh'];
+?>
 <style type="text/css">
 	#danhsachtuyenbus{
 		position: relative;
@@ -59,37 +62,41 @@
 	    -webkit-border-radius: 50%;
 	}
 #formSearch{
-	width: 50%;
-	height: 100px;
-	margin-left:20%;
+	width: 100%;
+	height: 60px;
+	margin: 0 auto;
 }
-#formSearch form-group{
-	width: 20%;
+#formSearch .form-control{
+	width: 50%;
+	float: left;
+	margin-left: 15%; 
+	margin-right: 5%;
 }
 #formSearch .btn{
-	width: 20%;
-	margin-left:40%;
-	margin-top:0;
+	width: 10%;
+	margin-left: 5%; 
+	display: block;
 }
 </style>
 <script type="text/javascript">
 	function getSearchtuyen(){
+		var x = "<?php echo $tinhthanh; ?>";
 		noidungSearch=$('#search').val();
-		window.location.href ='http://127.0.0.1/webMap/indexUser.php?xem=danhsachtuyenbusTimtheoten&search='+noidungSearch;
+		window.location.href ='http://127.0.0.1/webMap/indexUser.php?xem=danhsachtuyenbusTimtheoten&search='+noidungSearch+"&tinhthanh="+x;
 	}
 </script>
 <div id='formSearch'>
 	<form>
-	  <div class="form-group">
-	    <input class="form-control" id="search" placeholder="Nhập tuyến bus" autocomplete="off">
-	  </div>
-	  <button type="button" class="btn btn-primary" onclick="getSearchtuyen();">Tìm</button>
+		<div class="form-group">
+		   	<input class="form-control" id="search" placeholder="Nhập tuyến buýt" autocomplete="off">
+		  	<button type="button" class="btn btn-primary" onclick="getSearchtuyen();">Tìm</button>
+		</div>
 	</form>
 </div>
 <?php
-	echo "<div class='tieude'>DANH SÁCH CÁC TUYẾN BUS</div>";
+	echo "<div class='tieude'>DANH SÁCH CÁC TUYẾN BUÝT ".$_GET['tinhthanh']."</div>";
 		include("connect.php");
-			$sql="SELECT * FROM tuyen_xebus";
+			$sql="SELECT * FROM tuyen_xebus where ma_tinhthanh='".$_GET['tinhthanh']."'";
 			$retval=mysqli_query($conn, $sql);
 			if(mysqli_num_rows($retval) > 0){	
 				while($row = mysqli_fetch_assoc($retval)){

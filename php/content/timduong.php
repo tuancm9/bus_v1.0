@@ -12,7 +12,7 @@
    top: 0px;
    width: 98%;
    margin-left:1%;
-   height: 550px;
+   height: 600px;
    z-index:1;
 }
 #mapid button{

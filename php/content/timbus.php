@@ -1,5 +1,4 @@
 <style type="text/css">
-
 	#mapid{
 	   position: absolute;
 	   right : 0;
@@ -28,12 +27,12 @@
         margin: 0;
     }
 	 #form .frompoint{
-		width: 200px;
+		width: 300px;
 		height: 30px;
 		margin:0;
 	}
 	 #form .topoint{
-		width: 200px;
+		width: 300px;
 		height: 30px;
 		margin:0;
 	}

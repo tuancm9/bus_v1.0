@@ -100,13 +100,14 @@ $retval=mysqli_query($conn, $sql) or die('Không kết nối được');
 						<table class='table'>
 								<tr><td>Mã Số Tuyến: </td><td>".$row['ma_sotuyen']."</td></tr>
 								<tr><td>Tên Tuyến: </td><td>".$row['ten_tuyen']."</td></tr>
+								<tr><td>ĐV Đảm Nhận: </td><td>".$row['donvi_damnhan']."</td></tr>
 								<tr><td>Độ Dài Tuyến: </td><td>".$row['dodai_tuyen']." Km</td></tr>
 								<tr><td>Loại Xe: </td><td>".$row['loai_xe']."</td></tr>
 								<tr><td>Giá Vé: </td><td>".$row['gia_ve']."</td></tr>
 								<tr><td>Tỉnh Thành: </td><td>".$row['ma_tinhthanh']."</td></tr>
 								<tr><td>Giản Cách Chuyến: </td><td>".$row['giancach_chuyen']." Phút</td></tr>
-								<tr><td>ĐV Đảm Nhận: </td><td>".$row['donvi_damnhan']."</td></tr>
 								<tr><td>Giản Cách Chuyến: </td><td>Từ: ".$row['tu']." ----> Đến: ".$row['den']."</td></tr>
+								<tr><td>Số Chuyến: </td><td>".$row['so_chuyen']." Chuyến</td></tr>
 							</table>
 						</div>";
 			}
@@ -217,7 +218,7 @@ function newTram(lat,lon,name,value){
                 riseOnHover: true,
                 draggable: false,
 
-            }).bindPopup("<input type='button' value='Delete this marker' class='marker-delete-button'/>");
+            }).bindPopup("<span>"+name+"</span>");
 
             marker.on("popupopen", onPopupOpen);
        		if(value==0) marker.setIcon(getIcon('tram'));

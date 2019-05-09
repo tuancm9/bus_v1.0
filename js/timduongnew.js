@@ -170,9 +170,9 @@ function setFormSearch(dataTram,e){
 	for(i=0; i< dataTram.length;i++){
 		if(!dataTram[i]) continue;
 		tramT = jQuery.parseJSON(dataTram[i]);
-		document.getElementById(idResult).innerHTML +='<p id="'+id+'" class="list-point" title="'+tramT.ten_tram+
+		document.getElementById(idResult).innerHTML +='<p id="'+id+'" class="list-point" title="'+tramT.ten_tram+ "-"+tramT.ma_sotuyen+
 		'" onmouseover="setValueInput(id,title);" onclick=document.getElementById("'+idResult+'").innerHTML="">'
-		+tramT.ten_tram +'</p>';
+		+tramT.ten_tram +" (mst: "+tramT.ma_sotuyen+")"+'</p>';
 	}
 }
 
@@ -182,6 +182,7 @@ function setFormSearch(dataTram,e){
   output: none
 */
 function setValueInput(id,e){
+	alert(mst);
 	$('#'+id).val(e);
 }
 
@@ -189,8 +190,14 @@ function setValueInput(id,e){
 
 function searchBus(){
 	clean();
-	diemXP['ten_tram']=$('#frompoint').val();
-	diemDen['ten_tram']=$('#topoint').val();
+	tmp =$('#frompoint').val();
+	tmp=tmp.split('-');
+	diemXP['ten_tram']=tmp[0];
+	diemXP['ma_sotuyen']=tmp[1];
+	tmp =$('#topoint').val();
+	tmp=tmp.split('-');
+	diemDen['ten_tram']=tmp[0];
+	diemDen['ma_sotuyen']=tmp[1];
 	if(diemXP['ten_tram']==diemDen['ten_tram']){
 		thongbao('điểm đi phải khác điểm đến.');
 		return ;
@@ -227,7 +234,7 @@ function getToaDo(action){
 }
 function getXuatPhat_KT(dstrambus){
 	for(i=0;i<dstrambus.length;i++){
-		if((dstrambus[i])['ten_tram']==diemXP['ten_tram']){
+		if((dstrambus[i])['ten_tram']==diemXP['ten_tram'] && (dstrambus[i])['ma_sotuyen']==diemXP['ma_sotuyen'] ){
 				diemXP['ma_tram']=(dstrambus[i])['ma_tram'];
 				diemXP['ma_sotuyen']=(dstrambus[i])['ma_sotuyen'];
 				diemXP['lat']=(dstrambus[i])['lat'];
@@ -238,7 +245,7 @@ function getXuatPhat_KT(dstrambus){
 				dstrambus.splice(i,1);
 
 		} 
-		else if((dstrambus[i])['ten_tram']==diemDen['ten_tram']){
+		else if((dstrambus[i])['ten_tram']==diemDen['ten_tram'] && (dstrambus[i])['ma_sotuyen']==diemDen['ma_sotuyen']){
 				diemDen['ma_tram']=(dstrambus[i])['ma_tram'];
 				diemDen['ma_sotuyen']=(dstrambus[i])['ma_sotuyen'];
 				diemDen['lat']=(dstrambus[i])['lat'];
@@ -640,7 +647,7 @@ function getNodedijsktra(CloseNode){
 			continue;
 		}
 		if(i>1&&dsTuyenDaChon[i]['ma_sotuyen']!=dsTuyenDaChon[i-1]['ma_sotuyen']){
-			html +="<a href='#' class='dstbus' onclick='showMarker("+(i)+"); return false;'>"+css_bd+"<img src='icon/xuongxe.png' width ='40px' height ='20px'>Đón xe tại trạm: " + dsTuyenDaChon[i]['ten_tram'] +css_kt+"</a>";
+			html +="<a href='#' class='dstbus' onclick='showMarker("+(i)+"); return false;'>"+css_bd+"<img src='icon/lenXe.png' width ='40px' height ='20px'> Đón xe tại trạm: " + dsTuyenDaChon[i]['ten_tram'] +css_kt+"</a>";
 			continue;
 		}
 		 if(i>0) html +="<a href='#' class='dstbus' onclick='showMarker("+i+"); return false;'>"+css_bd+"<img src='icon/clickHere.jpg' width = '20px' height = '20px'>Qua trạm: " + dsTuyenDaChon[i]['ten_tram']+css_kt+"</a>";

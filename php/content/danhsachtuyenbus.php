@@ -29,7 +29,7 @@ include("connect.php");
 	$sql="SELECT * FROM tuyen_xebus";
 	$retval=mysqli_query($conn, $sql) or die('Không kết nối được');
 	if(mysqli_num_rows($retval) > 0){
-		$phantrang=10;
+		$phantrang=50;
 		$sotrang=ceil(mysqli_num_rows($retval)/$phantrang);
 			if(isset($_GET['trang']))
 			{

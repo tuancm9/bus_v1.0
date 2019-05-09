@@ -148,7 +148,7 @@ time#icon:hover, time#icon:focus
 	<div class='title'><h5>Thông Báo Theo Chủ Đề</h5></div>
 			<?php
 				include('connect.php');
-				$sql="SELECT chude, COUNT(*) as soluong FROM thongbao group by chude";
+				$sql="SELECT chude, COUNT(*) as soluong FROM thongbao group by chude order by soluong desc";
 				$retval=mysqli_query($conn,$sql);
 				echo "<div class='khung'>";         
 						echo "<div style='padding: 1%;'>";

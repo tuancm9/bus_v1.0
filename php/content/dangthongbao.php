@@ -147,11 +147,10 @@ if(isset($_POST["noidung"])){
   <form name="baidang" method="post" action="#" enctype="multipart/form-data">
        <p>Chủ Đề:</p><select class="form-control" name="chude" > 
        				<option value=""> --Chọn--</option>
+       				<option value="Thông Báo"> Thông Báo</option>
        				<option value="An Ninh"> An Ninh</option>
-                    <option value="Chính Trị"> Chính Trị</option>
+       				<option value="Góp Ý"> Góp Ý</option>
                     <option value="Tìm Đồ Và Vật Bị Mất"> Tìm Đồ Và Vật Bị Mất</option>
-                    <option value="Góp Ý"> Góp Ý</option>
-                    <option value="Khác"> Khác</option>
        			</select><br>
        Tiêu Đề: <input class="form-control" type="text" name="tieude"> <br>
       <textarea name="noidung"  class="form-control" placeholder="Bạn hãy nhập nội dung vào đây!"></textarea>

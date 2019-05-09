@@ -97,18 +97,18 @@ session_start();
 			<!------------------- Header--------------->
 			<div id="header"> 
 				<div id="particles-js"></div>
-					<div id="dangxuat">
+					<!-- <div id="dangxuat">
 						<?php
-							if(isset($_SESSION['admin'])){
-								echo "<button class='btn btn-primary' onClick='dangxuat();' href='php/content/dangxuat.php'>Đăng Xuất</button>";
-							}else if(isset($_SESSION['nguoidung'])){
-								echo "<button class='btn btn-primary' onClick='dangxuat();' href='php/content/dangxuat.php'>Đăng Xuất</button>";
-							}
-							else {
-									include('php/content/dangnhap.php');									
-							}
+							// if(isset($_SESSION['admin'])){
+							// 	echo "<button class='btn btn-primary' onClick='dangxuat();' href='php/content/dangxuat.php'>Đăng Xuất</button>";
+							// }else if(isset($_SESSION['nguoidung'])){
+							// 	echo "<button class='btn btn-primary' onClick='dangxuat();' href='php/content/dangxuat.php'>Đăng Xuất</button>";
+							// }
+							// else {
+							// 		include('php/content/dangnhap.php');									
+							// }
 						?>
-					</div>
+					</div> -->
 			</div>
 			<!-------------------Menu----------------->
 			<div id="menu"> 

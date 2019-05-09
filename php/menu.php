@@ -5,4 +5,14 @@
 		<li><a href="index.php?xem=themtrambusvaotuyenbus">Thêm Trạm Vào Tuyến</a></li>
 		<li><a href="index.php?xem=dangthongbao">Đăng Thông Báo</a></li>
 		<li><a href="index.php?xem=baidangdiendan">Bài Đăng Diễn Đàn</a></li>
+		<?php if(isset($_SESSION['admin'])){
+			echo "<li><a href='#' style='font-size: 14px;' onclick='logOut();'>Đăng Xuất</a></li>";
+		}else{}
+		?>
 	</ul>
+<script>
+	function logOut(){
+		// alert('abc');
+		window.location="php/content/dangxuat.php";
+	}
+</script>

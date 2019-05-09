@@ -335,15 +335,15 @@ color:#069;
 }
 #content #sidebar-right .khung .noidung p{
     position: absolute;
-    right:0;
-    width: 10%;
+    right: 0;
+    height: 25px;
+    width: 25px;
     top: 50%;
     transform: translateY(-50%);
-    background-color: #999;
+    background-color: #8AC;
     color: white;
     text-align: center;
-    border-radius: 10px;
-
+    border-radius: 25px;
 }
 #footer{
     width: 60%;

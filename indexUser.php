@@ -55,8 +55,16 @@ session_start();
 			      <li class="nav-item">
 			        <a class="nav-link" href="indexUser.php?xem=thongbao">Danh Sách Bản Tin</a>
 			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="indexUser.php?xem=danhsachcactuyenbus">Danh Sách Tuyến</a>
+			     <!--  <li class="nav-item">
+			        <a class="nav-link" href="indexUser.php?xem=danhsachcactuyenbus">Danh Sách Tuyến</a>			        
+			      </li> -->
+			      <li class="nav-item dropdown">
+			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Danh Sách Tuyến</a>
+			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			          <a class="dropdown-item text-primary" href="indexUser.php?xem=danhsachcactuyenbus&tinhthanh=TPHCM">Thành Phố HCM</a>
+			          <a class="dropdown-item text-primary" href="indexUser.php?xem=danhsachcactuyenbus&tinhthanh=CT">Thành Phố Cần Thơ</a>
+			          <a class="dropdown-item text-primary" href="indexUser.php?xem=danhsachcactuyenbus&tinhthanh=HN">Thủ Đô Hà Nội</a>
+			      	</div>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="indexUser.php?xem=timbus">Tra Cứu Tuyến</a>
@@ -67,6 +75,10 @@ session_start();
 			      <li class="nav-item">
 			        <a class="nav-link" href="indexUser.php?xem=gioithieu">Giới Thiệu</a>
 			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="#" onclick="dangnhap();">Diễn Đàn</a>
+			      </li>
+			      
 			      <!-- <li class="nav-item dropdown">
 			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			          Giới Thiệu
@@ -109,6 +121,11 @@ session_start();
       myHilitor2.apply(this.value);
     }, false);
   }, false);
+</script>
+<script>
+	function dangnhap(){
+		alert('Bạn Phải Đăng Nhập!');
+	}
 </script>
 <script src="js/jquery.min.js"></script>
 <script src="js/bg_header.js"></script>
