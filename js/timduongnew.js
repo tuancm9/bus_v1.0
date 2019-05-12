@@ -85,6 +85,7 @@ var diemXP = {
 		stt_theotuyen: null,
 		danhsachnode: null
 	};
+	nodeNear_KT =null;
 var soLanChuyenTuyen = 0;
 var dsTuyenDaChon = [];
 function initMap(){
@@ -233,6 +234,7 @@ function getToaDo(action){
 		});
 }
 function getXuatPhat_KT(dstrambus){
+
 	for(i=0;i<dstrambus.length;i++){
 		if((dstrambus[i])['ten_tram']==diemXP['ten_tram'] && (dstrambus[i])['ma_sotuyen']==diemXP['ma_sotuyen'] ){
 				diemXP['ma_tram']=(dstrambus[i])['ma_tram'];
@@ -256,6 +258,23 @@ function getXuatPhat_KT(dstrambus){
 
 		}
 	}
+	nodeNear_KT =getNear(diemDen,dstrambus);
+}
+
+function getNear(node,dstrambus){
+		node_near_kt =null;
+		if(node['ma_sotuyen']==null){
+		node_near_kt =null;
+		khoangcach_tmp = 99999999999999999;
+		for(i=0;i<dstrambus.length;i++){
+			kc =parseFloat(tinhkhoangcach(dstrambus[i],node));
+			if( kc< khoangcach_tmp){
+				khoangcach_tmp  = kc;
+				node_near_kt = dstrambus[i];
+			}
+		}
+	}
+	return node_near_kt;
 }
 function xuly(data){
 	dstrambus=tachdulieu(data);
@@ -605,6 +624,11 @@ function getNodedijsktra(CloseNode){
 	if(diemXP['ma_tram']==null)html ="<a href='#' class='dstbus' onclick='showMarker(-1); return false;'>"+css_bd+ "<img src='icon/bd.jpg' width ='20px' height ='20px'>Vị trí của bạn: " +diemXP['ten_tram']+css_kt+"</a>";
 	else html ="<a href='#' class='dstbus' onclick='showMarker(-1); return false;'>"+css_bd+ "<span class='icon-stt'>"+diemXP['ma_sotuyen']+"</span>Xuất phát từ trạm: " +diemXP['ten_tram']+css_kt+"</a>";
 	kq=null;
+	diemDen_tmp= null;
+	if(diemDen['ma_sotuyen']==null) {
+		diemDen_tmp =  diemDen;
+		diemDen = nodeNear_KT;
+	}
 	for(i=0;i<CloseNode.length;i++){
 		if(CloseNode[i]['ma_tram']==diemDen['ma_tram']){
 			kq=CloseNode[i];
@@ -668,8 +692,8 @@ function getNodedijsktra(CloseNode){
 		}
 	}
 
-	if(diemDen['ma_tram']==null || diemDen['ma_sotuyen']!=dsTuyenDaChon[dsTuyenDaChon.length-1]['ma_sotuyen'])
-		polyline = L.polyline([latlng,{lat: diemDen['lat'],lng: diemDen['lon']}], {color: '#000000'}).addTo(map);
+	if(diemDen_tmp !=null || diemDen['ma_sotuyen']!=dsTuyenDaChon[dsTuyenDaChon.length-1]['ma_sotuyen'])
+		polyline = L.polyline([latlng,{lat: diemDen_tmp['lat'],lng: diemDen_tmp['lon']}], {color: '#000000'}).addTo(map);
 	else polyline = L.polyline([latlng,{lat: diemDen['lat'],lng: diemDen['lon']}], {color: '#00ff00'}).addTo(map);
 html +="<a href='#' class='dstbus' onclick='showMarker("+i+"); return false;'>"+css_bd+"<img src='icon/bd.jpg' width ='20px' height ='20px'>Dừng tại điểm đích: " + dsTuyenDaChon[i]['ten_tram'] +css_kt+"</a>";
 
