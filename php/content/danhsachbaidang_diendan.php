@@ -5,6 +5,9 @@
 #cn{
 	margin: 1% 0 1% 0;
 }
+input{
+	width: 30%;
+}
 </style>
 <script>
 	function kiemtraFormcapnhat(){
@@ -112,7 +115,7 @@ include("connect.php");
 				$tranghienthai=0;
 				}
 	echo "<form name='quanly' method='post' action='#'>";
-	echo '<input type="text" id="myInput" onkeyup="searchTable()" placeholder="Tìm theo tiêu đề.." title="Type in a name">';
+	echo '<input type="text" id="myInput" onkeyup="searchTable()" placeholder="Tìm theo tến tuyến..." title="Type in a name">';
 	echo "<table id='tableSort' class='table table-hover'>";
 	echo "<thead><tr><th width='5%'>ID_BĐ</th>".
                     "<th onclick='sortTable(1)' style='cursor:pointer'>Chủ đề</th>".

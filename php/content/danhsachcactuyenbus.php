@@ -41,10 +41,6 @@ $tinhthanh=$_GET['tinhthanh'];
 	#danhsachtuyenbus table td{
 		padding-left:5px; 
 	}
-	#danhsachtuyenbus a{
-		color: #5e9700;
-    	text-decoration: none;
-	}
 	#danhsachtuyenbus .icon{
 	    white-space: nowrap;
 	    font-size: 18px;
@@ -64,16 +60,18 @@ $tinhthanh=$_GET['tinhthanh'];
 #formSearch{
 	width: 100%;
 	height: 60px;
-	margin: 0 auto;
+}
+.form-group{
+	margin-bottom: unset;
 }
 #formSearch .form-control{
 	width: 50%;
 	float: left;
-	margin-left: 15%; 
+	margin-left: 10%; 
 	margin-right: 5%;
 }
 #formSearch .btn{
-	width: 10%;
+	width: 20%;
 	margin-left: 5%; 
 	display: block;
 }

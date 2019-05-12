@@ -2,7 +2,7 @@
 include("../connect.php");
 $data=json_decode($_POST['id']);
 $stt=1;
-$sql="DELETE FROM tram_xebus WHERE ma_sotuyen={$_POST['mst']}";
+$sql="DELETE FROM tram_xebus WHERE ma_sotuyen='{$_POST['mst']}'";
 mysqli_query($conn,$sql) or die('lỗi');
 $sql="select max(ma_tram) as max from tram_xebus";
 $res=mysqli_query($conn,$sql) or die('lỗi');

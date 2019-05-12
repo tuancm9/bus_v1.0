@@ -63,8 +63,7 @@ if(mysqli_num_rows($retval) > 0){
 	$retval1=mysqli_query($conn, $sql1);
 	if(mysqli_num_rows($retval1) > 0){	
 		while($row = mysqli_fetch_assoc($retval1)){
-            echo  "<div class='container'>
-        				<div class='post row'>
+            echo  "<div class='post row'>
         					<div class='picture col-4 '>
         					<img src='upload/".$row['hinhanh']."'/>
         					</div>
@@ -73,8 +72,7 @@ if(mysqli_num_rows($retval) > 0){
 	        					<h6>".$row['tieude']."</h6>
 	        					<p>".rutgonnoidung($row['noidung'],0,300)."</p>
         					</div>
-        				</div>
-        			</div>";
+        				</div>";
 		}	
 	}
 }else echo "Không có thông báo!";
