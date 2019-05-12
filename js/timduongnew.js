@@ -420,7 +420,7 @@ function getIcon(name){
 	});
 	var nodeIcon = L.icon({
     iconUrl: 'icon/nodeIcon.png',
-    iconSize:     [15, 15], // size of the icon
+    iconSize:     [0, 0], // size of the icon
     shadowSize:   [60,60], // size of the shadow
     iconAnchor:   [7, 7], // point of the icon which will correspond to marker's location
     shadowAnchor: [4, 20],  // the same for the shadow
