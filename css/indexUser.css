@@ -67,8 +67,8 @@ transform:scale(1.03)
 		font-family:tahoma, "DejaVu Sans Condensed", "sans-serif";
 		font-size:15px;
 		color:#069;
-		min-width: 1200px;
-			}
+/*		min-width: 1200px;
+*/			}
 		#main,#header,#menu,#content,#footer{
 			position:relative;
 			float:left;
@@ -107,7 +107,7 @@ transform:scale(1.03)
 			margin-left: 0px;
 		}
 		#login{
-			width: 11%;
+			width: auto;
 			position: relative;
 			float: left;
 		}
@@ -126,7 +126,7 @@ transform:scale(1.03)
 			margin-left: 10%;
 		}
 		#register{
-			width: 11%;
+			width: auto;
 			position: relative;
 			float: left;
 		}

@@ -92,7 +92,7 @@
 <div  class="tieude" name='<?php echo $_GET['id'] ?>'>THÔNG TIN TUYẾN BUS <?php echo "{$_GET['id']}";?></div>
 <?php
 include("connect.php");
-$sql="SELECT * FROM tuyen_xebus where ma_sotuyen=".$_GET['id']."";
+$sql="SELECT * FROM tuyen_xebus where ma_sotuyen='".$_GET['id']."'";
 $retval=mysqli_query($conn, $sql) or die('Không kết nối được');
 	if(mysqli_num_rows($retval) > 0){
 		while($row = mysqli_fetch_assoc($retval)){
@@ -121,7 +121,7 @@ $retval=mysqli_query($conn, $sql) or die('Không kết nối được');
 	<div id="chitiettuyen">
 		<?php
 			include("connect.php");
-			$sql="SELECT tram_xebus.stt_theotuyen, tram_xebus.ten_tram FROM tuyen_xebus, tram_xebus WHERE tuyen_xebus.ma_sotuyen = tram_xebus.ma_sotuyen AND tuyen_xebus.ma_sotuyen=".$_GET['id']."";
+			$sql="SELECT tram_xebus.stt_theotuyen, tram_xebus.ten_tram FROM tuyen_xebus, tram_xebus WHERE tuyen_xebus.ma_sotuyen = tram_xebus.ma_sotuyen AND tuyen_xebus.ma_sotuyen='".$_GET['id']."'";
 			$retval=mysqli_query($conn, $sql) or die('Không kết nối được');
 				if(mysqli_num_rows($retval) > 0){
 					$i=0;

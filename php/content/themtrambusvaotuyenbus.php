@@ -1,4 +1,7 @@
 ﻿<style type="text/css">
+	.content-table{
+	padding: 0 10px;
+}
 	.table{
 		position: relative;
 		float: left;
@@ -6,6 +9,9 @@
 	}
 	.table input{
 		width: 100%;
+	}
+	input{
+		width: 30%;
 	}
 </style>
 <script type="text/javascript">
@@ -26,11 +32,12 @@
 <?php
 #------------Danh sách các tuyến bus------------------------
 echo "<div class='tieude'>DANH SÁCH CÁC TUYẾN BUS</div>";
+echo "<div class='content-table'>";
 include("connect.php");
 	$sql="SELECT * FROM tuyen_xebus";
 	$retval=mysqli_query($conn, $sql) or die('Không kết nối được');
 	if(mysqli_num_rows($retval) > 0){
-		$phantrang=8;
+		$phantrang=50;
 		$sotrang=ceil(mysqli_num_rows($retval)/$phantrang);
 			if(isset($_GET['trang']))
 			{
@@ -43,10 +50,11 @@ include("connect.php");
 				$tranghienthai=0;
 				}
 	echo "<form name='quanly' method='post' action='#'>";
+	echo '<input type="text" id="myInput" onkeyup="searchTable()" placeholder="Tìm theo tên tuyến..." title="Type in a name">';
 	echo "<table class='table table-hover' id='tableSort'>";
-	echo "<tr>		<th onclick='sortTable(0)' style='cursor:pointer' width='10%' scope='col'>Mã tuyến</th>".
-					"<th onclick='sortTable(0)' style='cursor:pointer' scope='col'>Tên tuyến</th>".
+	echo "<tr>		<th onclick='sortTable(1)' style='cursor:pointer' width='10%' scope='col'>Mã tuyến</th>".
 					"<th width='15%' scope='col'>Tỉnh thành</th>".
+					"<th onclick='sortTable(2)' style='cursor:pointer' scope='col'>Tên tuyến</th>".			
 					"<th scope='col'>Chọn</th>		
          </tr>";	
         $sql="SELECT * FROM tuyen_xebus limit $batdau, $phantrang";
@@ -57,8 +65,8 @@ include("connect.php");
 			$sotram=mysqli_fetch_assoc($retval2);
 				echo "<tr>";
 				echo "<td>" . $row["ma_sotuyen"]. "</td>"; 
-				echo "<td>" . $row["ten_tuyen"]. "</td>"; 
 				echo "<td>" . $row["ma_tinhthanh"]. "</td>"; 
+				echo "<td>" . $row["ten_tuyen"]. "</td>"; 
 				echo "<td style='width:40px;'><input type='radio' name='chon' value='".$row["ma_sotuyen"]."'></td>";
 				echo "</tr>";
 		}	

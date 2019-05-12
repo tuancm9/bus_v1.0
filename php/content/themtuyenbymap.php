@@ -62,7 +62,21 @@
 	margin-top: 5px;
 	}	
 </style>
-<div class='tieude' name='<?php echo $_GET['id'] ?>' >Thêm Tuyến Bus <?php echo "{$_GET['id']}";?>  </div>
+<div class='tieude' name='<?php echo $_GET['id'] ?>' >Thêm Tuyến Buýt 
+	<?php 
+	// echo "{$_GET['id']}";
+		include('connect.php');
+			$sql="SELECT ma_sotuyen, ten_tuyen FROM tuyen_xebus WHERE ma_sotuyen='{$_GET['id']}'";
+			$retval=mysqli_query($conn,$sql);
+			    if(mysqli_num_rows($retval) > 0){
+			        while($row=mysqli_fetch_assoc($retval)){
+			        	echo "".$row['ma_sotuyen'].": ";
+			        	echo "".$row['ten_tuyen']."";
+			        }
+			    } else echo "Không có dữ liệu!";
+		mysqli_close($conn);
+?>  
+</div>
 	<div style="position: relative;float: left;">
 			<div id="mapid"></div>
 		<!--<button style="position: absolute;bottom: 10px; left: 5px;" onclick="get_toado_bus();">Tìm</button>-->	
@@ -228,6 +242,14 @@ function getIcon(name){
     shadowAnchor: [4, 20],  // the same for the shadow
     popupAnchor:  [0, -15] // point from which the popup should open relative to the iconAnchor
 	});
+	var rootIcon = L.icon({
+    iconUrl: 'icon/start.png',
+    iconSize:     [30, 30], // size of the icon
+    shadowSize:   [60,60], // size of the shadow
+    iconAnchor:   [15, 30], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 20],  // the same for the shadow
+    popupAnchor:  [0, -15] // point from which the popup should open relative to the iconAnchor
+	});
 	var Icon=nodeIcon;
 	switch(name){
 		case 'tram':
@@ -235,6 +257,9 @@ function getIcon(name){
 			break;
 		case 'node':
 			Icon=nodeIcon;
+			break;
+		case 'root':
+			Icon=rootIcon;
 			break;
 		default:  
 			Icon=nodeIcon;
@@ -272,7 +297,7 @@ function newTram(lat,lon,name,value){
   
        		if(value==0) marker.setIcon(getIcon('tram'));
        		if(value==1) marker.setIcon(getIcon('node'));
-
+       		if(value==2) marker.setIcon(getIcon('root'));
             return marker;
         }
     }).addTo(map);
@@ -379,12 +404,11 @@ function getNode(){
 			  			//console.log($ds[i]);
 			  			if($ds[i]=="null"||$ds[i]==null) continue;
 			  			tram = jQuery.parseJSON($ds[i]);
-				  		newTram(tram.lat,tram.lon,tram.ten_tram,0);
-		
+			  			if(i==0||i==$ds.length-2) newTram(tram['lat'],tram['lon'],tram['ten_tram'],2);
+				  		else newTram(tram.lat,tram.lon,tram.ten_tram,0);		
 				  		//console.log(tram.danhsachnode);
 				  		if(tram.danhsachnode=="null"||tram.danhsachnode==null) continue;
 				  		$dsnode=jQuery.parseJSON(tram.danhsachnode);
-
 				  		for(j=0;j<$dsnode.length;j++){
 				  			newTram($dsnode[j].lat,$dsnode[j].lng,'node',1);
 				  		}

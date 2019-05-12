@@ -87,6 +87,7 @@ time#icon:hover, time#icon:focus
 #form1{
 	width: 100%;
 	padding: 0 10px 10px 10px;
+	margin-top: 5%; 
 	display: block;
 }
 #form1 .list{
@@ -109,41 +110,13 @@ time#icon:hover, time#icon:focus
 <div class='frame'>
 <div class='title'><h5>Thông Tin Tuyến</h5></div>
 	<form id="form1" name='timkiem' action="javascript:submitQuery()">
-			<input id="getInput" type="text" class="form-control" placeholder="Nhập mã hoặc tên tuyến" aria-label="Username" onkeyup="getInputtuyen(this);" aria-describedby="addon-wrapping" autocomplete="off">
+			<input id="getInput" type="text" class="form-control" placeholder="<Nhập mã hoặc tên tuyến>" aria-label="Username" onkeyup="getInputtuyen(this);" aria-describedby="addon-wrapping" autocomplete="off">
 		<div id='getInput-result'></div>
 		<center>
 			<button type="button" class="btn btn-primary" onclick="submit_mst();"><i class="fas fa-search"></i>Tìm</button>
 		</center>
 	</form>
 </div>
-
-<div class='frame'>
-	<div class="row">
-		<div class="col-5">
-			<time datetime="2014-09-20" id="icon">
-			  <strong id="thang"></strong>
-			  <span id="ngay"></span>
-			  <em id="thu"></em>
-			</time>
-		</div>
-		<div class="col-7">
-			<time datetime="2014-09-20" id="icon">
-			  <strong>Time</strong>
-			  <span id="time"></span>
-			</time>
-		</div>
-	</div>
-</div>
-
-<script type="text/javascript">
-	var d = new Date();
-	var ngay = ["Sunday", "Monday", "Tuesday", "Wednesday" ,"Thursday" ,"Friday" ,"Saturday"];
-	var thang = ["January", "February", "March", "April", "	May", "June", "July", "August", "September", "October", "November", "December"];
-	document.getElementById("thang").innerHTML = thang[d.getMonth()];
-	document.getElementById("ngay").innerHTML = d.getDate();
-	document.getElementById("thu").innerHTML = ngay[d.getDay()];
-</script>
-
 <div class='frame'>
 	<div class='title'><h5>Thông Báo Theo Chủ Đề</h5></div>
 			<?php
@@ -161,7 +134,31 @@ time#icon:hover, time#icon:focus
 				echo "</div>";
 			?>
 </div>
-
+<div class='frame'>
+	<div class="row">
+		<div class="col-5">
+			<time datetime="2014-09-20" id="icon">
+			  <strong id="thang"></strong>
+			  <span id="ngay"></span>
+			  <em id="thu"></em>
+			</time>
+		</div>
+		<div class="col-7">
+			<time datetime="2014-09-20" id="icon">
+			  <strong>Time</strong>
+			  <span id="time"></span>
+			</time>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var d = new Date();
+	var ngay = ["Sunday", "Monday", "Tuesday", "Wednesday" ,"Thursday" ,"Friday" ,"Saturday"];
+	var thang = ["January", "February", "March", "April", "	May", "June", "July", "August", "September", "October", "November", "December"];
+	document.getElementById("thang").innerHTML = thang[d.getMonth()];
+	document.getElementById("ngay").innerHTML = d.getDate();
+	document.getElementById("thu").innerHTML = ngay[d.getDay()];
+</script>
 <script type="text/javascript">
 	function getInputtuyen(e){
 	value=e.value;

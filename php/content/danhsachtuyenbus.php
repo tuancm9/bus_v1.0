@@ -1,9 +1,18 @@
+<style type="text/css">
+	
+</style>
+
 <script type="text/javascript">
 	function suatuyenbus(){
 		 id=$("[type=checkbox]:checked").val(); 
 		 if(id==null) {alert("chưa chọn tuyến");return 0;}
 		window.location="index.php?xem=suatuyenbus&id="+id;
-	}
+}
+
+function search(){
+		search=$('#key').val();
+		window.location="index.php?xem=danhsachtuyenbus&search="+search;
+}
 </script>
 <?php
 #---------------------------------Xóa tuyến bus--------------------------------------
@@ -23,11 +32,19 @@ if(isset($_POST['xoa'])){
 }
 ?>
 
-<div class="tieude">DANH SÁCH TUYẾN BUS</div>
+<div class="tieude">DANH SÁCH TUYẾN BUÝT</div>
+<div id='formSearch' style="position: relative; float: left; width: 100%; margin-left:25%; ">
+	<form>
+		<div class="form-group">
+		   	<input class="form-control" id="key" placeholder="<Nhập mã số tuyến hoặc tên tuyến>" autocomplete="off" style="width:30%; float: left;">
+		  	<button type="button" class="btn btn-primary" onclick="search();" style="width: 10%; right: 0; margin-top:1%; margin-left:1%;">Tìm</button>
+		</div>
+	</form>
+</div>
 <?php
 include("connect.php");
-	$sql="SELECT * FROM tuyen_xebus";
-	$retval=mysqli_query($conn, $sql) or die('Không kết nối được');
+$sql="SELECT * FROM tuyen_xebus";
+$retval=mysqli_query($conn, $sql) or die('Không kết nối được');
 	if(mysqli_num_rows($retval) > 0){
 		$phantrang=50;
 		$sotrang=ceil(mysqli_num_rows($retval)/$phantrang);
@@ -48,16 +65,21 @@ include("connect.php");
 					"<th onclick='sortTable(2)' style='cursor:pointer'>ĐV đảm nhận</th>".
 					"<th onclick='sortTable(3)' style='cursor:pointer'width='5%'>Độ dài tuyến</th>".
 					"<th onclick='sortTable(4)' style='cursor:pointer' width='8%'>Loại xe</th>".
-					"<th onclick='sortTable(5)' style='cursor:pointer' width='10%'>Giá vé</th>".
+					"<th onclick='sortTable(5)' style='cursor:pointer' width='8%'>Giá vé</th>".
 					"<th onclick='sortTable(6)' style='cursor:pointer' width='6%'>Tỉnh thành</th>".
 					"<th onclick='sortTable(7)' style='cursor:pointer' width='5%'>Số chuyến</th>".
 					"<th onclick='sortTable(8)' style='cursor:pointer' width='9%'>Từ</th>".
 					"<th onclick='sortTable(9)' style='cursor:pointer' width='9%'>Đến</th>".
-					"<th onclick='sortTable(10)' style='cursor:pointer' width='8%'>Giãn cách chuyến</th>".
-					"<th onclick='sortTable(11)' style='cursor:pointer' width='auto'>Chi Tiết</th>
+					"<th onclick='sortTable(10)' style='cursor:pointer' width='5%'>Giãn cách chuyến</th>".
+					"<th onclick='sortTable(11)' style='cursor:pointer' width='3%'>Chi Tiết</th>
 					<th>Chọn</th>		
          </tr>";	
-        $sql="SELECT * FROM tuyen_xebus limit $batdau, $phantrang";
+        if(isset($_GET['search']) && !empty($_GET['search'])){
+			$keyword=$_GET['search'];
+			$sql="SELECT * FROM tuyen_xebus where ten_tuyen LIKE '%$keyword%' or ma_sotuyen LIKE '%$keyword%'";
+		}else{
+        	$sql="SELECT * FROM tuyen_xebus limit $batdau, $phantrang";
+    	}
 		$retval=mysqli_query($conn, $sql) or die('Không kết nối được');
 		while($row = mysqli_fetch_assoc($retval)){
 			$sql="SELECT count(*) as sotram FROM tram_xebus where ma_sotuyen='{$row["ma_sotuyen"]}'";

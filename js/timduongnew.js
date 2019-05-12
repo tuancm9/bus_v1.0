@@ -460,7 +460,6 @@ function newTram(lat,lon,name,value){
        		if(value==0) marker.setIcon(getIcon('tram'));
        		if(value==1) marker.setIcon(getIcon('node'));
        		if(value==2) marker.setIcon(getIcon('root'));
-
             return marker;
         }
     }).addTo(map);
