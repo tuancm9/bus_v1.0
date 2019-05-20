@@ -21,7 +21,7 @@
                 	},
                 danhsachnode: {
                 	required: true,
-                	number: true
+                	number: false
                 	}
             },
             messages: {

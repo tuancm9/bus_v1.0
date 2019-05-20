@@ -70,7 +70,7 @@ mysqli_close($conn);
     }
     .com-mess{
         height:100px;
-        width:600px;
+        width:100%;
     }
     .com-name{
         height:20px;

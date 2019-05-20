@@ -73,7 +73,7 @@ include("connect.php");
 		echo "</table>";
 		echo "<center>";
 					echo "<div class='nutchon'>";
-						echo "<input class='btn btn-primary' id='themtrambusthucong' name='themtram' type='button' onclick='themtramthucong();' value='Thêm Trạm Bus Vào Tuyến Bus Thủ Công'></td>";
+						// echo "<input class='btn btn-primary' id='themtrambusthucong' name='themtram' type='button' onclick='themtramthucong();' value='Thêm Trạm Bus Vào Tuyến Bus Thủ Công'></td>";
 						echo "<input class='btn btn-primary' id='themtrambymap' name='themtrambymap' type='button' onclick='themtrambyMAP();' value='Thêm Trạm Bus Vào Tuyến Bus By Map'></td>";
 						echo "<div id='phantrang'>";
 						for($i=0;$i<$sotrang;$i++){

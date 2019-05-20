@@ -1,5 +1,8 @@
 <?php
+if(isset($_GET['search'])){
 	$noidungSearch=$_GET['search'];
+	$tinhthanh=$_GET['tinhthanh'];
+}
 ?>
 <style type="text/css">
 	#danhsachtuyenbus{
@@ -62,32 +65,38 @@
 	    -webkit-border-radius: 50%;
 	}
 #formSearch{
-	width: 50%;
-	height: 100px;
-	margin-left:25%;
+	width: 100%;
+	height: 60px;
 }
-#formSearch form-group{
-	width: 20%;
+.form-group{
+	margin-bottom: unset;
+}
+#formSearch .form-control{
+	width: 50%;
+	float: left;
+	margin-left: 10%; 
+	margin-right: 5%;
 }
 #formSearch .btn{
 	width: 20%;
-	margin-left:40%;
-	margin-top:0;
+	margin-left: 5%; 
+	display: block;
 }
 </style>
 <script type="text/javascript">
-	function getSearchtuyen(){
-		var x = "<?php echo $tinhthanh; ?>";
+	function getSearch(){
+		tinhthanh=$('#tinhthanh').val();
 		noidungSearch=$('#search').val();
-		window.location.href ='http://127.0.0.1/webMap/indexUser.php?xem=danhsachtuyenbusTimtheoten&search='+noidungSearch+"&tinhthanh="+x;
+		window.location.href ='http://127.0.0.1/webMap/indexUser.php?xem=danhsachtuyenbusTimtheoten&search='+noidungSearch+"&tinhthanh="+tinhthanh;
 	}
 </script>
 <div id='formSearch'>
 	<form>
 	  <div class="form-group">
 	    <input class="form-control" id="search" placeholder="Nhập tuyến bus" autocomplete="off">
+	    <input type="hidden" id="tinhthanh" value="<?php echo $tinhthanh ?>" autocomplete="off">
 	  </div>
-	  <button type="button" class="btn btn-primary" onclick="getSearchtuyen();">Tìm</button>
+	  <button type="button" class="btn btn-primary" onclick="getSearch();">Tìm</button>
 	</form>
 </div>
 <?php

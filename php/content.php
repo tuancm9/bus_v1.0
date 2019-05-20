@@ -41,6 +41,9 @@ if(isset($_GET['xem'])){
 		case 'thongTintaikhoan':
 			include("php/content/thongTintaikhoan.php");
 			break;
+		case 'quanlytaikhoan':
+			include("php/content/quanlytaikhoan.php");
+			break;
 		case 'baidangdiendan':
 			include("php/content/danhsachbaidang_diendan.php");
 			break;

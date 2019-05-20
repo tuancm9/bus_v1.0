@@ -55,11 +55,11 @@ require("connect.php");
 		}	
 		echo "</table>";
 		echo "<div id='xoa'></div>";
-			echo "<div style='width:55%;position: fix;float:left;margin-left:25%;'>";		
+			echo "<center><div style='width:100%;position: fix;float:left;'>";		
 							echo "<a href='index.php?xem=danhsachtuyenbus' style='position:fix;width:100px;'><input class='btn btn-primary' name='suatram' type='button' value='Quay Lại' style='width:150px;' /></a>";	
 							echo "<input class='btn btn-primary' name='suatrambus' type='submit' value='Sửa trạm bus' style='width:150px;margin-left:70px;' /> ";
 							echo "<button class='btn btn-primary' type='button' onClick='xacnhanxoa();' value='Xóa trạm bus' style='width:150px;margin-left:14px;'>Xóa</button>";
-			echo "</div>";
+			echo "</div></center>";
 		echo "</form>";
 		}
 		mysqli_close($conn);

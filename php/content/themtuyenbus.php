@@ -82,11 +82,24 @@
 </script>
 <?php
 if(isset($_POST['masotuyen'])){
-    include('connect.php');
-    $sql = "INSERT INTO tuyen_xebus(ma_sotuyen,ten_tuyen,donvi_damnhan,dodai_tuyen,loai_xe,gia_ve,ma_tinhthanh,so_chuyen,tu,den,giancach_chuyen) VALUES('{$_POST['masotuyen']}','{$_POST['tentuyen']}','{$_POST['donvidamnhan']}',{$_POST['dodaituyen']},'{$_POST['loaixe']}','{$_POST['giave']}','{$_POST['tinhthanh']}',{$_POST['sochuyen']},'{$_POST['tu']}','{$_POST['den']}','{$_POST['giancachchuyen']}');";
+	include('connect.php');
+	$checkData = "SELECT * from tuyen_xebus WHERE ma_sotuyen='{$_POST['masotuyen']}' OR ten_tuyen='{$_POST['tentuyen']}'";
+
+	$resultCheck=mysqli_query($conn,$checkData) or die("<?php echo'NO' ?>");
+
+		if($resultCheck){
+			 $result= mysqli_fetch_array($resultCheck);
+		}else{
+			$result=[];
+		}
+	if($result){
+		echo "<script>alert('Mã số tuyến hoặc tên tuyến đã tồn tại!')</script>" ;
+	}else{
+		$sql = "INSERT INTO tuyen_xebus(ma_sotuyen,ten_tuyen,donvi_damnhan,dodai_tuyen,loai_xe,gia_ve,ma_tinhthanh,so_chuyen,tu,den,giancach_chuyen) VALUES('{$_POST['masotuyen']}','{$_POST['tentuyen']}','{$_POST['donvidamnhan']}',{$_POST['dodaituyen']},'{$_POST['loaixe']}','{$_POST['giave']}','{$_POST['tinhthanh']}',{$_POST['sochuyen']},'{$_POST['tu']}','{$_POST['den']}','{$_POST['giancachchuyen']}');";
     mysqli_query($conn,$sql) or die("<script> alert('Không thể thêm!')</script>");
     echo "<script>alert('Thêm thành công!')</script>";
     mysqli_close($conn);
+	}
 	}
 ?>
 <div class="tieude">THÊM TUYẾN BUS</div>

@@ -110,7 +110,7 @@ time#icon:hover, time#icon:focus
 <div class='frame'>
 <div class='title'><h5>Thông Tin Tuyến</h5></div>
 	<form id="form1" name='timkiem' action="javascript:submitQuery()">
-			<input id="getInput" type="text" class="form-control" placeholder="<Nhập mã hoặc tên tuyến>" aria-label="Username" onkeyup="getInputtuyen(this);" aria-describedby="addon-wrapping" autocomplete="off">
+			<input id="getInput" type="text" class="form-control" placeholder="Nhập mã hoặc tên tuyến" aria-label="Username" onkeyup="getInputtuyen(this);" aria-describedby="addon-wrapping" autocomplete="off">
 		<div id='getInput-result'></div>
 		<center>
 			<button type="button" class="btn btn-primary" onclick="submit_mst();"><i class="fas fa-search"></i>Tìm</button>

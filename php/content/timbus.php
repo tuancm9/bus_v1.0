@@ -178,11 +178,11 @@ display: none;
 
 <form id="form" action="javascript:submitQuery()" name="search" class="clearfix">
     <div class='frompoint-content'>
-		<input type="text" name="frompoint" placeholder="<Nhập điểm đi>" id='frompoint' class='frompoint' autocomplete="off"  onkeyup="getDataFromTo(this);" />
+		<input type="text" name="frompoint" placeholder="Nhập điểm đi" id='frompoint' class='frompoint' autocomplete="off"  onkeyup="getDataFromTo(this);" />
 		<div id='frompoint-result'></div>
     </div>
     <div class='topoint-content'>
-	    <input type="text" name="topoint" placeholder="<Nhập điểm đến>" autocomplete="off" id='topoint' class='topoint'  onkeyup="getDataFromTo(this);" />
+	    <input type="text" name="topoint" placeholder="Nhập điểm đến" autocomplete="off" id='topoint' class='topoint'  onkeyup="getDataFromTo(this);" />
 	    <div id='topoint-result' ></div>
     </div>
     <input class="btn btn-primary" type="button" value="Submit" id="searchBus"></input>
@@ -212,9 +212,9 @@ $('#showListBus').html('<img src="icon/clickHere.png" width ="35px" onclick="ope
 
 function openListBus(){
 $('#chiduong').css('display','block');
-$('#chiduong').animate({width:"30%"},500);
+$('#chiduong').animate({width:"50%"},500);
 
-$('#mapid').animate({width:"70%"},500);
+$('#mapid').animate({width:"100%"},500);
 $('#showListBus').html('<img src="icon/clickHere.png" width ="35px" onclick="closeListBus()" />'); 
 $('#showListBus img').css('transform','rotate(180deg)');  
 }

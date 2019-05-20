@@ -106,7 +106,7 @@ $retval=mysqli_query($conn, $sql) or die('Không kết nối được');
 								<tr><td>Giá Vé: </td><td>".$row['gia_ve']."</td></tr>
 								<tr><td>Tỉnh Thành: </td><td>".$row['ma_tinhthanh']."</td></tr>
 								<tr><td>Giản Cách Chuyến: </td><td>".$row['giancach_chuyen']." Phút</td></tr>
-								<tr><td>Giản Cách Chuyến: </td><td>Từ: ".$row['tu']." ----> Đến: ".$row['den']."</td></tr>
+								<tr><td>Thời gian hoạt động: </td><td>Từ: ".$row['tu']." ----> Đến: ".$row['den']."</td></tr>
 								<tr><td>Số Chuyến: </td><td>".$row['so_chuyen']." Chuyến</td></tr>
 							</table>
 						</div>";
@@ -164,7 +164,7 @@ function getIcon(name){
 	});
 	var nodeIcon = L.icon({
     iconUrl: 'icon/nodeIcon.png',
-    iconSize:     [15, 15], // size of the icon
+    iconSize:     [0, 0], // size of the icon
     shadowSize:   [60,60], // size of the shadow
     iconAnchor:   [7, 7], // point of the icon which will correspond to marker's location
     shadowAnchor: [4, 20],  // the same for the shadow
@@ -345,6 +345,7 @@ function openListBus(){
 $('#chitiettuyen').animate({width:"30%"},500);
 $('#mapid').animate({width:"70%"},500);
 $('#showListBus').html('<img src="icon/clickHere.png" width ="35px" onclick="closeListBus()" />'); 
+$('#showListBus img').css('transform','rotate(180deg)');
 }
 
 function showMarker(index){

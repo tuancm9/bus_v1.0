@@ -1,15 +1,16 @@
 <div id='content'>
 <style type="text/css">
 	#mapid{
-		width: 1080px;
+		width: 1190px;
 		height: 600px;
 		z-index: 0;
 	}
     .row {
         position: absolute;
         float: left;
+		left: 20%;
         height: 40px;
-        width: 100%;
+        /* width: 100%; */
         bottom: 0%;
         z-index: 99999;
         margin-left: 0%;
@@ -82,7 +83,7 @@
 		<!--<button style="position: absolute;bottom: 10px; left: 5px;" onclick="get_toado_bus();">Tìm</button>-->	
 			<div class='row' id='tuychon_map'>
 				<input class="button" type="button" onclick='tuyChon(0);'value="Get Trạm" />
-				<input class="button" type="button" onclick='tuyChon(1);'value="Get note" />
+				<!-- <input class="button" type="button" onclick='tuyChon(1);'value="Get note" /> -->
 				<input type="text" class='title_name' id='title_name' title="Nhập tên trạm" placeholder="Nhập tên trạm">
 				<input type="text" class='title_name' id='lat_tram' title="Nhập tên trạm" placeholder="Nhập Kinh độ" style="width: 200px;">
 				<input type="text" class='title_name' id='lon_tram' title="Nhập tên trạm" placeholder="Nhập vĩ độ" style="width: 200px;">
@@ -398,7 +399,7 @@ function getNode(){
 			url: "php/content/function_ajax/get_node.php",
 			data: dataString,
 			success: function(resultData) { 
-				alert(resultData);
+				// alert(resultData);
 			  		$ds=resultData.split(';');
 			  		for(i=0;i<$ds.length-1;i++){
 			  			//console.log($ds[i]);
@@ -417,7 +418,7 @@ function getNode(){
 			//$('#thongbao').html('thành công.').parent().fadeIn().delay(1000).fadeOut('slow');
 		  	 },
 		  	 error: function(data){
-    				alert('error!'+data);
+    				// alert('error!'+data);
   				}
 			});
 }
@@ -455,14 +456,14 @@ function luu(){
 	tram_tmp[1]=null;
 	tram.push(tram_tmp);
  	var dataString ='id='+JSON.stringify(tram)+'&mst='+mst;
- 	alert(dataString);
+ 	// alert(dataString);
 			$.ajax
 			({
 			type: "POST",
 			url: "php/content/function_ajax/save_tram.php",
 			data: dataString,
 			success: function(resultData) { 
-				alert(resultData);
+			 alert('Thêm thành công!');
 			//$('#thongbao').html('thành công.').parent().fadeIn().delay(1000).fadeOut('slow');
 		  	 },
 		  	 error: function(data){
